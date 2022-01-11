@@ -30,25 +30,25 @@ export const getMenuItems = () => {
       url: BLOCKS,
       icon: <BlockIcon {...iconProps} />,
     },
-    {
-      key: 'validators',
-      url: VALIDATORS,
-      icon: <UserIcon {...iconProps} />,
-    },
-    {
-      key: 'transactions',
-      url: TRANSACTIONS,
-      icon: <TransactionIcon {...iconProps} />,
-    },
-    {
-      key: 'proposals',
-      url: PROPOSALS,
-      icon: <ProposalsIcon {...iconProps} />,
-    },
-    {
-      key: 'params',
-      url: PARAMS,
-      icon: <ParamIcon {...iconProps} />,
-    },
+    // {
+    //   key: 'validators',
+    //   url: VALIDATORS,
+    //   icon: <UserIcon {...iconProps} />,
+    // },
+    // {
+    //   key: 'transactions',
+    //   url: TRANSACTIONS,
+    //   icon: <TransactionIcon {...iconProps} />,
+    // },
+    // {
+    //   key: 'proposals',
+    //   url: PROPOSALS,
+    //   icon: <ProposalsIcon {...iconProps} />,
+    // },
+    // {
+    //   key: 'params',
+    //   url: PARAMS,
+    //   icon: <ParamIcon {...iconProps} />,
+    // },
   ];
 };

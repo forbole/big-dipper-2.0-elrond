@@ -1,10 +1,15 @@
 import React from 'react';
+import {
+  Layout,
+} from '@components';
 
 const Home = () => {
   return (
-    <div>
-      im home
-    </div>
+    <Layout>
+      <div>
+        im home
+      </div>
+    </Layout>
   );
 };
 

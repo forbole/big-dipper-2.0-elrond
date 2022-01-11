@@ -4,5 +4,11 @@
   "icon": "https://raw.githubusercontent.com/forbole/big-dipper-assets/master/elrond/icon.png?sanitize=true",
   "logo": {
     "default": "https://raw.githubusercontent.com/forbole/big-dipper-assets/master/elrond/logo.svg?sanitize=true"
-  }
+  },
+  "prefix": {
+    "consensus": "desmosvalcons",
+    "validator": "desmosvaloper",
+    "account": "desmos"
+  },
+  "primaryTokenUnit": "udsm"
 }

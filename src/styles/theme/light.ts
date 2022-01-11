@@ -18,7 +18,7 @@ export const lightThemeOverride = {
   palette: {
     type: 'light',
     primary: {
-      main: '#FD3B4C',
+      main: '#2F65DD',
       contrastText: '#fff',
     },
     background: {
@@ -41,17 +41,37 @@ export const lightThemeOverride = {
         fontTwo,
         fontThree,
         fontFour: '#999999',
+        highlight: '#2F65DD',
       },
       primaryData: {
-        one: '#FA3A39',
-        two: '#FD5E1F',
-        three: '#FD5D4E',
-        four: '#FD9526',
+        one: '#3E71E3',
+        two: '#4493DB',
+        three: '#279FBA',
+        four: '#27BAA8',
       },
-      results: {
-        pass: '#1EC490',
-        fail: '#FD3B4C',
-      },
+      // tokenomics: {
+      //   one: '#3E71E3',
+      //   two: '#F79E4D',
+      //   three: '#27BAA8',
+      // },
+      // condition: {
+      //   zero: '#D3D3D3',
+      //   one: '#67B878',
+      //   two: '#F79E4D',
+      //   three: '#EB5079',
+      // },
+      // charts: {
+      //   zero: '#D3D3D3',
+      //   one: '#27BAA8',
+      //   two: '#4493DB',
+      //   three: '#F79E4D',
+      //   four: '#ED5A5A',
+      //   five: '#906CDE',
+      // },
+      // results: {
+      //   pass: '#12B785',
+      //   fail: '#E94848',
+      // },
     },
   },
   overrides: {

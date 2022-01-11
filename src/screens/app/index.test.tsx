@@ -1,15 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { createMockClient } from 'mock-apollo-client';
 import App from '.';
-
-const mockClient = createMockClient();
 
 jest.mock('next-translate/useTranslation', () => () => ({
   lang: 'en',
-}));
-jest.mock('@src/graphql/client', () => ({
-  useApollo: () => mockClient,
 }));
 
 const mockI18n = {

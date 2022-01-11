@@ -5,10 +5,10 @@ import { ToastContainer } from 'react-toastify';
 import { AppProps } from 'next/app';
 import Countdown from '@screens/countdown';
 import InitialLoad from '@screens/initial_load';
-import { useSettingsRecoil } from '@recoil/settings';
-import { useBigDipperNetworksRecoil } from '@recoil/big_dipper_networks';
-import { useMarketRecoil } from '@recoil/market';
-import { useValidatorRecoil } from '@recoil/validators';
+// import { useSettingsRecoil } from '@recoil/settings';
+// import { useBigDipperNetworksRecoil } from '@recoil/big_dipper_networks';
+// import { useMarketRecoil } from '@recoil/market';
+// import { useValidatorRecoil } from '@recoil/validators';
 import { InnerApp } from '..';
 import {
   useTheme,
@@ -19,10 +19,10 @@ const Main = (props: AppProps) => {
   // =====================================
   // init recoil values
   // =====================================
-  useSettingsRecoil();
-  useBigDipperNetworksRecoil();
-  useMarketRecoil();
-  const { loading } = useValidatorRecoil();
+  // useSettingsRecoil();
+  // useBigDipperNetworksRecoil();
+  // useMarketRecoil();
+  // const { loading } = useValidatorRecoil();
 
   // =====================================
   // general setup
@@ -39,7 +39,8 @@ const Main = (props: AppProps) => {
     Component = (
       <Countdown startGenesis={startGenesis} />
     );
-  } else if (loading) {
+  // } else if (loading) {
+  } else if (false) {
     Component = <InitialLoad {...props.pageProps} />;
   } else {
     Component = (

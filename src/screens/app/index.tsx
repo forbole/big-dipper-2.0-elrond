@@ -3,8 +3,6 @@ import { RecoilRoot } from 'recoil';
 import { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
-import { ApolloProvider } from '@apollo/client';
-import { useApollo } from '@src/graphql/client';
 import { chainConfig } from '@configs';
 import { Main } from './components';
 import {
@@ -19,8 +17,6 @@ import {
 
 function App(props: AppProps) {
   useApp();
-  const { pageProps } = props;
-  const apolloClient = useApollo(pageProps.initialApolloState);
   const { t } = useTranslation();
 
   return (
@@ -39,13 +35,9 @@ function App(props: AppProps) {
         additionalLinkTags={ADDITIONAL_LINK_TAGS_SEO}
         additionalMetaTags={ADDITIONAL_META_TAGS}
       />
-      <ApolloProvider
-        client={apolloClient}
-      >
-        <RecoilRoot>
-          <Main {...props} />
-        </RecoilRoot>
-      </ApolloProvider>
+      <RecoilRoot>
+        <Main {...props} />
+      </RecoilRoot>
     </>
   );
 }

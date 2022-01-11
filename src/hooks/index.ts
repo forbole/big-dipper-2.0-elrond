@@ -6,7 +6,6 @@ import {
 } from './use_react_window';
 import { usePagination } from './use_pagination';
 import { useInterval } from './use_interval';
-import { useDesmosProfile } from './use_desmos_profile';
 
 export {
   usePersistedState,
@@ -17,5 +16,4 @@ export {
   useGrid,
   usePagination,
   useInterval,
-  useDesmosProfile,
 };

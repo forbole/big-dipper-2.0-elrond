@@ -80,6 +80,9 @@
       ],
       "@tests/utils": [
         "tests/utils"
+      ],
+      "@api": [
+        "src/api"
       ]
     }
   },

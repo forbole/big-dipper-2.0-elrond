@@ -96,6 +96,6 @@
   "exclude": [
     "node_modules",
     "cypress",
-    "xsrc"
+    "xold_xsrc"
   ]
 }

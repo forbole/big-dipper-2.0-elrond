@@ -7,4 +7,4 @@
 **/cypress/fixtures/*
 **/src/graphql/types.tsx
 **/src/graphql/desmos_profile.ts
-**/xsrc/*
+**/xold_xsrc/*

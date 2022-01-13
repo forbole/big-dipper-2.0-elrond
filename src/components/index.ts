@@ -6,6 +6,7 @@ import Footer from './footer';
 import Search from './search';
 import Pagination from './pagination';
 import NoData from './no_data';
+import Box from './box';
 
 export {
   Layout,
@@ -16,4 +17,5 @@ export {
   Search,
   Pagination,
   NoData,
+  Box,
 };

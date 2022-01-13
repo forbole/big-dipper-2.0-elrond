@@ -7,6 +7,7 @@ import {
 import {
   Pagination,
   NoData,
+  Box,
 } from '@components';
 import { useStyles } from './styles';
 
@@ -27,7 +28,7 @@ const List = () => {
   });
 
   return (
-    <div>
+    <Box>
       <>
         {isDesktop ? (
           <Desktop className={classes.desktop} />
@@ -43,7 +44,7 @@ const List = () => {
         handleChangePage={handleChangePage}
         handleChangeRowsPerPage={handleChangeRowsPerPage}
       />
-    </div>
+    </Box>
   );
 };
 

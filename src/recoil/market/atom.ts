@@ -2,21 +2,9 @@ import { atom } from 'recoil';
 import { AtomState } from './types';
 
 const initialState: AtomState = {
-  price: null,
-  supply: {
-    value: '0',
-    displayDenom: '',
-    baseDenom: '',
-    exponent: 0,
-  },
-  marketCap: null,
-  inflation: 0,
-  communityPool: {
-    value: '0',
-    displayDenom: '',
-    baseDenom: '',
-    exponent: 0,
-  },
+  marketCap: 0,
+  price: 0,
+  supply: 0,
   apr: 0,
 };
 

@@ -1,35 +1,23 @@
-import Big from 'big.js';
-import { formatNumber } from '@utils/format_token';
+import numeral from 'numeral';
+import { AtomState } from '@recoil/market/types';
 
-export const formatMarket = (data: {
-  marketCap: number;
-  communityPool: TokenUnit;
-  supply: TokenUnit;
-  inflation: number;
-  apr: number;
-}) => {
-  const marketCap = data.marketCap !== null ? `$${formatNumber(data.marketCap.toString(), 2)}` : 'N/A';
-
+export const formatMarket = (data: AtomState) => {
   return ([
     {
       key: 'marketCap',
-      data: marketCap,
-    },
-    {
-      key: 'inflation',
-      data: `${formatNumber(Big(data.inflation).times(100).toPrecision(), 0)}%`,
+      data: `$${numeral(data.marketCap).format('0,0')}`,
     },
     {
       key: 'apr',
-      data: `${formatNumber(Big(data.apr).times(100).toPrecision(), 2)}%`,
+      data: numeral(data.apr).format('0%'),
+    },
+    {
+      key: 'price',
+      data: `$${numeral(data.price).format('0,0.00')}`,
     },
     {
       key: 'supply',
-      data: `${formatNumber(data.supply.value, 2)} ${data.supply.displayDenom.toUpperCase()}`,
-    },
-    {
-      key: 'communityPool',
-      data: `${formatNumber(data.communityPool.value, 2)} ${data.communityPool.displayDenom.toUpperCase()}`,
+      data: numeral(data.supply).format('0,0'),
     },
   ]);
 };

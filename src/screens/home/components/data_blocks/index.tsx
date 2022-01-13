@@ -1,6 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
 import numeral from 'numeral';
+import { useRecoilValue } from 'recoil';
+import { readMarket } from '@recoil/market';
 import useTranslation from 'next-translate/useTranslation';
 import { DataBlockState } from '../../types';
 import { SingleBlock } from './components';
@@ -9,6 +11,7 @@ import { useStyles } from './styles';
 const DataBlocks: React.FC<DataBlockState & ComponentDefault> = (props) => {
   const { t } = useTranslation('home');
   const classes = useStyles();
+  const marketState = useRecoilValue(readMarket);
 
   const data = [
     {
@@ -23,7 +26,7 @@ const DataBlocks: React.FC<DataBlockState & ComponentDefault> = (props) => {
     },
     {
       key: t('price'),
-      value: 'N/A',
+      value: `$${numeral(marketState.price).format('0,0.00')}`,
       className: classes.price,
     },
     {

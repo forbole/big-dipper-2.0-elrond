@@ -1,19 +1,35 @@
-/* eslint-disable max-len */
+import { useEffect } from 'react';
 import * as R from 'ramda';
-import numeral from 'numeral';
+import axios from 'axios';
+import { ECONOMICS } from '@api';
 import {
   useRecoilState,
   SetterOrUpdater,
 } from 'recoil';
-import Big from 'big.js';
-import { chainConfig } from '@configs';
 import {
   writeMarket,
 } from '@recoil/market';
 import { AtomState } from '@recoil/market/types';
-import { getDenom } from '@utils/get_denom';
-import { formatToken } from '@utils/format_token';
 
 export const useMarketRecoil = () => {
-  const [market, setMarket] = useRecoilState(writeMarket) as [AtomState, SetterOrUpdater<AtomState>];
+  const [_market, setMarket] = useRecoilState(writeMarket) as [
+    AtomState, SetterOrUpdater<AtomState>];
+
+  useEffect(() => {
+    getEconomics();
+  }, []);
+
+  const getEconomics = async () => {
+    try {
+      const { data } = await axios.get(ECONOMICS);
+      setMarket({
+        marketCap: R.pathOr(0, ['marketCap'], data) as number,
+        price: R.pathOr(0, ['price'], data) as number,
+        supply: R.pathOr(0, ['totalSupply'], data) as number,
+        apr: R.pathOr(0, ['apr'], data) as number,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };

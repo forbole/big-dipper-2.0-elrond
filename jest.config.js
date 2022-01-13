@@ -10,7 +10,7 @@ module.exports = {
     '<rootDir>',
   ],
   moduleFileExtensions: ['js', 'ts', 'tsx', 'json'],
-  testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next|cypress)[/\\\\]'],
+  testPathIgnorePatterns: ['<rootDir>[/\\\\](node_modules|.next|cypress|xold_xsrc)[/\\\\]'],
   transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
   transform: {
     '.+\\.(svg|css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',

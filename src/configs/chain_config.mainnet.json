@@ -1,5 +1,5 @@
 {
-  "title": "Desmos Block Explorer",
+  "title": "Elrond Block Explorer",
   "network": "mainnet",
   "icon": "https://raw.githubusercontent.com/forbole/big-dipper-assets/master/elrond/icon.png?sanitize=true",
   "logo": {
@@ -10,5 +10,8 @@
     "validator": "desmosvaloper",
     "account": "desmos"
   },
-  "primaryTokenUnit": "udsm"
+  "primaryTokenUnit": "udsm",
+  "extra": {
+    "profile": false
+  }
 }

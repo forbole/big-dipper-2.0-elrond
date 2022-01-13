@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 module.exports = {
   // locales: ['en', 'zht'],
   locales: ['en'],

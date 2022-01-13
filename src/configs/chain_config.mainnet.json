@@ -1,27 +1,17 @@
 {
-  "title": "Desmos Block Explorer",
-  "network": "desmos-mainnet-1",
-  "icon": "https://raw.githubusercontent.com/forbole/big-dipper-assets/master/desmos/icon.svg?sanitize=true",
+  "title": "Elrond Block Explorer",
+  "network": "mainnet",
+  "icon": "https://raw.githubusercontent.com/forbole/big-dipper-assets/master/elrond/icon.png?sanitize=true",
   "logo": {
-    "default": "https://raw.githubusercontent.com/forbole/big-dipper-assets/master/desmos/logo.svg?sanitize=true"
+    "default": "https://raw.githubusercontent.com/forbole/big-dipper-assets/master/elrond/logo.svg?sanitize=true"
   },
   "prefix": {
     "consensus": "desmosvalcons",
     "validator": "desmosvaloper",
     "account": "desmos"
   },
-  "genesis": {
-    "time": "2021-07-13T08:00:00",
-    "height": 1
-  },
   "primaryTokenUnit": "udsm",
-  "tokenUnits": {
-    "udsm": {
-      "display": "dsm",
-      "exponent": 6
-    }
-  },
   "extra": {
-    "profile": true
+    "profile": false
   }
 }

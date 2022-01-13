@@ -80,6 +80,9 @@
       ],
       "@tests/utils": [
         "tests/utils"
+      ],
+      "@api": [
+        "src/api"
       ]
     }
   },
@@ -93,6 +96,6 @@
   "exclude": [
     "node_modules",
     "cypress",
-    "xsrc"
+    "xold_xsrc"
   ]
 }

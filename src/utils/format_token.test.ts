@@ -31,7 +31,7 @@ jest.mock('@configs', () => ({
 // ==================================
 // unit tests
 // ==================================
-describe('utils: removeEndingZeros', () => {
+xdescribe('utils: removeEndingZeros', () => {
   it('format correctly #1', async () => {
     const results = removeEndingZeros('1000000');
     expect(results).toBe('1');
@@ -62,7 +62,7 @@ describe('utils: removeEndingZeros', () => {
   });
 });
 
-describe('utils: formatNumber', () => {
+xdescribe('utils: formatNumber', () => {
   it('format correctly #1', async () => {
     const results = formatNumber('51.000101');
     expect(results).toBe('51.000101');
@@ -118,7 +118,7 @@ describe('utils: formatNumber', () => {
   });
 });
 
-describe('utils: formatToken', () => {
+xdescribe('utils: formatToken', () => {
   it('format correctly #1', async () => {
     const results = formatToken(654654, 'udaric');
     expect(results.value).toBe('0.654654');

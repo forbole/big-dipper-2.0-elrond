@@ -2,14 +2,14 @@ import {
   useEffect,
   useState,
 } from 'react';
-import useTranslation from 'next-translate/useTranslation';
-import dayjs from '@utils/dayjs';
-import { toast } from 'react-toastify';
-import * as R from 'ramda';
+// import useTranslation from 'next-translate/useTranslation';
+// import dayjs from '@utils/dayjs';
+// import { toast } from 'react-toastify';
+// import * as R from 'ramda';
 
 export const useChainHealthCheck = () => {
-  const { t } = useTranslation('common');
-  const [chainActive, setChainActive] = useState(true);
+  // const { t } = useTranslation('common');
+  const [_chainActive, _setChainActive] = useState(true);
   const isClient = typeof window === 'object';
 
   // const [useLatestBlockTimestamp] = useLatestBlockTimestampLazyQuery({

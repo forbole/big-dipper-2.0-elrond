@@ -1,7 +1,7 @@
 import numeral from 'numeral';
 import * as R from 'ramda';
 import Big from 'big.js';
-import { chainConfig } from '@configs';
+// import { chainConfig } from '@configs';
 
 /**
  * Util to help me correctly transform a base denom amount
@@ -11,7 +11,8 @@ import { chainConfig } from '@configs';
  * @returns TokenUnit
  */
 export const formatToken = (value: number | string, denom = ''): TokenUnit => {
-  const selectedDenom = chainConfig.tokenUnits[denom];
+  // const selectedDenom = chainConfig.tokenUnits[denom];
+  const selectedDenom = null;
 
   if (typeof value !== 'string' && typeof value !== 'number') {
     value = '0';

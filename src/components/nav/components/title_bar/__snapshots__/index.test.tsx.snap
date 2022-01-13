@@ -23,21 +23,7 @@ exports[`screen: Nav/TitleBar hook toggles correctly 1`] = `
       <p
         className="MuiTypography-root MuiTypography-body1"
       >
-        N/A
-      </p>
-    </div>
-    <div
-      className="makeStyles-item"
-    >
-      <p
-        className="MuiTypography-root label MuiTypography-body1"
-      >
-        common:inflation
-      </p>
-      <p
-        className="MuiTypography-root MuiTypography-body1"
-      >
-        0%
+        $0
       </p>
     </div>
     <div
@@ -60,12 +46,12 @@ exports[`screen: Nav/TitleBar hook toggles correctly 1`] = `
       <p
         className="MuiTypography-root label MuiTypography-body1"
       >
-        common:supply
+        common:price
       </p>
       <p
         className="MuiTypography-root MuiTypography-body1"
       >
-        0 
+        $0.00
       </p>
     </div>
     <div
@@ -74,12 +60,12 @@ exports[`screen: Nav/TitleBar hook toggles correctly 1`] = `
       <p
         className="MuiTypography-root label MuiTypography-body1"
       >
-        common:communityPool
+        common:supply
       </p>
       <p
         className="MuiTypography-root MuiTypography-body1"
       >
-        0 
+        0
       </p>
     </div>
   </div>
@@ -109,21 +95,7 @@ exports[`screen: Nav/TitleBar it renders 1`] = `
       <p
         className="MuiTypography-root MuiTypography-body1"
       >
-        N/A
-      </p>
-    </div>
-    <div
-      className="makeStyles-item"
-    >
-      <p
-        className="MuiTypography-root label MuiTypography-body1"
-      >
-        common:inflation
-      </p>
-      <p
-        className="MuiTypography-root MuiTypography-body1"
-      >
-        0%
+        $0
       </p>
     </div>
     <div
@@ -146,12 +118,12 @@ exports[`screen: Nav/TitleBar it renders 1`] = `
       <p
         className="MuiTypography-root label MuiTypography-body1"
       >
-        common:supply
+        common:price
       </p>
       <p
         className="MuiTypography-root MuiTypography-body1"
       >
-        0 
+        $0.00
       </p>
     </div>
     <div
@@ -160,12 +132,12 @@ exports[`screen: Nav/TitleBar it renders 1`] = `
       <p
         className="MuiTypography-root label MuiTypography-body1"
       >
-        common:communityPool
+        common:supply
       </p>
       <p
         className="MuiTypography-root MuiTypography-body1"
       >
-        0 
+        0
       </p>
     </div>
   </div>

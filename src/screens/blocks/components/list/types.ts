@@ -9,6 +9,7 @@ export type BlockType = {
 
 export type BlockState = {
   page: number;
-  itemLoading: boolean;
+  loading: boolean;
+  total: number;
   items: BlockType[];
 }

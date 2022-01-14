@@ -7,17 +7,17 @@ export const useStyles = () => {
         paginate: {
           marginTop: theme.spacing(3),
         },
-        mobile: {
-          [theme.breakpoints.up('lg')]: {
-            display: 'none',
-          },
-        },
-        desktop: {
-          display: 'none',
-          [theme.breakpoints.up('lg')]: {
-            display: 'flex',
-          },
-        },
+        // mobile: {
+        //   [theme.breakpoints.up('lg')]: {
+        //     display: 'none',
+        //   },
+        // },
+        // desktop: {
+        //   display: 'none',
+        //   [theme.breakpoints.up('lg')]: {
+        //     display: 'flex',
+        //   },
+        // },
       });
     },
   )();

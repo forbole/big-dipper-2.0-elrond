@@ -34,12 +34,18 @@ export const useBlocks = () => {
   const [state, _setState] = useState<BlockState>({
     page: 1,
     // itemLoading: true,
-    itemLoading: false,
+    loading: false,
     // items: [],
     items: Array(25).fill(fakeItem),
+    total: 1000,
   });
+
+  const handlePageChange = (_page: number, _rowsPerPage: number) => {
+    console.log('new page');
+  };
 
   return ({
     state,
+    handlePageChange,
   });
 };

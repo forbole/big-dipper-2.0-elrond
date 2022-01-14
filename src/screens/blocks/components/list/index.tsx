@@ -10,6 +10,7 @@ import {
   Box,
 } from '@components';
 import { useStyles } from './styles';
+import { useBlocks } from './hooks';
 
 const Desktop = dynamic(() => import('./components/desktop'));
 const Mobile = dynamic(() => import('./components/mobile'));
@@ -18,27 +19,34 @@ const List = () => {
   const classes = useStyles();
   const { isDesktop } = useScreenSize();
   const {
+    state, handlePageChange,
+  } = useBlocks();
+  const {
     page,
     rowsPerPage,
     handleChangePage,
     handleChangeRowsPerPage,
-    sliceItems,
   } = usePagination({
     rowsPage: 25,
+    pageChangeCallback: handlePageChange,
   });
 
   return (
     <Box>
-      <>
-        {isDesktop ? (
-          <Desktop className={classes.desktop} />
-        ) : (
-          <Mobile className={classes.mobile} />
-        )}
-      </>
+      {!state.items.length ? (
+        <NoData />
+      ) : (
+        <>
+          {isDesktop ? (
+            <Desktop items={state.items} />
+          ) : (
+            <Mobile />
+          )}
+        </>
+      )}
       <Pagination
         className={classes.paginate}
-        total={100}
+        total={state.total}
         rowsPerPage={rowsPerPage}
         page={page}
         handleChangePage={handleChangePage}

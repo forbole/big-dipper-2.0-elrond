@@ -1,0 +1,8 @@
+{
+  "blocks": "Blocks",
+  "block": "Block",
+  "shard": "Shard",
+  "hash": "Hash",
+  "txs": "Txs",
+  "time": "Time"
+}

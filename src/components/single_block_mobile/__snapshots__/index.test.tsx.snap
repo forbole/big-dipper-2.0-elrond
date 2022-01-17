@@ -5,28 +5,26 @@ exports[`component: SingleSlotMobile matches snapshot 1`] = `
   className="makeStyles-root"
 >
   <div
-    className="makeStyles-item"
+    className="makeStyles-flex"
   >
-    <h4
-      className="MuiTypography-root label MuiTypography-h4"
-    >
-      height
-    </h4>
     <div
-      id="height"
-    />
-  </div>
-  <div
-    className="makeStyles-item"
-  >
-    <h4
-      className="MuiTypography-root label MuiTypography-h4"
+      className="makeStyles-item"
     >
-      proposer
-    </h4>
+      <h4
+        className="MuiTypography-root label MuiTypography-h4"
+      >
+        block
+      </h4>
+    </div>
     <div
-      id="proposer"
-    />
+      className="makeStyles-item"
+    >
+      <h4
+        className="MuiTypography-root label MuiTypography-h4"
+      >
+        shard
+      </h4>
+    </div>
   </div>
   <div
     className="makeStyles-item"
@@ -40,20 +38,6 @@ exports[`component: SingleSlotMobile matches snapshot 1`] = `
       className="MuiTypography-root value MuiTypography-body1"
     >
       hash
-    </p>
-  </div>
-  <div
-    className="makeStyles-item"
-  >
-    <h4
-      className="MuiTypography-root label MuiTypography-h4"
-    >
-      parentHash
-    </h4>
-    <p
-      className="MuiTypography-root value MuiTypography-body1"
-    >
-      parentHash
     </p>
   </div>
   <div

@@ -4,8 +4,8 @@ import { RecoilRoot } from 'recoil';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import {
-  LATEST_BLOCK_HEIGHT,
-  BLOCKS,
+  TRANSACTIONS,
+  TRANSACTIONS_COUNT,
 } from '@api';
 import {
   MockTheme, wait,
@@ -15,11 +15,6 @@ import List from '.';
 // ==================================
 // unit tests
 // ==================================
-
-jest.mock('./components', () => ({
-  Desktop: (props) => <div id="Desktop" {...props} />,
-  Mobile: (props) => <div id="Mobile" {...props} />,
-}));
 
 jest.mock('@components', () => ({
   Pagination: (props) => <div id="Pagination" {...props} />,
@@ -31,30 +26,29 @@ jest.mock('@components', () => ({
 // ==================================
 // unit tests
 // ==================================
-describe('screen: Blocks/List', () => {
+describe('screen: Transactions/List', () => {
   it('matches snapshot', async () => {
     const mockAxios = new MockAdapter(axios);
-    mockAxios.onGet(LATEST_BLOCK_HEIGHT).reply(200, 5005);
+    mockAxios.onGet(TRANSACTIONS_COUNT).reply(200, 5005);
 
-    mockAxios.onGet(BLOCKS).reply(200, [
+    mockAxios.onGet(TRANSACTIONS).reply(200, [
       {
-        hash: '24b6a32c87896b6b529db9faf74dfed9d0972b62c632e60c08f014ebbbcb892b',
-        epoch: 535,
-        nonce: 7712359,
-        prevHash: '08f4ecd7e013220f14df59391cbf62ff9d96970770fac9ff43cfb17f24260c99',
-        proposer: 50,
-        pubKeyBitmap: 'ffffffffffffff7f',
-        round: 7713524,
-        shard: 0,
-        size: 832,
-        sizeTxs: 3080,
-        stateRootHash: '0e56c7177188b089a0b5eaa15ec32b88a030685aa705aa48b2618160de30e389',
-        timestamp: 1642398744,
-        txCount: 10,
-        gasConsumed: 0,
-        gasRefunded: 0,
-        gasPenalized: 0,
-        maxGasLimit: 1500000000,
+        txHash: '21cb1c8040f0359e574015093747796bc5c9789a9b2a527d8edcf9e61dbdd308',
+        gasLimit: 50000,
+        gasPrice: 1000000000,
+        gasUsed: 50000,
+        miniBlockHash: '94dc70bae3dccf4438d773f261308f0dd7ea32572719fb0a54995181748b8df3',
+        nonce: 884866,
+        receiver: 'erd18d87czmgxunrwgwfptrnz37dlcgr7e2xahpf585qavwawwwj9tuq7mhfwk',
+        receiverShard: 0,
+        round: 7714228,
+        sender: 'erd16x7le8dpkjsafgwjx0e5kw94evsqw039rwp42m2j9eesd88x8zzs75tzry',
+        senderShard: 1,
+        signature: '35f1d32fc3b94ab9eab1c2527bb16ce903511a6039fbfbc4c0ab7d9783d33288c40de2725231a20bfa73a051c471935e819f73f08e1d041748ad88f736ef260c',
+        status: 'pending',
+        value: '115180000000000000',
+        fee: '50000000000000',
+        timestamp: 1642402968,
       },
     ]);
 

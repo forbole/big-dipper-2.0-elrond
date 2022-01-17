@@ -18,16 +18,26 @@ interface AvatarName {
   href?: (address: string) => string;
 }
 
-type Transactions = {
-  height: number;
+type TransactionType = {
   hash: string;
-  success: boolean;
-  timestamp: string;
-  messages: {
-    count: number;
-    items: any[];
-  };
+  fromShard: number;
+  toShard: number;
+  from: string;
+  to: string;
+  timestamp: number;
+  status: string;
 }
+
+// type Transactions = {
+//   height: number;
+//   hash: string;
+//   success: boolean;
+//   timestamp: string;
+//   messages: {
+//     count: number;
+//     items: any[];
+//   };
+// }
 
 type TokenUnit = {
   displayDenom: string;
@@ -36,31 +46,31 @@ type TokenUnit = {
   value: string;
 }
 
-type DesmosProfile = {
-  dtag: string;
-  nickname: string;
-  imageUrl: string;
-  coverUrl: string;
-  bio: string;
-  connections: ProfileConnectionType[];
-  validator?: ValidatorProfile;
-}
+// type DesmosProfile = {
+//   dtag: string;
+//   nickname: string;
+//   imageUrl: string;
+//   coverUrl: string;
+//   bio: string;
+//   connections: ProfileConnectionType[];
+//   validator?: ValidatorProfile;
+// }
 
-type ProfileConnectionType = {
-  network: string;
-  identifier: string;
-  creationTime: string;
-}
+// type ProfileConnectionType = {
+//   network: string;
+//   identifier: string;
+//   creationTime: string;
+// }
 
-type ValidatorProfile = {
-  status: number;
-  jailed: boolean;
-  condition: number;
-  commission: number;
-  signedBlockWindow: number;
-  missedBlockCounter: number;
-  lastSeen: string;
-}
+// type ValidatorProfile = {
+//   status: number;
+//   jailed: boolean;
+//   condition: number;
+//   commission: number;
+//   signedBlockWindow: number;
+//   missedBlockCounter: number;
+//   lastSeen: string;
+// }
 
 type TagTheme = 'zero' |
 'one' |

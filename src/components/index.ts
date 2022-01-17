@@ -8,6 +8,8 @@ import Pagination from './pagination';
 import NoData from './no_data';
 import Box from './box';
 import SingleBlockMobile from './single_block_mobile';
+import TransactionsList from './transactions_list';
+import Result from './result';
 
 export {
   Layout,
@@ -20,4 +22,6 @@ export {
   NoData,
   Box,
   SingleBlockMobile,
+  TransactionsList,
+  Result,
 };

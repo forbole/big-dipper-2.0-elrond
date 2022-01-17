@@ -1,0 +1,9 @@
+{
+  "transactions": "Transactions",
+  "hash": "Hash",
+  "shard": "Shard",
+  "from": "From",
+  "to": "To",
+  "status": "Status",
+  "time": "Time"
+}

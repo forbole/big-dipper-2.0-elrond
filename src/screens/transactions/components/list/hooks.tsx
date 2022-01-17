@@ -5,16 +5,16 @@ import * as R from 'ramda';
 import axios from 'axios';
 import {
   POLLING_INTERVAL,
-  BLOCKS,
-  LATEST_BLOCK_HEIGHT,
+  TRANSACTIONS,
+  TRANSACTIONS_COUNT,
 } from '@api';
 import { useInterval } from '@hooks';
-import { BlockState } from './types';
+import { TransactionState } from './types';
 
 export const PAGE_SIZE = 25;
 
 export const useBlocks = () => {
-  const [state, setState] = useState<BlockState>({
+  const [state, setState] = useState<TransactionState>({
     page: 0,
     loading: true,
     items: [],
@@ -22,7 +22,7 @@ export const useBlocks = () => {
   });
 
   useEffect(() => {
-    getLatestBlockHeight();
+    getLatestTransactionCount();
   }, []);
 
   const handleSetState = (stateChange: any) => {
@@ -34,12 +34,12 @@ export const useBlocks = () => {
       page,
       loading: true,
     });
-    await getBlocksByPage(page);
+    await getTransactionsByPage(page);
   };
 
-  const getLatestBlockHeight = async () => {
+  const getLatestTransactionCount = async () => {
     try {
-      const { data: total } = await axios.get(LATEST_BLOCK_HEIGHT);
+      const { data: total } = await axios.get(TRANSACTIONS_COUNT);
       handleSetState({
         total,
       });
@@ -48,23 +48,24 @@ export const useBlocks = () => {
     }
   };
 
-  const getBlocksByPage = async (page: number) => {
+  const getTransactionsByPage = async (page: number) => {
     try {
-      const { data: blocksData } = await axios.get(BLOCKS, {
+      const { data: transactionsData } = await axios.get(TRANSACTIONS, {
         params: {
           from: page * PAGE_SIZE,
           size: PAGE_SIZE,
         },
       });
 
-      const items = blocksData.map((x) => {
+      const items = transactionsData.map((x) => {
         return ({
-          block: x.round,
+          hash: x.txHash,
+          fromShard: x.senderShard,
+          toShard: x.receiverShard,
+          from: x.sender,
+          to: x.receiver,
           timestamp: x.timestamp,
-          hash: x.hash,
-          txs: x.txCount,
-          shard: x.shard,
-          size: x.sizeTxs,
+          status: x.status,
         });
       });
 
@@ -77,13 +78,13 @@ export const useBlocks = () => {
     }
   };
 
-  const getBlocksInterval = async () => {
+  const getTransactionsInterval = async () => {
     if (state.page === 0) {
-      await getBlocksByPage(0);
+      await getTransactionsByPage(0);
     }
   };
 
-  useInterval(getBlocksInterval, POLLING_INTERVAL);
+  useInterval(getTransactionsInterval, POLLING_INTERVAL);
 
   return ({
     state,

@@ -7,8 +7,8 @@ module.exports = {
   pages: {
     '*': ['common'],
     '/': ['home'],
+    'rgx:^/blocks': ['blocks'],
     // 'rgx:^/@*': ['profiles', 'accounts'],
-    // 'rgx:^/blocks': ['blocks', 'transactions', 'message_labels', 'message_contents'],
     // 'rgx:^/transactions': ['transactions', 'message_labels', 'message_contents'],
     // 'rgx:^/proposals': ['proposals'],
     // 'rgx:^/validators': ['validators', 'transactions', 'accounts', 'message_labels', 'message_contents'],

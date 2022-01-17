@@ -1,48 +1,76 @@
 import { useState } from 'react';
+import * as R from 'ramda';
+import axios from 'axios';
+import {
+  POLLING_INTERVAL, BLOCKS,
+} from '@api';
+import { useInterval } from '@hooks';
 import { BlockState } from './types';
 
-// const FakeData = {
-//   hash: '80ea1767e33d755b50dc997eb6cfecbb47e2945c598240cb1e0f3a378e0942b9',
-//   epoch: 531,
-//   nonce: 7656377,
-//   prevHash: 'd4b486bd29e91112d774b0409cccb87ef027f6dd0532ae4eccd9e327ca14aa33',
-//   proposer: 148,
-//   pubKeyBitmap: 'ffffffffffffff7f',
-//   round: 7657541,
-//   shard: 0,
-//   size: 892,
-//   sizeTxs: 3741,
-//   stateRootHash: 'aad90e2a46cb65524c66e0ae4648e4b84999e74c025095db6334e35270c10827',
-//   timestamp: 1642062846,
-//   txCount: 9,
-//   gasConsumed: 73050000,
-//   gasRefunded: 0,
-//   gasPenalized: 0,
-//   maxGasLimit: 1500000000,
-// };
-
-const fakeItem = {
-  block: 7657541,
-  timestamp: 1642062846,
-  txs: 9,
-  shard: 0,
-  size: 892,
-  hash: '80ea1767e33d755b50dc997eb6cfecbb47e2945c598240cb1e0f3a378e0942b9',
-};
+const PAGE_SIZE = 25;
 
 export const useBlocks = () => {
-  const [state, _setState] = useState<BlockState>({
-    page: 1,
-    // itemLoading: true,
-    loading: false,
-    // items: [],
-    items: Array(25).fill(fakeItem),
+  const [state, setState] = useState<BlockState>({
+    page: 0,
+    loading: true,
+    items: [],
     total: 1000,
   });
 
-  const handlePageChange = (_page: number, _rowsPerPage: number) => {
-    console.log('new page');
+  const handleSetState = (stateChange: any) => {
+    setState((prevState) => R.mergeDeepLeft(stateChange, prevState));
   };
+
+  const handlePageChange = async (_event: any, page: number) => {
+    console.log(page, 'page');
+    handleSetState({
+      page,
+    });
+    // await getBlocksByPage(page);
+  };
+
+  const getBlocksByPage = async (page: number) => {
+    try {
+      // console.log(page, 'page!');
+      handleSetState({
+        loading: true,
+      });
+      const { data: blocksData } = await axios.get(BLOCKS, {
+        params: {
+          from: page * PAGE_SIZE,
+          size: PAGE_SIZE,
+        },
+      });
+
+      const items = blocksData.map((x) => {
+        return ({
+          block: x.round,
+          timestamp: x.timestamp,
+          hash: x.hash,
+          txs: x.txCount,
+          shard: x.shard,
+          size: x.sizeTxs,
+        });
+      });
+
+      handleSetState({
+        loading: false,
+        items,
+      });
+      console.log(blocksData, 'wtf');
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // handles interval calls for first page
+  // const getBlocksInterval = async () => {
+  //   if (state.page === 1) {
+  //     await getBlocksByPage(0);
+  //   }
+  // };
+
+  // useInterval(getBlocksInterval, POLLING_INTERVAL);
 
   return ({
     state,

@@ -40,7 +40,7 @@ const List = () => {
           {isDesktop ? (
             <Desktop items={state.items} />
           ) : (
-            <Mobile />
+            <Mobile items={state.items} />
           )}
         </>
       )}

@@ -19,7 +19,7 @@ const List = () => {
   const classes = useStyles();
   const { isDesktop } = useScreenSize();
   const {
-    state, handlePageChange,
+    state, handlePageChangeCallback,
   } = useBlocks();
   const {
     page,
@@ -28,7 +28,7 @@ const List = () => {
     handleChangeRowsPerPage,
   } = usePagination({
     rowsPage: 25,
-    pageChangeCallback: handlePageChange,
+    pageChangeCallback: handlePageChangeCallback,
   });
 
   return (

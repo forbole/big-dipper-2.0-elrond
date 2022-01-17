@@ -21,11 +21,12 @@ export const useBlocks = () => {
     setState((prevState) => R.mergeDeepLeft(stateChange, prevState));
   };
 
-  const handlePageChange = async (_event: any, page: number) => {
-    console.log(page, 'page');
-    handleSetState({
-      page,
-    });
+  const handlePageChangeCallback = async (page: number, _rowsPerPage: number) => {
+    console.log(page, 'wtf');
+    // console.log(page, 'page');
+    // handleSetState({
+    //   page,
+    // });
     // await getBlocksByPage(page);
   };
 
@@ -74,6 +75,6 @@ export const useBlocks = () => {
 
   return ({
     state,
-    handlePageChange,
+    handlePageChangeCallback,
   });
 };

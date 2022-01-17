@@ -8,6 +8,7 @@ import {
   Pagination,
   NoData,
   Box,
+  Loading,
 } from '@components';
 import { useStyles } from './styles';
 import { useBlocks } from './hooks';
@@ -31,19 +32,21 @@ const List = () => {
     pageChangeCallback: handlePageChangeCallback,
   });
 
+  let component = null;
+
+  if (state.loading) {
+    component = <Loading />;
+  } else if (!state.items.length) {
+    component = <NoData />;
+  } else if (isDesktop) {
+    component = <Desktop items={state.items} />;
+  } else {
+    component = <Mobile items={state.items} />;
+  }
+
   return (
     <Box>
-      {!state.items.length ? (
-        <NoData />
-      ) : (
-        <>
-          {isDesktop ? (
-            <Desktop items={state.items} />
-          ) : (
-            <Mobile items={state.items} />
-          )}
-        </>
-      )}
+      {component}
       <Pagination
         className={classes.paginate}
         total={state.total}

@@ -15,7 +15,7 @@ const Mobile: React.FC<{items: BlockType[]} & ComponentDefault> = (props) => {
         beginning: 13, ending: 15,
       }),
       txs: numeral(x.txs).format('0,0'),
-      time: dayjs.utc(x.timestamp).fromNow(),
+      time: dayjs.utc(dayjs.unix(x.timestamp)).fromNow(),
     });
   });
   return (

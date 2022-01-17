@@ -1,4 +1,5 @@
 import React from 'react';
+import numeral from 'numeral';
 import useTranslation from 'next-translate/useTranslation';
 import classnames from 'classnames';
 import { TablePagination } from '@material-ui/core';
@@ -42,7 +43,7 @@ const Pagination: React.FC<{
       }) => t('paginationLabelOne', {
         from,
         to,
-        count,
+        count: numeral(count).format('0,0'),
       })}
       colSpan={6}
       component="div"

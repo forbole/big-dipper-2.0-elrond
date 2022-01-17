@@ -19,11 +19,12 @@ const Desktop: React.FC<{items: BlockType[]} & ComponentDefault> = (props) => {
     return ({
       block: numeral(x.block).format('0,0'),
       shard: x.shard,
-      hash: getMiddleEllipsis(x.hash, {
-        beginning: 13, ending: 15,
-      }),
+      hash: x.hash,
+      // getMiddleEllipsis(x.hash, {
+      //   beginning: 13, ending: 15,
+      // }),
       txs: numeral(x.txs).format('0,0'),
-      time: dayjs.utc(x.timestamp).fromNow(),
+      time: dayjs.utc(dayjs.unix(x.timestamp)).fromNow(),
     });
   });
   return (

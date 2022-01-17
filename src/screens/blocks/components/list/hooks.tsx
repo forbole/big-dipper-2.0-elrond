@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import {
+  useEffect, useState,
+} from 'react';
 import * as R from 'ramda';
 import axios from 'axios';
 import {
-  POLLING_INTERVAL, BLOCKS,
+  POLLING_INTERVAL,
+  BLOCKS,
+  LATEST_BLOCK_HEIGHT,
 } from '@api';
 import { useInterval } from '@hooks';
 import { BlockState } from './types';
@@ -14,28 +18,38 @@ export const useBlocks = () => {
     page: 0,
     loading: true,
     items: [],
-    total: 1000,
+    total: 0,
   });
+
+  useEffect(() => {
+    getLatestBlockHeight();
+  }, []);
 
   const handleSetState = (stateChange: any) => {
     setState((prevState) => R.mergeDeepLeft(stateChange, prevState));
   };
 
   const handlePageChangeCallback = async (page: number, _rowsPerPage: number) => {
-    console.log(page, 'wtf');
-    // console.log(page, 'page');
-    // handleSetState({
-    //   page,
-    // });
-    // await getBlocksByPage(page);
+    handleSetState({
+      page,
+      loading: true,
+    });
+    await getBlocksByPage(page);
+  };
+
+  const getLatestBlockHeight = async () => {
+    try {
+      const { data: total } = await axios.get(LATEST_BLOCK_HEIGHT);
+      handleSetState({
+        total,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const getBlocksByPage = async (page: number) => {
     try {
-      // console.log(page, 'page!');
-      handleSetState({
-        loading: true,
-      });
       const { data: blocksData } = await axios.get(BLOCKS, {
         params: {
           from: page * PAGE_SIZE,
@@ -58,20 +72,18 @@ export const useBlocks = () => {
         loading: false,
         items,
       });
-      console.log(blocksData, 'wtf');
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  // handles interval calls for first page
-  // const getBlocksInterval = async () => {
-  //   if (state.page === 1) {
-  //     await getBlocksByPage(0);
-  //   }
-  // };
+  const getBlocksInterval = async () => {
+    if (state.page === 0) {
+      await getBlocksByPage(0);
+    }
+  };
 
-  // useInterval(getBlocksInterval, POLLING_INTERVAL);
+  useInterval(getBlocksInterval, POLLING_INTERVAL);
 
   return ({
     state,

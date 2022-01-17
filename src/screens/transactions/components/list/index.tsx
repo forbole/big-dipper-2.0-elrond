@@ -1,26 +1,19 @@
 import React from 'react';
-import dynamic from 'next/dynamic';
-import {
-  usePagination,
-  useScreenSize,
-} from '@hooks';
+import { usePagination } from '@hooks';
 import {
   Pagination,
   NoData,
   Box,
   Loading,
+  TransactionsList,
 } from '@components';
 import { useStyles } from './styles';
 import {
   useBlocks, PAGE_SIZE,
 } from './hooks';
 
-const Desktop = dynamic(() => import('./components/desktop'));
-const Mobile = dynamic(() => import('./components/mobile'));
-
 const List = () => {
   const classes = useStyles();
-  const { isDesktop } = useScreenSize();
   const {
     state, handlePageChangeCallback,
   } = useBlocks();
@@ -40,10 +33,8 @@ const List = () => {
     component = <Loading />;
   } else if (!state.items.length) {
     component = <NoData />;
-  } else if (isDesktop) {
-    component = <Desktop items={state.items} />;
   } else {
-    component = <Mobile items={state.items} />;
+    component = <TransactionsList items={state.items} />;
   }
 
   return (

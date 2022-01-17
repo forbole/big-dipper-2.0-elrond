@@ -68,10 +68,10 @@ export const lightThemeOverride = {
       //   four: '#ED5A5A',
       //   five: '#906CDE',
       // },
-      // results: {
-      //   pass: '#12B785',
-      //   fail: '#E94848',
-      // },
+      results: {
+        pass: '#12B785',
+        fail: '#E94848',
+      },
     },
   },
   overrides: {

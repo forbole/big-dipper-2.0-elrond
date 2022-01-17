@@ -30,6 +30,7 @@
   "apr": "APR",
   "success": "Success",
   "fail": "Fail",
+  "pending": "Pending",
   "filterBy": "Filter By...",
   "copied": "Copied",
   "paginationLabelOne": "showing {{from}}-{{to}} of {{count}}",

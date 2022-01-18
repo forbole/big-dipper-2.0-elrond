@@ -53,9 +53,6 @@ export const useStyles = () => {
             '&:nth-child(2):before': {
               background: theme.palette.custom.tokenomics.two,
             },
-            '&:last-child:before': {
-              background: theme.palette.custom.tokenomics.three,
-            },
             '& .caption__percent': {
               color: theme.palette.custom.fonts.fontThree,
             },

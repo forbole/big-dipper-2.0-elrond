@@ -6,7 +6,7 @@ module.exports = {
   defaultLocale: 'en',
   pages: {
     '*': ['common'],
-    '/': ['home'],
+    '/': ['home', 'blocks', 'transactions'],
     'rgx:^/blocks': ['blocks'],
     'rgx:^/transactions': ['transactions'],
     // 'rgx:^/@*': ['profiles', 'accounts'],

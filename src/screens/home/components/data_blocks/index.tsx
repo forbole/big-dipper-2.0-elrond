@@ -4,24 +4,25 @@ import numeral from 'numeral';
 import { useRecoilValue } from 'recoil';
 import { readMarket } from '@recoil/market';
 import useTranslation from 'next-translate/useTranslation';
-import { DataBlockState } from '../../types';
 import { SingleBlock } from './components';
 import { useStyles } from './styles';
+import { useDataBlocks } from './hooks';
 
-const DataBlocks: React.FC<DataBlockState & ComponentDefault> = (props) => {
+const DataBlocks: React.FC<ComponentDefault> = (props) => {
   const { t } = useTranslation('home');
   const classes = useStyles();
   const marketState = useRecoilValue(readMarket);
+  const { state } = useDataBlocks();
 
   const data = [
     {
       key: t('latestBlock'),
-      value: numeral(props.blockHeight).format('0,0'),
+      value: numeral(state.blockHeight).format('0,0'),
       className: classes.blockHeight,
     },
     {
       key: t('transactions'),
-      value: `${numeral(props.transactions).format('0,0')}`,
+      value: `${numeral(state.transactions).format('0,0')}`,
       className: classes.blockTime,
     },
     {
@@ -31,7 +32,7 @@ const DataBlocks: React.FC<DataBlockState & ComponentDefault> = (props) => {
     },
     {
       key: t('nodes'),
-      value: numeral(props.nodes).format('0,0'),
+      value: numeral(state.nodes).format('0,0'),
       className: classes.validators,
     },
   ];

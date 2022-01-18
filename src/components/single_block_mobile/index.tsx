@@ -20,12 +20,14 @@ const SingleBlockMobile: React.FC<SingleBlockMobileType & ComponentDefault> = (p
           </Typography>
           {props.block}
         </div>
-        <div className={classes.item}>
-          <Typography variant="h4" className="label">
-            {t('shard')}
-          </Typography>
-          {props.shard}
-        </div>
+        {props.shard && (
+          <div className={classes.item}>
+            <Typography variant="h4" className="label">
+              {t('shard')}
+            </Typography>
+            {props.shard}
+          </div>
+        )}
       </div>
       <div className={classes.item}>
         <Typography variant="h4" className="label">

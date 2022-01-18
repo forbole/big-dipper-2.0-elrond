@@ -1,6 +1,6 @@
 export type SingleBlockMobileType = {
   block: string;
-  shard: any;
+  shard?: any;
   hash: string;
   txs: string;
   time: string;

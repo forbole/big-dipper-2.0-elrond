@@ -49,11 +49,11 @@ export const lightThemeOverride = {
         three: '#279FBA',
         four: '#27BAA8',
       },
-      // tokenomics: {
-      //   one: '#3E71E3',
-      //   two: '#F79E4D',
-      //   three: '#27BAA8',
-      // },
+      tokenomics: {
+        one: '#3E71E3',
+        two: '#F79E4D',
+        three: '#27BAA8',
+      },
       // condition: {
       //   zero: '#D3D3D3',
       //   one: '#67B878',

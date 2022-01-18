@@ -13,6 +13,9 @@ export const useStyles = () => {
         chart: {
           height: '290px',
           width: '100%',
+          '& .yAxis .recharts-cartesian-axis-tick:first-child': {
+            display: 'none',
+          },
         },
       });
     },

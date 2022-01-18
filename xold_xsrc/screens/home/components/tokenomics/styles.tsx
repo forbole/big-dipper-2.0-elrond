@@ -11,6 +11,7 @@ export const useStyles = () => {
           display: 'flex',
           justifyContent: 'center',
           flexDirection: 'column',
+
         },
         label: {
           marginBottom: theme.spacing(2),

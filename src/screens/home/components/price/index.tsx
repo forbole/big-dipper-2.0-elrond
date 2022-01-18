@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import numeral from 'numeral';
 import { Typography } from '@material-ui/core';
 import useTranslation from 'next-translate/useTranslation';
 import {
@@ -11,15 +12,19 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { Box } from '@components';
-import dayjs, { formatDayJs } from '@utils/dayjs';
+import {
+  Box, CustomToolTip,
+} from '@components';
+import dayjs from '@utils/dayjs';
 import { useStyles } from './styles';
 import { usePrice } from './hooks';
 
 const Price: React.FC<ComponentDefault> = (props) => {
   const classes = useStyles();
   const { t } = useTranslation('home');
-  const { state } = usePrice();
+  const {
+    state, tickPriceFormatter,
+  } = usePrice();
 
   const formatItems = state.items.map((x) => {
     return ({
@@ -27,50 +32,6 @@ const Price: React.FC<ComponentDefault> = (props) => {
       value: x.value,
     });
   });
-  // const data = [
-  //   {
-  //     name: 'Page A',
-  //     uv: 4000,
-  //     pv: 2400,
-  //     amt: 2400,
-  //   },
-  //   {
-  //     name: 'Page B',
-  //     uv: 3000,
-  //     pv: 1398,
-  //     amt: 2210,
-  //   },
-  //   {
-  //     name: 'Page C',
-  //     uv: 2000,
-  //     pv: 9800,
-  //     amt: 2290,
-  //   },
-  //   {
-  //     name: 'Page D',
-  //     uv: 2780,
-  //     pv: 3908,
-  //     amt: 2000,
-  //   },
-  //   {
-  //     name: 'Page E',
-  //     uv: 1890,
-  //     pv: 4800,
-  //     amt: 2181,
-  //   },
-  //   {
-  //     name: 'Page F',
-  //     uv: 2390,
-  //     pv: 3800,
-  //     amt: 2500,
-  //   },
-  //   {
-  //     name: 'Page G',
-  //     uv: 3490,
-  //     pv: 4300,
-  //     amt: 2100,
-  //   },
-  // ];
 
   return (
     <Box className={classnames(props.className, classes.root)}>
@@ -82,16 +43,41 @@ const Price: React.FC<ComponentDefault> = (props) => {
           <AreaChart
             data={formatItems}
             margin={{
-              top: 10,
+              top: 20,
               right: 30,
               left: 0,
               bottom: 0,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="time" />
-            <YAxis />
-            <Tooltip />
+            <CartesianGrid />
+            <XAxis
+              dataKey="time"
+              tickLine={false}
+            />
+            <YAxis
+              tickLine={false}
+              tickFormatter={tickPriceFormatter}
+            />
+            <Tooltip
+              cursor={false}
+              content={(
+                <CustomToolTip>
+                  {(x) => {
+                    return (
+                      <>
+                        <Typography variant="caption">
+                          {t('price')}
+                        </Typography>
+                        <Typography variant="body1">
+                          $
+                          {numeral(x.value).format('0,0.00')}
+                        </Typography>
+                      </>
+                    );
+                  }}
+                </CustomToolTip>
+            )}
+            />
             <Area type="monotone" dataKey="value" stroke="#8884d8" fill="#8884d8" />
           </AreaChart>
         </ResponsiveContainer>

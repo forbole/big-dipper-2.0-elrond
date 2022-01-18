@@ -10,6 +10,7 @@ import Box from './box';
 import SingleBlockMobile from './single_block_mobile';
 import TransactionsList from './transactions_list';
 import Result from './result';
+import CustomToolTip from './custom_tool_tip';
 
 export {
   Layout,
@@ -24,4 +25,5 @@ export {
   SingleBlockMobile,
   TransactionsList,
   Result,
+  CustomToolTip,
 };

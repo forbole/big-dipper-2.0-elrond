@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import numeral from 'numeral';
 import { PriceState } from './types';
 
 const fakeData = [{
@@ -35,7 +36,12 @@ export const usePrice = () => {
     items: fakeData,
   });
 
+  const tickPriceFormatter = (num: number) => {
+    return `$${numeral(num).format('0,0')}`;
+  };
+
   return {
     state,
+    tickPriceFormatter,
   };
 };

@@ -7,6 +7,7 @@ import {
   DataBlocks,
   Blocks,
   Transactions,
+  Epoch,
 } from './components';
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
   return (
     <Layout className={classes.root}>
       <DataBlocks className={classes.dataBlocks} />
+      <Epoch className={classes.epoch} />
       <Blocks className={classes.blocks} />
       <Transactions className={classes.transactions} />
     </Layout>

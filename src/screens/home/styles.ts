@@ -49,7 +49,7 @@ export const useStyles = () => {
             height: '100%',
           },
         },
-        consensus: {
+        epoch: {
           height: '375px',
           [theme.breakpoints.up('md')]: {
             gridColumn: '2 / 3',

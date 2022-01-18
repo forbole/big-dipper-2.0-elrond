@@ -13,3 +13,4 @@ export const NODES_COUNT = `${BASE_URL}/nodes/count`;
 export const ECONOMICS = `${BASE_URL}/economics`;
 export const BLOCKS = `${BASE_URL}/blocks`;
 export const TRANSACTIONS = `${BASE_URL}/transactions`;
+export const STATS = `${BASE_URL}/stats`;

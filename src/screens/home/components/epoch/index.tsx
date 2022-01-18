@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import numeral from 'numeral';
 import { Typography } from '@material-ui/core';
 import Trans from 'next-translate/Trans';
 import useTranslation from 'next-translate/useTranslation';
@@ -22,7 +23,7 @@ const Epoch: React.FC<ComponentDefault> = (props) => {
 
   const data = [
     {
-      value: 73,
+      value: (state.roundsPassed * 100) / state.roundsPerEpoch,
       fill: theme.palette.custom.primaryData.three,
     },
   ];
@@ -71,7 +72,7 @@ const Epoch: React.FC<ComponentDefault> = (props) => {
             className="progress-label"
           >
             <tspan className={classes.chartPercentLabel}>
-              {state.epoch}
+              {numeral(state.epoch).format('0,0')}
             </tspan>
           </text>
 
@@ -88,7 +89,7 @@ const Epoch: React.FC<ComponentDefault> = (props) => {
               <span className="highlight" />,
             ]}
             values={{
-              rounds: 321,
+              rounds: numeral(state.roundsPerEpoch - state.roundsPassed).format('0,0'),
             }}
           />
         </Typography>

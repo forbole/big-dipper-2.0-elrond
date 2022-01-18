@@ -2,5 +2,7 @@
   "latestBlock": "Latest Block",
   "transactions": "Transactions",
   "price": "Price",
-  "nodes": "Nodes"
+  "nodes": "Nodes",
+  "latestBlocks": "Latest Blocks",
+  "seeMore": "See More"
 }

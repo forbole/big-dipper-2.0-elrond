@@ -4,5 +4,6 @@
   "shard": "Shard",
   "hash": "Hash",
   "txs": "Txs",
-  "time": "Time"
+  "time": "Time",
+  "blockDetails": "Block Details"
 }

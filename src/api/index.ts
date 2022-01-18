@@ -14,3 +14,4 @@ export const ECONOMICS = `${BASE_URL}/economics`;
 export const BLOCKS = `${BASE_URL}/blocks`;
 export const TRANSACTIONS = `${BASE_URL}/transactions`;
 export const STATS = `${BASE_URL}/stats`;
+export const PRICE_HISTORY = 'https://data.elrond.com/latestcomplete/quoteshistorical/egld/price';

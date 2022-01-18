@@ -29,17 +29,16 @@ export const useStyles = () => {
             gridColumn: '1 / 5',
           },
         },
-        onlineVotingPower: {
+        price: {
+          height: '375px',
           [theme.breakpoints.up('md')]: {
             gridColumn: '1 / 3',
           },
           [theme.breakpoints.up('lg')]: {
             gridColumn: '1 / 3',
-            // height: '400px', // if we can get the change feature
-            height: '350px',
           },
         },
-        tokenomics: {
+        staking: {
           height: '375px',
           [theme.breakpoints.up('md')]: {
             gridColumn: '1 / 2',

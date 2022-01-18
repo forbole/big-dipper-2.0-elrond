@@ -1,23 +1,23 @@
 import React from 'react';
 import dayjs from '@utils/dayjs';
-import useTranslation from 'next-translate/useTranslation';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
+import useTranslation from 'next-translate/useTranslation';
 import {
   Typography, Divider,
 } from '@material-ui/core';
 import { Result } from '@components';
+import { TransactionType } from '../../types';
 import { useStyles } from './styles';
-import { Shard } from '..';
 
-const Mobile: React.FC<{items: TransactionType[]} & ComponentDefault> = (props) => {
-  const { t } = useTranslation('transactions');
+const Mobile:React.FC<{ items: TransactionType[] } &ComponentDefault> = (props) => {
   const classes = useStyles();
+  const { t } = useTranslation('transactions');
+
   const formattedItems = props.items.map((x) => {
     return ({
       hash: getMiddleEllipsis(x.hash, {
         beginning: 13, ending: 15,
       }),
-      shard: <Shard to={x.toShard} from={x.fromShard} />,
       from: getMiddleEllipsis(x.from, {
         beginning: 13, ending: 15,
       }),
@@ -32,7 +32,7 @@ const Mobile: React.FC<{items: TransactionType[]} & ComponentDefault> = (props) 
   });
 
   return (
-    <div className={props.className}>
+    <div>
       {formattedItems.map((x, i) => {
         return (
           <React.Fragment key={`${x.hash}-${i}`}>
@@ -43,13 +43,6 @@ const Mobile: React.FC<{items: TransactionType[]} & ComponentDefault> = (props) 
                 </Typography>
                 {x.hash}
               </div>
-              <div className={classes.item}>
-                <Typography variant="h4" className="label">
-                  {t('shard')}
-                </Typography>
-                {x.shard}
-              </div>
-
               <div className={classes.item}>
                 <Typography variant="h4" className="label">
                   {t('from')}

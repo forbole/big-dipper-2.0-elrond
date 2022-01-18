@@ -1,5 +1,4 @@
 import React from 'react';
-import numeral from 'numeral';
 import classnames from 'classnames';
 import useTranslation from 'next-translate/useTranslation';
 import {
@@ -9,22 +8,30 @@ import {
   TableCell,
   TableBody,
 } from '@material-ui/core';
+import { Result } from '@components';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
 import dayjs from '@utils/dayjs';
-import { useStyles } from './styles';
 import { columns } from './utils';
-import { BlockType } from '../../types';
+import { useStyles } from './styles';
+import { TransactionType } from '../../types';
 
-const Desktop:React.FC<{ items: BlockType[] } &ComponentDefault> = (props) => {
-  const { t } = useTranslation('blocks');
+const Desktop:React.FC<{ items: TransactionType[] } &ComponentDefault> = (props) => {
+  const { t } = useTranslation('transactions');
   const classes = useStyles();
   const formattedItems = props.items.map((x) => {
     return ({
-      block: numeral(x.block).format('0,0'),
       hash: getMiddleEllipsis(x.hash, {
-        beginning: 13, ending: 15,
+        beginning: 10, ending: 10,
       }),
-      txs: numeral(x.txs).format('0,0'),
+      from: getMiddleEllipsis(x.from, {
+        beginning: 5, ending: 5,
+      }),
+      to: getMiddleEllipsis(x.to, {
+        beginning: 5, ending: 5,
+      }),
+      status: (
+        <Result status={x.status} />
+      ),
       time: dayjs.utc(dayjs.unix(x.timestamp)).fromNow(),
     });
   });

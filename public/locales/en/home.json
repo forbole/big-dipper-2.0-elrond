@@ -4,5 +4,6 @@
   "price": "Price",
   "nodes": "Nodes",
   "latestBlocks": "Latest Blocks",
+  "latestTransactions": "Latest Transactions",
   "seeMore": "See More"
 }

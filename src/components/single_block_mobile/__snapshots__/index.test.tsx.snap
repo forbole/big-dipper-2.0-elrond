@@ -16,15 +16,6 @@ exports[`component: SingleSlotMobile matches snapshot 1`] = `
         block
       </h4>
     </div>
-    <div
-      className="makeStyles-item"
-    >
-      <h4
-        className="MuiTypography-root label MuiTypography-h4"
-      >
-        shard
-      </h4>
-    </div>
   </div>
   <div
     className="makeStyles-item"

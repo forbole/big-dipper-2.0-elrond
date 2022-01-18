@@ -24,7 +24,7 @@ const Epoch: React.FC<ComponentDefault> = (props) => {
   const data = [
     {
       value: (state.roundsPassed * 100) / state.roundsPerEpoch,
-      fill: theme.palette.custom.primaryData.three,
+      fill: theme.palette.custom.primaryData.one,
     },
   ];
 

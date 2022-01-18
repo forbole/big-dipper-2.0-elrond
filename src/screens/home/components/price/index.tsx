@@ -60,6 +60,7 @@ const Price: React.FC<ComponentDefault> = (props) => {
             <YAxis
               tickLine={false}
               tickFormatter={tickPriceFormatter}
+              tickCount={5}
             />
             <Tooltip
               cursor={false}

@@ -30,18 +30,16 @@ export const useStyles = () => {
         },
         chartPercentLabel: {
           fontSize: '2rem',
-          color: theme.palette.custom.fonts.fontOne,
+          fill: theme.palette.custom.fonts.fontOne,
         },
         chartLabel: {
           fontSize: '1rem',
-          color: theme.palette.custom.fonts.fontOne,
+          fill: theme.palette.custom.fonts.fontThree,
         },
         time: {
           marginTop: theme.spacing(1),
           textAlign: 'center',
-          '& .highlight': {
-            color: theme.palette.custom.fonts.highlight,
-          },
+          color: theme.palette.custom.fonts.fontThree,
         },
 
       });

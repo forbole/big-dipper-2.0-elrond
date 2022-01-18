@@ -83,7 +83,7 @@ const Epoch: React.FC<ComponentDefault> = (props) => {
           <Trans
             i18nKey="home:epochRoundsLeft"
             components={[
-              <span className="highlight" />,
+              <span />,
             ]}
             values={{
               rounds: numeral(state.roundsPerEpoch - state.roundsPassed).format('0,0'),

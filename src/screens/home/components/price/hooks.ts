@@ -1,40 +1,36 @@
-import { useState } from 'react';
+import {
+  useState, useEffect,
+} from 'react';
 import numeral from 'numeral';
+import * as R from 'ramda';
+import axios from 'axios';
+import { PRICE_HISTORY } from '@api';
 import { PriceState } from './types';
 
-const fakeData = [{
-  time: '2022-01-12T00:00:00.000Z',
-  value: 215.02,
-},
-{
-  time: '2022-01-13T00:00:00.000Z',
-  value: 195.1,
-},
-{
-  time: '2022-01-14T00:00:00.000Z',
-  value: 199.53,
-},
-{
-  time: '2022-01-15T00:00:00.000Z',
-  value: 200.7,
-},
-{
-  time: '2022-01-16T00:00:00.000Z',
-  value: 195.38,
-},
-{
-  time: '2022-01-17T00:00:00.000Z',
-  value: 187.26,
-},
-{
-  time: '2022-01-18T00:00:00.000Z',
-  value: 184.87,
-}];
-
 export const usePrice = () => {
-  const [state, _setState] = useState<PriceState>({
-    items: fakeData,
+  const [state, setState] = useState<PriceState>({
+    items: [],
   });
+
+  useEffect(() => {
+    getPrices();
+  }, []);
+
+  const handleSetState = (stateChange: any) => {
+    setState((prevState) => R.mergeDeepLeft(stateChange, prevState));
+  };
+
+  const getPrices = async () => {
+    try {
+      const { data: prices } = await axios.get(PRICE_HISTORY);
+
+      handleSetState({
+        items: prices.slice(-7),
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   const tickPriceFormatter = (num: number) => {
     return `$${numeral(num).format('0,0')}`;

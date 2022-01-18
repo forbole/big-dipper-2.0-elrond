@@ -56,9 +56,6 @@ const Epoch: React.FC<ComponentDefault> = (props) => {
             tick={false}
           />
           <RadialBar
-            label={{
-              fill: '#666', position: 'insideStart',
-            }}
             background
             dataKey="value"
             cornerRadius={circleSize / 2}

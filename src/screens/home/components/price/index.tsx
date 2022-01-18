@@ -1,4 +1,5 @@
 import React from 'react';
+import Color from 'color';
 import classnames from 'classnames';
 import numeral from 'numeral';
 import { Typography } from '@material-ui/core';
@@ -20,7 +21,9 @@ import { useStyles } from './styles';
 import { usePrice } from './hooks';
 
 const Price: React.FC<ComponentDefault> = (props) => {
-  const classes = useStyles();
+  const {
+    classes, theme,
+  } = useStyles();
   const { t } = useTranslation('home');
   const {
     state, tickPriceFormatter,
@@ -49,7 +52,7 @@ const Price: React.FC<ComponentDefault> = (props) => {
               bottom: 0,
             }}
           >
-            <CartesianGrid />
+            <CartesianGrid stroke={theme.palette.divider} />
             <XAxis
               dataKey="time"
               tickLine={false}
@@ -66,7 +69,7 @@ const Price: React.FC<ComponentDefault> = (props) => {
                     return (
                       <>
                         <Typography variant="caption">
-                          {t('price')}
+                          {x.time}
                         </Typography>
                         <Typography variant="body1">
                           $
@@ -78,7 +81,12 @@ const Price: React.FC<ComponentDefault> = (props) => {
                 </CustomToolTip>
             )}
             />
-            <Area type="monotone" dataKey="value" stroke="#8884d8" fill="#8884d8" />
+            <Area
+              type="monotone"
+              dataKey="value"
+              stroke={theme.palette.custom.primaryData.one}
+              fill={Color(theme.palette.custom.primaryData.one).alpha(0.7).toString()}
+            />
           </AreaChart>
         </ResponsiveContainer>
       </div>

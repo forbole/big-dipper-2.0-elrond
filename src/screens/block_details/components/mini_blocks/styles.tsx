@@ -5,21 +5,38 @@ export const useStyles = () => {
     (theme) => {
       return ({
         root: {
-          overflow: 'hidden',
+
         },
         title: {
           marginBottom: theme.spacing(2),
         },
         block: {
-          wordWrap: 'break-word',
+          wordBreak: 'break-all',
+          flex: 1,
         },
         divider: {
           margin: theme.spacing(2, 0),
         },
         listContainer: {
-          width: '100%',
-          overflow: 'hidden',
           display: 'grid',
+          gridTemplateColumns: 'repeat(1, 1fr)',
+          [theme.breakpoints.up('md')]: {
+            gridGap: theme.spacing(0, 2),
+            gridTemplateColumns: 'repeat(2, 1fr)',
+          },
+        },
+        item: {
+          overflow: 'hidden',
+        },
+        hash: {
+          display: 'flex',
+          justifyContent: 'center',
+        },
+        bullet: {
+          width: '3px',
+          borderRadius: '20%',
+          background: theme.palette.custom.primaryData.two,
+          marginRight: theme.spacing(1),
         },
       });
     },

@@ -18,10 +18,13 @@ const MiniBlocks: React.FC<{miniBlocks: MiniBlockType[]} & ComponentDefault> = (
       <div className={classes.listContainer}>
         {props.miniBlocks.map((x, i) => {
           return (
-            <div key={x}>
-              <Typography className={classes.block}>
-                {x}
-              </Typography>
+            <div key={x} className={classes.item}>
+              <div className={classes.hash}>
+                <div className={classes.bullet} />
+                <Typography className={classes.block}>
+                  {x}
+                </Typography>
+              </div>
               {i !== props.miniBlocks.length - 1 && <Divider className={classes.divider} />}
             </div>
           );

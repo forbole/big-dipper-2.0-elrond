@@ -7,5 +7,6 @@
   "time": "Time",
   "blockDetails": "Block Details",
   "overview": "Overview",
-  "proposer": "Proposer"
+  "proposer": "Proposer",
+  "size": "Size"
 }

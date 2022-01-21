@@ -129,6 +129,8 @@ export const useBlockDetails = () => {
           proposer: blockData.proposer,
           timestamp: blockData.timestamp,
           txs: blockData.txCount,
+          size: blockData.sizeTxs,
+          shard: blockData.shard,
         },
       });
     } catch (error) {

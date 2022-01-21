@@ -4,6 +4,8 @@ export type OverviewType = {
   proposer: string;
   timestamp: number;
   txs: number;
+  size: number;
+  shard: number;
 }
 
 export type BlockDetailsState = {

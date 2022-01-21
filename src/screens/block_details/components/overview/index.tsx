@@ -6,6 +6,7 @@ import dayjs, { formatDayJs } from '@utils/dayjs';
 import useTranslation from 'next-translate/useTranslation';
 import { useRecoilValue } from 'recoil';
 import { readDate } from '@recoil/settings';
+import { formatBytes } from '@utils/format_bytes';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
 import { OverviewType } from '../../types';
 
@@ -47,6 +48,22 @@ const Overview: React.FC<OverviewType & ComponentDefault> = (props) => {
     {
       label: t('time'),
       detail: formatDayJs(dayjs.utc(dayjs.unix(props.timestamp)), dateFormat),
+    },
+    {
+      label: t('shard'),
+      detail: (
+        <Typography variant="body1" className="value">
+          {props.shard}
+        </Typography>
+      ),
+    },
+    {
+      label: t('size'),
+      detail: (
+        <Typography variant="body1" className="value">
+          {formatBytes(props.size)}
+        </Typography>
+      ),
     },
   ];
 

@@ -131,6 +131,10 @@ export const useBlockDetails = () => {
           txs: blockData.txCount,
           size: blockData.sizeTxs,
           shard: blockData.shard,
+          gasUsed: blockData.gasConsumed,
+          gasProvided: blockData.maxGasLimit,
+          gasRefunded: blockData.gasRefunded,
+          gasPenalized: blockData.gasPenalized,
         },
       });
     } catch (error) {

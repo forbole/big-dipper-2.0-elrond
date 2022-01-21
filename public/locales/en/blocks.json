@@ -8,5 +8,8 @@
   "blockDetails": "Block Details",
   "overview": "Overview",
   "proposer": "Proposer",
-  "size": "Size"
+  "size": "Size",
+  "gasUsedLimit": "Gas (Used/ Limit)",
+  "gasRefunded": "Gas Refunded",
+  "gasPenalized": "Gas Penalized"
 }

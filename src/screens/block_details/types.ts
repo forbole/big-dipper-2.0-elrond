@@ -6,6 +6,10 @@ export type OverviewType = {
   txs: number;
   size: number;
   shard: number;
+  gasUsed: number;
+  gasProvided: number;
+  gasRefunded: number;
+  gasPenalized: number;
 }
 
 export type BlockDetailsState = {

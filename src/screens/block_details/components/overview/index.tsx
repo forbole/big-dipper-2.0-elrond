@@ -65,7 +65,33 @@ const Overview: React.FC<OverviewType & ComponentDefault> = (props) => {
         </Typography>
       ),
     },
+    {
+      label: t('gasUsedLimit'),
+      detail: (
+        <Typography variant="body1" className="value">
+          {numeral(props.gasUsed).format('0,0')}
+          {' '}
+          /
+          {' '}
+          {numeral(props.gasProvided).format('0,0')}
+        </Typography>
+      ),
+    },
   ];
+
+  if (props.gasRefunded) {
+    details.push({
+      label: t('gasRefunded'),
+      detail: numeral(props.gasRefunded).format('0,0'),
+    });
+  }
+
+  if (props.gasPenalized) {
+    details.push({
+      label: t('gasPenalized'),
+      detail: numeral(props.gasPenalized).format('0,0'),
+    });
+  }
 
   return (
     <BoxDetails

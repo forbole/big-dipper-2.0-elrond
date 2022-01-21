@@ -11,6 +11,7 @@ import SingleBlockMobile from './single_block_mobile';
 import TransactionsList from './transactions_list';
 import Result from './result';
 import CustomToolTip from './custom_tool_tip';
+import BoxDetails from './box_details';
 
 export {
   Layout,
@@ -26,4 +27,5 @@ export {
   TransactionsList,
   Result,
   CustomToolTip,
+  BoxDetails,
 };

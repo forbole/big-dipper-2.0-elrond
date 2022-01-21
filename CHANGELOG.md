@@ -1,6 +1,7 @@
 # Unreleased
 
 ## Changes
-- Add blocks
-- Add transactions
+- Add Blocks Page
+- Add Transactions Page
 - Add Home Page
+- Add Block Details Page

@@ -6,6 +6,7 @@ import {
 } from '@components';
 import {
   Overview,
+  MiniBlocks,
 } from './components';
 import { useBlockDetails } from './hooks';
 import { useStyles } from './styles';
@@ -27,6 +28,7 @@ const BlockDetails = () => {
         className={classes.root}
       >
         <Overview {...state.overview} />
+        <MiniBlocks {...state.miniBlocks} />
       </Layout>
     </>
   );

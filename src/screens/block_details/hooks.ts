@@ -107,6 +107,7 @@ export const useBlockDetails = () => {
       timestamp: 0,
       txs: 0,
     },
+    miniBlocks: [],
   });
 
   useEffect(() => {
@@ -136,6 +137,7 @@ export const useBlockDetails = () => {
           gasRefunded: blockData.gasRefunded,
           gasPenalized: blockData.gasPenalized,
         },
+        miniBlocks: blockData.miniBlocksHashes,
       });
     } catch (error) {
       handleSetState({

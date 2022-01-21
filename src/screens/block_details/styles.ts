@@ -9,13 +9,18 @@ export const useStyles = () => {
           '& a': {
             color: theme.palette.custom.fonts.highlight,
           },
-        },
-        box: {
-          minHeight: '500px',
-          height: '50vh',
+          display: 'grid',
+          gridTemplateRows: 'auto auto 1fr',
+          gridTemplateColumns: '1fr',
+          gridGap: theme.spacing(1),
           [theme.breakpoints.up('lg')]: {
-            height: '100%',
-            minHeight: '65vh',
+            gridGap: theme.spacing(2),
+          },
+        },
+        signatures: {
+          height: '450px',
+          [theme.breakpoints.up('lg')]: {
+            height: '450px',
           },
         },
       });

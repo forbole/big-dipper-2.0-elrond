@@ -8,7 +8,9 @@ export const useStyles = () => {
           overflow: 'hidden',
         },
         header: {
-
+          '& .MuiTypography-h2': {
+            color: theme.palette.custom.fonts.fontOne,
+          },
         },
         item: {
           padding: theme.spacing(2, 0),

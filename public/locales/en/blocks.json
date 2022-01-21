@@ -12,5 +12,7 @@
   "gasUsedLimit": "Gas (Used/ Limit)",
   "gasRefunded": "Gas Refunded",
   "gasPenalized": "Gas Penalized",
-  "miniBlocks": "Mini Blocks"
+  "miniBlocks": "Mini Blocks",
+  "consensus": "Consensus",
+  "validator": "Validator"
 }

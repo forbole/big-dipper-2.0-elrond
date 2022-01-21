@@ -7,6 +7,7 @@ import {
 import {
   Overview,
   MiniBlocks,
+  Consensus,
 } from './components';
 import { useBlockDetails } from './hooks';
 import { useStyles } from './styles';
@@ -29,6 +30,7 @@ const BlockDetails = () => {
       >
         <Overview {...state.overview} />
         <MiniBlocks miniBlocks={state.miniBlocks} />
+        <Consensus className={classes.consensus} consensus={state.consensus} />
       </Layout>
     </>
   );

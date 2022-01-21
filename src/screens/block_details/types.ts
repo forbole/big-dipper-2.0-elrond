@@ -12,13 +12,11 @@ export type OverviewType = {
   gasPenalized: number;
 }
 
-export type MiniBlockType = {
-  blocks: string[];
-}
+export type MiniBlockType = string;
 
 export type BlockDetailsState = {
   loading: boolean;
   exists: boolean;
   overview: OverviewType;
-  miniBlocks: MiniBlockType;
+  miniBlocks: MiniBlockType[];
 }

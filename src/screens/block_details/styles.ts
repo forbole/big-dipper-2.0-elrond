@@ -17,12 +17,12 @@ export const useStyles = () => {
             gridGap: theme.spacing(2),
           },
         },
-        signatures: {
-          height: '450px',
-          [theme.breakpoints.up('lg')]: {
-            height: '450px',
-          },
-        },
+        // signatures: {
+        //   height: '450px',
+        //   [theme.breakpoints.up('lg')]: {
+        //     height: '450px',
+        //   },
+        // },
       });
     },
   )();

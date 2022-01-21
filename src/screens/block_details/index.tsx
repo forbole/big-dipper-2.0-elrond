@@ -28,7 +28,7 @@ const BlockDetails = () => {
         className={classes.root}
       >
         <Overview {...state.overview} />
-        <MiniBlocks {...state.miniBlocks} />
+        <MiniBlocks miniBlocks={state.miniBlocks} />
       </Layout>
     </>
   );

@@ -106,6 +106,12 @@ export const useBlockDetails = () => {
       proposer: '',
       timestamp: 0,
       txs: 0,
+      gasPenalized: 0,
+      gasProvided: 0,
+      gasRefunded: 0,
+      gasUsed: 0,
+      size: 0,
+      shard: 0,
     },
     miniBlocks: [],
   });

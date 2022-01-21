@@ -1,3 +1,9 @@
+import {
+  useState, useEffect,
+} from 'react';
+import * as R from 'ramda';
+import { BlockDetailsState } from './types';
+
 export const fakeData = {
   hash: '76dcaf94b4fa6c5c3e2cd08ed5dd4022602c2ac3f716e24a193254b1b8959b0b',
   epoch: 536,
@@ -91,5 +97,50 @@ export const fakeData = {
 };
 
 export const useBlockDetails = () => {
-  return null;
+  const [state, setState] = useState<BlockDetailsState>({
+    loading: true,
+    exists: true,
+    overview: {
+      block: 0,
+      hash: '',
+      proposer: '',
+      timestamp: 0,
+      txs: 0,
+    },
+  });
+
+  useEffect(() => {
+    getBlockDetails();
+  }, []);
+
+  const handleSetState = (stateChange: any) => {
+    setState((prevState) => R.mergeDeepLeft(stateChange, prevState));
+  };
+
+  const getBlockDetails = () => {
+    try {
+      const blockData = fakeData;
+
+      handleSetState({
+        loading: false,
+        overview: {
+          block: blockData.round,
+          hash: blockData.hash,
+          proposer: blockData.proposer,
+          timestamp: blockData.timestamp,
+          txs: blockData.txCount,
+        },
+      });
+    } catch (error) {
+      handleSetState({
+        loading: false,
+        exists: false,
+      });
+      console.log(error.message);
+    }
+  };
+
+  return {
+    state,
+  };
 };

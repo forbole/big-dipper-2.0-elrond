@@ -4,11 +4,16 @@ import useTranslation from 'next-translate/useTranslation';
 import {
   Layout,
 } from '@components';
+import {
+  Overview,
+} from './components';
+import { useBlockDetails } from './hooks';
 import { useStyles } from './styles';
 
 const BlockDetails = () => {
   const classes = useStyles();
   const { t } = useTranslation('blocks');
+  const { state } = useBlockDetails();
   return (
     <>
       <NextSeo
@@ -21,7 +26,7 @@ const BlockDetails = () => {
         navTitle={t('blockDetails')}
         className={classes.root}
       >
-        block details
+        <Overview {...state.overview} />
       </Layout>
     </>
   );

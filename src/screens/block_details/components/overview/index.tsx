@@ -8,11 +8,13 @@ import { useRecoilValue } from 'recoil';
 import { readDate } from '@recoil/settings';
 import { formatBytes } from '@utils/format_bytes';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
+import { getShardDisplay } from '@utils/get_shard_display';
 import { OverviewType } from '../../types';
 
 const Overview: React.FC<OverviewType & ComponentDefault> = (props) => {
   const { t } = useTranslation('blocks');
   const dateFormat = useRecoilValue(readDate);
+  const shard = getShardDisplay(props.shard);
 
   const details = [
     {
@@ -53,7 +55,9 @@ const Overview: React.FC<OverviewType & ComponentDefault> = (props) => {
       label: t('shard'),
       detail: (
         <Typography variant="body1" className="value">
-          {props.shard}
+          {t(shard.key, {
+            num: shard.num,
+          })}
         </Typography>
       ),
     },

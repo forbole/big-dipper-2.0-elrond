@@ -2,7 +2,9 @@ import React from 'react';
 import numeral from 'numeral';
 import dayjs from '@utils/dayjs';
 import Link from 'next/link';
+import useTranslation from 'next-translate/useTranslation';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
+import { getShardDisplay } from '@utils/get_shard_display';
 import {
   Divider, Typography,
 } from '@material-ui/core';
@@ -11,10 +13,14 @@ import { SingleBlockMobile } from '@components';
 import { BlockType } from '../../types';
 
 const Mobile: React.FC<{items: BlockType[]} & ComponentDefault> = (props) => {
+  const { t } = useTranslation('blocks');
   const formattedItems = props.items.map((x) => {
+    const shard = getShardDisplay(x.shard);
     return ({
       block: numeral(x.block).format('0,0'),
-      shard: x.shard,
+      shard: t(shard.key, {
+        num: shard.num,
+      }),
       hash: (
         <Link href={BLOCK_DETAILS(x.hash)} passHref>
           <Typography variant="body1" className="value" component="a">

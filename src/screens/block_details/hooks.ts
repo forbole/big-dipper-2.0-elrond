@@ -56,7 +56,7 @@ export const useBlockDetails = () => {
           gasRefunded: blockData.gasRefunded,
           gasPenalized: blockData.gasPenalized,
         },
-        miniBlocks: blockData.miniBlocksHashes,
+        miniBlocks: R.pathOr([], ['miniBlocksHashes'], blockData),
         consensus: blockData.validators,
       });
     } catch (error) {

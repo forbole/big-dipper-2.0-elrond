@@ -14,5 +14,8 @@
   "gasPenalized": "Gas Penalized",
   "miniBlocks": "Mini Blocks",
   "consensus": "Consensus",
-  "validator": "Validator"
+  "validator": "Validator",
+  "metachain": "Metachain",
+  "shardNumber": "Shard {{num}}",
+  "idx": "Idx"
 }

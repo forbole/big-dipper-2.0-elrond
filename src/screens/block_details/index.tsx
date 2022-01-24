@@ -29,7 +29,9 @@ const BlockDetails = () => {
         className={classes.root}
       >
         <Overview {...state.overview} />
-        <MiniBlocks miniBlocks={state.miniBlocks} />
+        {!!state.miniBlocks.length && (
+          <MiniBlocks miniBlocks={state.miniBlocks} />
+        )}
         <Consensus className={classes.consensus} consensus={state.consensus} />
       </Layout>
     </>

@@ -5,3 +5,4 @@
 - Add Transactions Page
 - Add Home Page
 - Add Block Details Page
+- Add Miniblock Details Page

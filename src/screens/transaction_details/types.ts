@@ -13,7 +13,8 @@ export type DataType = string;
 
 export type ActionType = {
   category: string;
-
+  name: string;
+  description: string;
 }
 
 export type TransactionDetailsState = {
@@ -21,5 +22,6 @@ export type TransactionDetailsState = {
   exists: boolean;
   overview: OverviewType;
   data: DataType;
+  action?: ActionType;
   // transactions: TransactionType[];
 }

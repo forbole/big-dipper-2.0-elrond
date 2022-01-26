@@ -3,12 +3,11 @@ import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import {
   Layout,
-  TransactionsList,
-  Box,
 } from '@components';
 import {
   Overview,
   Data,
+  Action,
 } from './components';
 import { useTransactionDetails } from './hooks';
 import { useStyles } from './styles';
@@ -33,9 +32,9 @@ const TransactionDetails = () => {
         {!!state.data && (
           <Data data={state.data} />
         )}
-        {/* <Box>
-          <TransactionsList items={state.transactions} />
-        </Box> */}
+        {!!state.action && (
+          <Action {...state.action} />
+        )}
       </Layout>
     </>
   );

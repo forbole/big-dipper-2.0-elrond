@@ -28,9 +28,7 @@ export const useStyles = () => {
             marginBottom: theme.spacing(1),
           },
           '& .detail': {
-            '&.MuiTypography-body1': {
-              wordWrap: 'break-word',
-            },
+            wordWrap: 'break-word',
           },
           [theme.breakpoints.up('md')]: {
             display: 'flex',

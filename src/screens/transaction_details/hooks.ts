@@ -40,19 +40,34 @@ export const useTransactionDetails = () => {
       // eslint-disable-next-line
       // const { data: transactionData } = await axios.get(TRANSACTION_DETAILS(router.query.hash as string));
       const transactionData = fakeData;
+
+      // overview
+      const overview = {
+        hash: transactionData.txHash,
+        fromShard: transactionData.senderShard,
+        toShard: transactionData.receiverShard,
+        from: transactionData.sender,
+        to: transactionData.receiver,
+        timestamp: transactionData.timestamp,
+        status: transactionData.status,
+        miniblockHash: transactionData.miniBlockHash,
+      };
+
+      // action
+      let action = null;
+      if (transactionData.action) {
+        action = {
+          category: R.pathOr('', ['category'], transactionData.action),
+          name: R.pathOr('', ['name'], transactionData.action),
+          description: R.pathOr('', ['description'], transactionData.action),
+        };
+      }
+
       handleSetState({
         loading: false,
-        overview: {
-          hash: transactionData.txHash,
-          fromShard: transactionData.senderShard,
-          toShard: transactionData.receiverShard,
-          from: transactionData.sender,
-          to: transactionData.receiver,
-          timestamp: transactionData.timestamp,
-          status: transactionData.status,
-          miniblockHash: transactionData.miniBlockHash,
-        },
+        overview,
         data: R.pathOr('', ['data'], transactionData),
+        action,
       });
     } catch (error) {
       handleSetState({

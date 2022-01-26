@@ -12,5 +12,9 @@
   "receiverShard": "Receiver Shard",
   "overview": "Overview",
   "shardNumber": "Shard {{num}}",
-  "data": "Data"
+  "data": "Data",
+  "action": "Action",
+  "category": "Category",
+  "name": "Name",
+  "description": "Description"
 }

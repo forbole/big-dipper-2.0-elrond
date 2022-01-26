@@ -3,39 +3,36 @@ import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import {
   Layout,
+  TransactionsList,
+  Box,
 } from '@components';
-import {
-  Overview,
-  Miniblocks,
-  Consensus,
-} from './components';
+import { Overview } from './components';
 import { useBlockDetails } from './hooks';
 import { useStyles } from './styles';
 
-const BlockDetails = () => {
+const MiniBlockDetails = () => {
   const classes = useStyles();
   const { t } = useTranslation('blocks');
   const { state } = useBlockDetails();
   return (
     <>
       <NextSeo
-        title={t('blockDetails')}
+        title={t('miniBlockDetails')}
         openGraph={{
-          title: t('blockDetails'),
+          title: t('miniBlockDetails'),
         }}
       />
       <Layout
-        navTitle={t('blockDetails')}
+        navTitle={t('miniBlockDetails')}
         className={classes.root}
       >
         <Overview {...state.overview} />
-        {!!state.miniBlocks.length && (
-          <Miniblocks miniBlocks={state.miniBlocks} />
-        )}
-        <Consensus className={classes.consensus} consensus={state.consensus} />
+        <Box>
+          <TransactionsList items={state.transactions} />
+        </Box>
       </Layout>
     </>
   );
 };
 
-export default BlockDetails;
+export default MiniBlockDetails;

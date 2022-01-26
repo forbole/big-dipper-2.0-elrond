@@ -6,7 +6,7 @@ import {
 } from '@components';
 import {
   Overview,
-  MiniBlocks,
+  Miniblocks,
   Consensus,
 } from './components';
 import { useBlockDetails } from './hooks';
@@ -30,7 +30,7 @@ const BlockDetails = () => {
       >
         <Overview {...state.overview} />
         {!!state.miniBlocks.length && (
-          <MiniBlocks miniBlocks={state.miniBlocks} />
+          <Miniblocks miniBlocks={state.miniBlocks} />
         )}
         <Consensus className={classes.consensus} consensus={state.consensus} />
       </Layout>

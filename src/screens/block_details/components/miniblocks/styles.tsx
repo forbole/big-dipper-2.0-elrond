@@ -20,8 +20,8 @@ export const useStyles = () => {
         listContainer: {
           display: 'grid',
           gridTemplateColumns: 'repeat(1, 1fr)',
+          gridGap: theme.spacing(2),
           [theme.breakpoints.up('md')]: {
-            gridGap: theme.spacing(0, 2),
             gridTemplateColumns: 'repeat(2, 1fr)',
           },
         },

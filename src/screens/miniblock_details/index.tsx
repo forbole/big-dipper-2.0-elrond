@@ -5,7 +5,7 @@ import {
   Layout,
 } from '@components';
 import {
-// Overview,
+  Overview,
 // MiniBlocks,
 // Consensus,
 } from './components';
@@ -15,7 +15,7 @@ import { useStyles } from './styles';
 const MiniBlockDetails = () => {
   const classes = useStyles();
   const { t } = useTranslation('blocks');
-  // const { state } = useBlockDetails();
+  const { state } = useBlockDetails();
   return (
     <>
       <NextSeo
@@ -28,12 +28,11 @@ const MiniBlockDetails = () => {
         navTitle={t('blockDetails')}
         className={classes.root}
       >
-        mini block
-        {/* <Overview {...state.overview} />
-        {!!state.miniBlocks.length && (
+        <Overview {...state.overview} />
+        {/* {!!state.miniBlocks.length && (
           <MiniBlocks miniBlocks={state.miniBlocks} />
-        )}
-        <Consensus className={classes.consensus} consensus={state.consensus} /> */}
+        )} */}
+        {/* <Consensus className={classes.consensus} consensus={state.consensus} /> */}
       </Layout>
     </>
   );

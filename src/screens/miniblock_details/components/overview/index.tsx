@@ -1,50 +1,56 @@
 import React from 'react';
-import numeral from 'numeral';
 import { Typography } from '@material-ui/core';
+import Link from 'next/link';
 import { BoxDetails } from '@components';
 import dayjs, { formatDayJs } from '@utils/dayjs';
 import useTranslation from 'next-translate/useTranslation';
 import { useRecoilValue } from 'recoil';
 import { readDate } from '@recoil/settings';
-import { formatBytes } from '@utils/format_bytes';
-import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
+import { BLOCK_DETAILS } from '@utils/go_to_page';
 import { getShardDisplay } from '@utils/get_shard_display';
 import { OverviewType } from '../../types';
 
 const Overview: React.FC<OverviewType & ComponentDefault> = (props) => {
   const { t } = useTranslation('blocks');
   const dateFormat = useRecoilValue(readDate);
-  const shard = getShardDisplay(props.shard);
+  const senderShard = getShardDisplay(props.senderShard);
+  const receiverShard = getShardDisplay(props.receiverShard);
 
   const details = [
-    {
-      label: t('block'),
-      detail: (
-        <Typography variant="body1" className="value">
-          {numeral(props.block).format('0,0')}
-        </Typography>
-      ),
-    },
     {
       label: t('hash'),
       detail: props.hash,
     },
     {
-      label: t('proposer'),
+      label: t('senderShard'),
+      detail: t(senderShard.key, {
+        num: senderShard.num,
+      }),
+    },
+    {
+      label: t('receiverShard'),
+      detail: t(receiverShard.key, {
+        num: receiverShard.num,
+      }),
+    },
+    {
+      label: t('senderBlockHash'),
       detail: (
-        <Typography variant="body1" className="value">
-          {getMiddleEllipsis(props.proposer, {
-            beginning: 13, ending: 15,
-          })}
-        </Typography>
+        <Link href={BLOCK_DETAILS(props.senderBlockHash)} passHref>
+          <Typography variant="body1" component="a">
+            {props.senderBlockHash}
+          </Typography>
+        </Link>
       ),
     },
     {
-      label: t('txs'),
+      label: t('receiverBlockHash'),
       detail: (
-        <Typography variant="body1" className="value">
-          {numeral(props.txs).format('0,0')}
-        </Typography>
+        <Link href={BLOCK_DETAILS(props.receiverBlockHash)} passHref>
+          <Typography variant="body1" component="a">
+            {props.receiverBlockHash}
+          </Typography>
+        </Link>
       ),
     },
     {
@@ -52,50 +58,10 @@ const Overview: React.FC<OverviewType & ComponentDefault> = (props) => {
       detail: formatDayJs(dayjs.utc(dayjs.unix(props.timestamp)), dateFormat),
     },
     {
-      label: t('shard'),
-      detail: (
-        <Typography variant="body1" className="value">
-          {t(shard.key, {
-            num: shard.num,
-          })}
-        </Typography>
-      ),
-    },
-    {
-      label: t('size'),
-      detail: (
-        <Typography variant="body1" className="value">
-          {formatBytes(props.size)}
-        </Typography>
-      ),
-    },
-    {
-      label: t('gasUsedLimit'),
-      detail: (
-        <Typography variant="body1" className="value">
-          {numeral(props.gasUsed).format('0,0')}
-          {' '}
-          /
-          {' '}
-          {numeral(props.gasProvided).format('0,0')}
-        </Typography>
-      ),
+      label: t('type'),
+      detail: props.type,
     },
   ];
-
-  if (props.gasRefunded) {
-    details.push({
-      label: t('gasRefunded'),
-      detail: numeral(props.gasRefunded).format('0,0'),
-    });
-  }
-
-  if (props.gasPenalized) {
-    details.push({
-      label: t('gasPenalized'),
-      detail: numeral(props.gasPenalized).format('0,0'),
-    });
-  }
 
   return (
     <BoxDetails

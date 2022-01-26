@@ -5,11 +5,11 @@ export const columns:{
 }[] = [
   {
     key: 'hash',
-    width: 15,
+    width: 20,
   },
   {
     key: 'shard',
-    width: 15,
+    width: 20,
   },
   {
     key: 'from',
@@ -21,11 +21,11 @@ export const columns:{
   },
   {
     key: 'status',
-    width: 15,
+    width: 10,
   },
   {
     key: 'time',
-    width: 15,
+    width: 10,
     align: 'right',
   },
 ];

@@ -1,13 +1,18 @@
 import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
+import Link from 'next/link';
 import {
   Table,
   TableHead,
   TableRow,
   TableCell,
   TableBody,
+  Typography,
 } from '@material-ui/core';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
+import {
+  TRANSACTION_DETAILS, ACCOUNT_DETAILS,
+} from '@utils/go_to_page';
 import { Result } from '@components';
 import dayjs from '@utils/dayjs';
 import { columns } from './utils';
@@ -17,16 +22,34 @@ const Desktop: React.FC<{items: TransactionType[]} & ComponentDefault> = (props)
   const { t } = useTranslation('transactions');
   const formattedItems = props.items.map((x) => {
     return ({
-      hash: getMiddleEllipsis(x.hash, {
-        beginning: 20, ending: 20,
-      }),
+      hash: (
+        <Link href={TRANSACTION_DETAILS(x.hash)} passHref>
+          <Typography variant="body1" className="value" component="a">
+            {getMiddleEllipsis(x.hash, {
+              beginning: 13, ending: 15,
+            })}
+          </Typography>
+        </Link>
+      ),
       shard: <Shard to={x.toShard} from={x.fromShard} />,
-      from: getMiddleEllipsis(x.from, {
-        beginning: 10, ending: 10,
-      }),
-      to: getMiddleEllipsis(x.to, {
-        beginning: 10, ending: 10,
-      }),
+      from: (
+        <Link href={ACCOUNT_DETAILS(x.from)} passHref>
+          <Typography variant="body1" className="value" component="a">
+            {getMiddleEllipsis(x.from, {
+              beginning: 13, ending: 15,
+            })}
+          </Typography>
+        </Link>
+      ),
+      to: (
+        <Link href={ACCOUNT_DETAILS(x.to)} passHref>
+          <Typography variant="body1" className="value" component="a">
+            {getMiddleEllipsis(x.to, {
+              beginning: 13, ending: 15,
+            })}
+          </Typography>
+        </Link>
+      ),
       status: (
         <Result status={x.status} />
       ),

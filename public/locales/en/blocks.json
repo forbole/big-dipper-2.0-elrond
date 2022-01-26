@@ -17,5 +17,6 @@
   "validator": "Validator",
   "metachain": "Metachain",
   "shardNumber": "Shard {{num}}",
-  "idx": "Idx"
+  "idx": "Idx",
+  "miniBlockDetails": "Miniblock Details"
 }

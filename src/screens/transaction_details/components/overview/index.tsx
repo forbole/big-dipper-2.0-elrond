@@ -8,7 +8,9 @@ import dayjs, { formatDayJs } from '@utils/dayjs';
 import useTranslation from 'next-translate/useTranslation';
 import { useRecoilValue } from 'recoil';
 import { readDate } from '@recoil/settings';
-import { ACCOUNT_DETAILS } from '@utils/go_to_page';
+import {
+  ACCOUNT_DETAILS, MINIBLOCK_DETAILS,
+} from '@utils/go_to_page';
 import { getShardDisplay } from '@utils/get_shard_display';
 import { OverviewType } from '../../types';
 
@@ -31,7 +33,13 @@ const Overview: React.FC<OverviewType & ComponentDefault> = (props) => {
     },
     {
       label: t('miniblockHash'),
-      detail: props.miniblockHash,
+      detail: (
+        <Link href={MINIBLOCK_DETAILS(props.miniblockHash)} passHref>
+          <Typography variant="body1" component="a">
+            {props.miniblockHash}
+          </Typography>
+        </Link>
+      ),
     },
     {
       label: t('senderShard'),

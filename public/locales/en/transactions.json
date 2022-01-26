@@ -6,5 +6,10 @@
   "to": "To",
   "status": "Status",
   "time": "Time",
-  "transactionDetails": "Transaction Details"
+  "transactionDetails": "Transaction Details",
+  "miniblockHash": "Miniblock Hash",
+  "senderShard": "Sender Shard",
+  "receiverShard": "Receiver Shard",
+  "overview": "Overview",
+  "shardNumber": "Shard {{num}}"
 }

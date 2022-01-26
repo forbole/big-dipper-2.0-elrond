@@ -26,8 +26,7 @@ const TransactionDetails = () => {
         navTitle={t('transactionDetails')}
         className={classes.root}
       >
-        tx details
-        {/* <Overview {...state.overview} /> */}
+        <Overview {...state.overview} />
         {/* <Box>
           <TransactionsList items={state.transactions} />
         </Box> */}

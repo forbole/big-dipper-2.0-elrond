@@ -8,7 +8,7 @@ module.exports = {
     '*': ['common'],
     '/': ['home', 'blocks', 'transactions'],
     'rgx:^/blocks': ['blocks'],
-    'rgx:^/miniblocks': ['blocks'],
+    'rgx:^/miniblocks': ['blocks', 'transactions'],
     'rgx:^/transactions': ['transactions'],
     // 'rgx:^/@*': ['profiles', 'accounts'],
     // 'rgx:^/transactions': ['transactions', 'message_labels', 'message_contents'],

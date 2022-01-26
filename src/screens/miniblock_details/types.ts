@@ -8,13 +8,9 @@ export type OverviewType = {
   type: string;
 }
 
-// export type MiniBlockType = string;
-// export type ConsensusType = string;
-
 export type BlockDetailsState = {
   loading: boolean;
   exists: boolean;
   overview: OverviewType;
-  // miniBlocks: MiniBlockType[];
-  // consensus: ConsensusType[];
+  transactions: TransactionType[];
 }

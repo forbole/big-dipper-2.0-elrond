@@ -6,7 +6,10 @@ import {
   TransactionsList,
   Box,
 } from '@components';
-import { Overview } from './components';
+import {
+  Overview,
+  Data,
+} from './components';
 import { useTransactionDetails } from './hooks';
 import { useStyles } from './styles';
 
@@ -27,6 +30,9 @@ const TransactionDetails = () => {
         className={classes.root}
       >
         <Overview {...state.overview} />
+        {!!state.data && (
+          <Data data={state.data} />
+        )}
         {/* <Box>
           <TransactionsList items={state.transactions} />
         </Box> */}

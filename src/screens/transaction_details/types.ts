@@ -9,10 +9,17 @@ export type OverviewType = {
   miniblockHash: string;
 }
 
+export type DataType = string;
+
+export type ActionType = {
+  category: string;
+
+}
+
 export type TransactionDetailsState = {
   loading: boolean;
   exists: boolean;
   overview: OverviewType;
-  data: string;
+  data: DataType;
   // transactions: TransactionType[];
 }

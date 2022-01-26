@@ -11,5 +11,6 @@
   "senderShard": "Sender Shard",
   "receiverShard": "Receiver Shard",
   "overview": "Overview",
-  "shardNumber": "Shard {{num}}"
+  "shardNumber": "Shard {{num}}",
+  "data": "Data"
 }

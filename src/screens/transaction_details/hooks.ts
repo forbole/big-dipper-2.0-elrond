@@ -52,7 +52,7 @@ export const useTransactionDetails = () => {
           status: transactionData.status,
           miniblockHash: transactionData.miniBlockHash,
         },
-        data: transactionData.data,
+        data: R.pathOr('', ['data'], transactionData),
       });
     } catch (error) {
       handleSetState({

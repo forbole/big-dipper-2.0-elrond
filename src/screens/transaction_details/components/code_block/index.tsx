@@ -10,7 +10,8 @@ const CodeBlock = (props: {
   return (
     <pre className={classes.root}>
       <code>
-        {JSON.stringify(message, null, '\t')}
+        {/* {JSON.stringify(message, null, '\t')} */}
+        {message}
       </code>
     </pre>
   );

@@ -1,10 +1,10 @@
 import {
   useState, useEffect,
 } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import * as R from 'ramda';
 import { useRouter } from 'next/router';
-import { TRANSACTION_DETAILS } from '@api';
+// import { TRANSACTION_DETAILS } from '@api';
 import { TransactionDetailsState } from './types';
 import { fakeData } from './fake';
 
@@ -24,6 +24,7 @@ export const useTransactionDetails = () => {
       miniblockHash: '',
     },
     data: '',
+    operations: [],
   });
 
   useEffect(() => {
@@ -63,11 +64,21 @@ export const useTransactionDetails = () => {
         };
       }
 
+      const operations = R.pathOr([], ['operations'], transactionData).map((x) => {
+        return ({
+          action: R.pathOr('', ['action'], x),
+          sender: R.pathOr('', ['sender'], x),
+          receiver: R.pathOr('', ['receiver'], x),
+          identifier: R.pathOr('', ['identifier'], x),
+        });
+      });
+
       handleSetState({
         loading: false,
         overview,
         data: R.pathOr('', ['data'], transactionData),
         action,
+        operations,
       });
     } catch (error) {
       handleSetState({

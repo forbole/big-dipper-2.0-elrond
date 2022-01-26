@@ -8,6 +8,7 @@ import {
   Overview,
   Data,
   Action,
+  Operations,
 } from './components';
 import { useTransactionDetails } from './hooks';
 import { useStyles } from './styles';
@@ -34,6 +35,9 @@ const TransactionDetails = () => {
         )}
         {!!state.action && (
           <Action {...state.action} />
+        )}
+        {!!state.operations && (
+          <Operations items={state.operations} />
         )}
       </Layout>
     </>

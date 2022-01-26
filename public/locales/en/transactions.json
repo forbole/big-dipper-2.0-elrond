@@ -16,5 +16,9 @@
   "action": "Action",
   "category": "Category",
   "name": "Name",
-  "description": "Description"
+  "description": "Description",
+  "sender": "Sender",
+  "receiver": "Receiver",
+  "identifier": "Identifier",
+  "operations": "Operations"
 }

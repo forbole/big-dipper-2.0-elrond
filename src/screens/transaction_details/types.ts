@@ -17,11 +17,18 @@ export type ActionType = {
   description: string;
 }
 
+export type OperationType = {
+  action: string;
+  sender: string;
+  receiver: string;
+  identifier: string;
+}
+
 export type TransactionDetailsState = {
   loading: boolean;
   exists: boolean;
   overview: OverviewType;
   data: DataType;
   action?: ActionType;
-  // transactions: TransactionType[];
+  operations: OperationType[];
 }

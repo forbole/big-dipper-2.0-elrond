@@ -9,6 +9,7 @@ import {
   Data,
   Action,
   Operations,
+  SmartContractResults,
 } from './components';
 import { useTransactionDetails } from './hooks';
 import { useStyles } from './styles';
@@ -38,6 +39,9 @@ const TransactionDetails = () => {
         )}
         {!!state.operations && (
           <Operations items={state.operations} />
+        )}
+        {!!state.results && (
+          <SmartContractResults />
         )}
       </Layout>
     </>

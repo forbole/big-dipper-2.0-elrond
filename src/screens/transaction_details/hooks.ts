@@ -25,6 +25,7 @@ export const useTransactionDetails = () => {
     },
     data: '',
     operations: [],
+    results: [],
   });
 
   useEffect(() => {

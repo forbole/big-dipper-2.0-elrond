@@ -24,6 +24,14 @@ export type OperationType = {
   identifier: string;
 }
 
+export type ResultType = {
+  hash: string;
+  sender: string;
+  receiver: string;
+  data: string;
+  value: number;
+}
+
 export type TransactionDetailsState = {
   loading: boolean;
   exists: boolean;
@@ -31,4 +39,5 @@ export type TransactionDetailsState = {
   data: DataType;
   action?: ActionType;
   operations: OperationType[];
+  results: ResultType[];
 }

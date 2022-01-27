@@ -5,21 +5,22 @@ import { VariableSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { Divider } from '@material-ui/core';
 import { AvatarName } from '@components';
-import { getValidatorConditionClass } from '@utils/get_validator_condition';
 import {
   useList,
   useListRow,
 } from '@hooks';
-import { getValidatorStatus } from '@utils/get_validator_status';
+import { formatNumber } from '@utils/format_token';
 import { SingleValidator } from './component';
-import { ValidatorType } from '../../types';
+import { ItemType } from '../../types';
+import { useStyles } from './styles';
 
 const Mobile: React.FC<{
   className?: string;
-  items: ValidatorType[];
+  items: ItemType[];
 }> = ({
   className, items,
 }) => {
+  const classes = useStyles();
   const {
     listRef,
     getRowHeight,
@@ -27,39 +28,22 @@ const Mobile: React.FC<{
   } = useList();
 
   const formattedItems = items.map((x, i) => {
-    // const status = getValidatorStatus(x.status, x.jailed, x.tombstoned);
-    // const condition = x.status === 3 ? getValidatorConditionClass(x.condition) : undefined;
-    // const percentDisplay = x.status === 3 ? `${numeral(x.votingPowerPercent).format('0.[00]')}%` : '0%';
-    // const votingPower = numeral(x.votingPower).format('0,0');
     return ({
       idx: `#${i + 1}`,
-      // delegators: numeral(x.delegators).format('0,0'),
-      name: (
+      validator: (
         <AvatarName
           address={x.validator.address}
           imageUrl={x.validator.imageUrl}
           name={x.validator.name}
         />
       ),
-      // commission: `${numeral(x.commission).format('0.[00]')}%`,
-      // self: `${numeral(x.selfPercent).format('0.[00]')}%`,
-      // condition: (
-      //   <Condition className={condition} />
-      // ),
-      // votingPower: (
-      //   <VotingPower
-      //     percentDisplay={percentDisplay}
-      //     percentage={x.votingPowerPercent}
-      //     content={votingPower}
-      //     topVotingPower={x.topVotingPower}
-      //   />
-      // ),
-      // status,
+      stake: `${formatNumber(x.stake.value, x.stake.exponent)} ${x.stake.displayDenom.toUpperCase()}`,
+      nodes: numeral(x.nodes).format('0,0'),
     });
   });
 
   return (
-    <div className={classnames(className)}>
+    <div className={classnames(className, classes.root)}>
       <AutoSizer>
         {({
           height, width,

@@ -1,5 +1,10 @@
 {
   "validators": "Validators",
   "allValidators": "All Validators",
-  "providers": "Providers"
+  "providers": "Providers",
+  "idx": "Idx",
+  "validator": "Validator",
+  "stake": "Stake",
+  "nodes": "Nodes",
+  "searchValidator": "Search Validator"
 }

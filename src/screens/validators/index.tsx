@@ -2,6 +2,7 @@ import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
 import { NextSeo } from 'next-seo';
 import { Layout } from '@components';
+import { List } from './components';
 import { useStyles } from './styles';
 
 const Validators = () => {
@@ -19,7 +20,7 @@ const Validators = () => {
         navTitle={t('validators')}
         className={classes.root}
       >
-        Validators
+        <List />
       </Layout>
     </>
   );

@@ -9,7 +9,9 @@ import {
 import { formatToken } from '@utils/format_token';
 import { chainConfig } from '@configs';
 import {
-  ValidatorsState, ValidatorType,
+  ValidatorsState,
+  ValidatorType,
+  ItemType,
 } from './types';
 import { fakeData } from './fakes';
 
@@ -54,8 +56,8 @@ export const useValidators = () => {
     }
   };
 
-  const sortItems = (items: ValidatorType[]) => {
-    let sorted: ValidatorType[] = R.clone(items);
+  const sortItems = (items: ItemType[]) => {
+    let sorted: ItemType[] = R.clone(items);
 
     if (state.tab === 0) {
       // sorted = sorted.filter((x) => x.status === 3);
@@ -69,8 +71,8 @@ export const useValidators = () => {
       sorted = sorted.filter((x) => {
         const formattedSearch = search.toLowerCase().replace(/ /g, '');
         return (
-          x.name.toLowerCase().replace(/ /g, '').includes(formattedSearch)
-          || x.identity.toLowerCase().includes(formattedSearch)
+          x.validator.name.toLowerCase().replace(/ /g, '').includes(formattedSearch)
+          || x.validator.address.toLowerCase().includes(formattedSearch)
         );
       });
     }
@@ -110,7 +112,7 @@ export const useValidators = () => {
       const items = validatorsData.map((x) => {
         return ({
           identity: R.pathOr('', ['identity'], x),
-          name: R.pathOr('', ['name'], x),
+          validator: R.pathOr('', ['name'], x),
           imageUrl: R.pathOr('', ['avatar'], x),
           stake: formatToken(
             R.pathOr('0', ['stake'], x),

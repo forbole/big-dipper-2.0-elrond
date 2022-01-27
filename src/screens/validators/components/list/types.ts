@@ -1,5 +1,5 @@
 export type ValidatorType = {
-  name: string;
+  validator: string;
   identity: string;
   imageUrl: string;
   stake: TokenUnit;
@@ -17,4 +17,4 @@ export type ValidatorsState = {
   items: ValidatorType[];
 }
 
-// export type ItemType = Override<ValidatorType, { validator: AvatarName }>;
+export type ItemType = Override<ValidatorType, { validator: AvatarName }>;

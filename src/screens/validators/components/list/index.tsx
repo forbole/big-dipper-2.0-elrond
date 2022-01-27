@@ -27,7 +27,18 @@ const List: React.FC<{
     sortItems,
   } = useValidators();
 
-  const items = sortItems(state.items);
+  const mergedDataWithProfiles = state.items.map((x) => {
+    return ({
+      ...x,
+      validator: {
+        imageUrl: x.imageUrl,
+        address: x.identity,
+        name: x.validator,
+      },
+    });
+  });
+
+  const items = sortItems(mergedDataWithProfiles);
 
   return (
     <LoadAndExist
@@ -52,12 +63,10 @@ const List: React.FC<{
                 //   items={items}
                 // />
                 <Mobile
-                  className={classes.mobile}
                   items={items}
                 />
               ) : (
                 <Mobile
-                  className={classes.mobile}
                   items={items}
                 />
               )}

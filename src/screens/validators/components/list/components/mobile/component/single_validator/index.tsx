@@ -10,41 +10,20 @@ const SingleValidator: React.FC<{
   className?: string;
   idx: string;
   validator: React.ReactNode;
-  commission: string;
-  self: string;
-  votingPower: React.ReactNode;
-  status: {
-    status: string;
-    theme: string;
-  };
-}> = ({
-  className,
-  validator,
-  self,
-  commission,
-  votingPower,
-  idx,
-  status,
-}) => {
+  stake: string;
+  nodes: string;
+}> = (props) => {
   const { t } = useTranslation('validators');
   const classes = useStyles();
   return (
-    <div className={classnames(className, classes.root)}>
+    <div className={classnames(props.className, classes.root)}>
       <div className={classes.flex}>
         <div className={classes.item}>
           <Typography variant="h4" className="label">
             {t('idx')}
           </Typography>
           <Typography variant="body1" className="value">
-            {idx}
-          </Typography>
-        </div>
-        <div className={classes.item}>
-          <Typography variant="h4" className="label">
-            {t('status')}
-          </Typography>
-          <Typography variant="body1" className={classnames('value', 'status', status.theme)}>
-            {t(status.status)}
+            {props.idx}
           </Typography>
         </div>
       </div>
@@ -52,31 +31,21 @@ const SingleValidator: React.FC<{
         <Typography variant="h4" className="label">
           {t('validator')}
         </Typography>
-        {validator}
+        {props.validator}
       </div>
       <div className={classes.item}>
         <Typography variant="h4" className="label">
-          {t('votingPower')}
+          {t('stake')}
         </Typography>
-        {votingPower}
+        {props.stake}
       </div>
-      <div className={classes.flex}>
-        <div className={classes.item}>
-          <Typography variant="h4" className="label">
-            {t('self')}
-          </Typography>
-          <Typography variant="body1" className="value">
-            {self}
-          </Typography>
-        </div>
-        <div className={classes.item}>
-          <Typography variant="h4" className="label">
-            {t('commission')}
-          </Typography>
-          <Typography variant="body1" className="value">
-            {commission}
-          </Typography>
-        </div>
+      <div className={classes.item}>
+        <Typography variant="h4" className="label">
+          {t('nodes')}
+        </Typography>
+        <Typography variant="body1" className="value">
+          {props.nodes}
+        </Typography>
       </div>
     </div>
 

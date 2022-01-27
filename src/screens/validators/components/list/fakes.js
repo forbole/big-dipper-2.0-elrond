@@ -39,9 +39,9 @@ const t = {
   rank: 2,
 };
 
+export const fakeData = [];
+
 for (let i = 0; i < 10; i += 1) {
   fakeData.push(d);
   fakeData.push(t);
 }
-
-export const fakeData = [...Array(10).fill(d), ...Array(10).fill(t)];

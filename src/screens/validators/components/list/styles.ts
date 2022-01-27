@@ -13,15 +13,15 @@ export const useStyles = () => {
         },
         mobile: {
           height: '100%',
-          [theme.breakpoints.up('lg')]: {
-            display: 'none',
-          },
+          // [theme.breakpoints.up('lg')]: {
+          //   display: 'none',
+          // },
         },
         desktop: {
-          display: 'none',
-          [theme.breakpoints.up('lg')]: {
-            display: 'block',
-          },
+          // display: 'none',
+          // [theme.breakpoints.up('lg')]: {
+          //   display: 'block',
+          // },
         },
       });
     },

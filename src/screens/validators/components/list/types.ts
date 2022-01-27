@@ -1,15 +1,11 @@
 export type ValidatorType = {
-  validator: string;
-  votingPower: number;
-  votingPowerPercent: number;
-  commission: number;
-  selfPercent: number;
-  condition: number;
-  status: number;
-  jailed: boolean;
-  tombstoned: boolean;
-  delegators: number;
-  topVotingPower?: boolean; // top 34% VP
+  name: string;
+  identity: string;
+  imageUrl: string;
+  stake: TokenUnit;
+  stakePercent: number;
+  provider: boolean;
+  nodes: number;
 }
 
 export type ValidatorsState = {
@@ -18,8 +14,7 @@ export type ValidatorsState = {
   tab: number;
   sortKey: string;
   sortDirection: 'asc' | 'desc';
-  votingPowerOverall: number;
   items: ValidatorType[];
 }
 
-export type ItemType = Override<ValidatorType, { validator: AvatarName }>;
+// export type ItemType = Override<ValidatorType, { validator: AvatarName }>;

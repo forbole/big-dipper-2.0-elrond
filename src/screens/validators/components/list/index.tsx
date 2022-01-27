@@ -37,7 +37,8 @@ const List: React.FC<{
   //   });
   // });
 
-  const items = sortItems(state.items);
+  // const items = sortItems(state.items);
+  const items = [];
 
   return (
     <LoadAndExist

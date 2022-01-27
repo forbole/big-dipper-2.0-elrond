@@ -2,12 +2,12 @@ import BlockIcon from '@assets/icon-block.svg';
 import HomeIcon from '@assets/icon-home.svg';
 import TransactionIcon from '@assets/icon-transaction.svg';
 // import ProposalsIcon from '@assets/icon-proposals.svg';
-// import UserIcon from '@assets/icon-user.svg';
+import UserIcon from '@assets/icon-user.svg';
 // import ParamIcon from '@assets/icon-param.svg';
 import {
   HOME,
   BLOCKS,
-  // VALIDATORS,
+  VALIDATORS,
   TRANSACTIONS,
   // PROPOSALS,
   // PARAMS,
@@ -30,11 +30,11 @@ export const getMenuItems = () => {
       url: BLOCKS,
       icon: <BlockIcon {...iconProps} />,
     },
-    // {
-    //   key: 'validators',
-    //   url: VALIDATORS,
-    //   icon: <UserIcon {...iconProps} />,
-    // },
+    {
+      key: 'validators',
+      url: VALIDATORS,
+      icon: <UserIcon {...iconProps} />,
+    },
     {
       key: 'transactions',
       url: TRANSACTIONS,

@@ -3,6 +3,7 @@ import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import {
   Layout,
+  LoadAndExist,
 } from '@components';
 import {
   Overview,
@@ -30,19 +31,24 @@ const TransactionDetails = () => {
         navTitle={t('transactionDetails')}
         className={classes.root}
       >
-        <Overview {...state.overview} />
-        {!!state.data && (
+        <LoadAndExist
+          loading={state.loading}
+          exists={state.exists}
+        >
+          <Overview {...state.overview} />
+          {!!state.data && (
           <Data data={state.data} />
-        )}
-        {!!state.action && (
+          )}
+          {!!state.action && (
           <Action {...state.action} />
-        )}
-        {!!state.operations && (
+          )}
+          {!!state.operations.length && (
           <Operations items={state.operations} />
-        )}
-        {!!state.results && (
+          )}
+          {!!state.results.length && (
           <SmartContractResults results={state.results} />
-        )}
+          )}
+        </LoadAndExist>
       </Layout>
     </>
   );

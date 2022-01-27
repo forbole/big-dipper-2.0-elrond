@@ -1,14 +1,13 @@
 import {
   useState, useEffect,
 } from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import * as R from 'ramda';
 import { useRouter } from 'next/router';
 import { chainConfig } from '@configs';
 import { formatToken } from '@utils/format_token';
-// import { TRANSACTION_DETAILS } from '@api';
+import { TRANSACTION_DETAILS } from '@api';
 import { TransactionDetailsState } from './types';
-import { fakeData } from './fake';
 
 export const useTransactionDetails = () => {
   const router = useRouter();
@@ -32,7 +31,6 @@ export const useTransactionDetails = () => {
 
   useEffect(() => {
     getTransactionDetail();
-    // getTransactions();
   }, [router.query.hash]);
 
   const handleSetState = (stateChange: any) => {
@@ -41,9 +39,9 @@ export const useTransactionDetails = () => {
 
   const getTransactionDetail = async () => {
     try {
-      // eslint-disable-next-line
-      // const { data: transactionData } = await axios.get(TRANSACTION_DETAILS(router.query.hash as string));
-      const transactionData = fakeData;
+      const { data: transactionData } = await axios.get(
+        TRANSACTION_DETAILS(router.query.hash as string),
+      );
 
       // overview
       const overview = {
@@ -104,34 +102,6 @@ export const useTransactionDetails = () => {
       console.log(error.message);
     }
   };
-
-  // const getTransactions = async () => {
-  //   try {
-  //     const { data: transactionsData } = await axios.get(TRANSACTIONS, {
-  //       params: {
-  //         miniBlockHash: router.query.hash,
-  //       },
-  //     });
-
-  //     const transactions = transactionsData.map((x) => {
-  //       return ({
-  //         hash: x.txHash,
-  //         fromShard: x.senderShard,
-  //         toShard: x.receiverShard,
-  //         from: x.sender,
-  //         to: x.receiver,
-  //         timestamp: x.timestamp,
-  //         status: x.status,
-  //       });
-  //     });
-
-  //     handleSetState({
-  //       transactions,
-  //     });
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
 
   return {
     state,

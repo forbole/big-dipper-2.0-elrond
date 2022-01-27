@@ -12,6 +12,8 @@ import TransactionsList from './transactions_list';
 import Result from './result';
 import CustomToolTip from './custom_tool_tip';
 import BoxDetails from './box_details';
+import LoadAndExist from './load_and_exist';
+import LinearLoading from './linear_loading';
 
 export {
   Layout,
@@ -28,4 +30,6 @@ export {
   Result,
   CustomToolTip,
   BoxDetails,
+  LoadAndExist,
+  LinearLoading,
 };

@@ -1,10 +1,14 @@
 import React from 'react';
 import dayjs from '@utils/dayjs';
+import Link from 'next/link';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
 import useTranslation from 'next-translate/useTranslation';
 import {
   Typography, Divider,
 } from '@material-ui/core';
+import {
+  TRANSACTION_DETAILS, ACCOUNT_DETAILS,
+} from '@utils/go_to_page';
 import { Result } from '@components';
 import { TransactionType } from '../../types';
 import { useStyles } from './styles';
@@ -15,15 +19,33 @@ const Mobile:React.FC<{ items: TransactionType[] } &ComponentDefault> = (props) 
 
   const formattedItems = props.items.map((x) => {
     return ({
-      hash: getMiddleEllipsis(x.hash, {
-        beginning: 13, ending: 15,
-      }),
-      from: getMiddleEllipsis(x.from, {
-        beginning: 13, ending: 15,
-      }),
-      to: getMiddleEllipsis(x.to, {
-        beginning: 13, ending: 15,
-      }),
+      hash: (
+        <Link href={TRANSACTION_DETAILS(x.hash)} passHref>
+          <Typography variant="body1" className="value" component="a">
+            {getMiddleEllipsis(x.hash, {
+              beginning: 13, ending: 15,
+            })}
+          </Typography>
+        </Link>
+      ),
+      from: (
+        <Link href={ACCOUNT_DETAILS(x.from)} passHref>
+          <Typography variant="body1" className="value" component="a">
+            {getMiddleEllipsis(x.from, {
+              beginning: 13, ending: 15,
+            })}
+          </Typography>
+        </Link>
+      ),
+      to: (
+        <Link href={ACCOUNT_DETAILS(x.to)} passHref>
+          <Typography variant="body1" className="value" component="a">
+            {getMiddleEllipsis(x.to, {
+              beginning: 13, ending: 15,
+            })}
+          </Typography>
+        </Link>
+      ),
       status: (
         <Result status={x.status} />
       ),

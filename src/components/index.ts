@@ -14,6 +14,8 @@ import CustomToolTip from './custom_tool_tip';
 import BoxDetails from './box_details';
 import LoadAndExist from './load_and_exist';
 import LinearLoading from './linear_loading';
+import AvatarName from './avatar_name';
+import Avatar from './avatar';
 
 export {
   Layout,
@@ -32,4 +34,6 @@ export {
   BoxDetails,
   LoadAndExist,
   LinearLoading,
+  AvatarName,
+  Avatar,
 };

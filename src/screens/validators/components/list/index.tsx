@@ -7,9 +7,6 @@ import {
   LoadAndExist,
 } from '@components';
 import { useScreenSize } from '@hooks';
-// import {
-//   useProfilesRecoil,
-// } from '@recoil/profiles';
 import { Tabs } from './components';
 import { useStyles } from './styles';
 import { useValidators } from './hooks';
@@ -29,16 +26,8 @@ const List: React.FC<{
     handleSort,
     sortItems,
   } = useValidators();
-  // const dataProfiles = useProfilesRecoil(state.items.map((x) => x.validator));
-  // const mergedDataWithProfiles = state.items.map((x, i) => {
-  //   return ({
-  //     ...x,
-  //     validator: dataProfiles[i],
-  //   });
-  // });
 
-  // const items = sortItems(state.items);
-  const items = [];
+  const items = sortItems(state.items);
 
   return (
     <LoadAndExist
@@ -55,11 +44,15 @@ const List: React.FC<{
           {items.length ? (
             <>
               {isDesktop ? (
-                <Desktop
-                  className={classes.desktop}
-                  sortDirection={state.sortDirection}
-                  sortKey={state.sortKey}
-                  handleSort={handleSort}
+                // <Desktop
+                //   className={classes.desktop}
+                //   sortDirection={state.sortDirection}
+                //   sortKey={state.sortKey}
+                //   handleSort={handleSort}
+                //   items={items}
+                // />
+                <Mobile
+                  className={classes.mobile}
                   items={items}
                 />
               ) : (

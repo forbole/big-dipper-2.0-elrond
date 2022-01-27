@@ -1,3 +1,5 @@
 {
-  "validators": "Validators"
+  "validators": "Validators",
+  "allValidators": "All Validators",
+  "providers": "Providers"
 }

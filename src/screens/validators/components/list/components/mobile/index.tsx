@@ -12,14 +12,11 @@ import {
 } from '@hooks';
 import { getValidatorStatus } from '@utils/get_validator_status';
 import { SingleValidator } from './component';
-import {
-  Condition, VotingPower,
-} from '..';
-import { ItemType } from '../../types';
+import { ValidatorType } from '../../types';
 
 const Mobile: React.FC<{
   className?: string;
-  items: ItemType[];
+  items: ValidatorType[];
 }> = ({
   className, items,
 }) => {
@@ -30,34 +27,34 @@ const Mobile: React.FC<{
   } = useList();
 
   const formattedItems = items.map((x, i) => {
-    const status = getValidatorStatus(x.status, x.jailed, x.tombstoned);
-    const condition = x.status === 3 ? getValidatorConditionClass(x.condition) : undefined;
-    const percentDisplay = x.status === 3 ? `${numeral(x.votingPowerPercent).format('0.[00]')}%` : '0%';
-    const votingPower = numeral(x.votingPower).format('0,0');
+    // const status = getValidatorStatus(x.status, x.jailed, x.tombstoned);
+    // const condition = x.status === 3 ? getValidatorConditionClass(x.condition) : undefined;
+    // const percentDisplay = x.status === 3 ? `${numeral(x.votingPowerPercent).format('0.[00]')}%` : '0%';
+    // const votingPower = numeral(x.votingPower).format('0,0');
     return ({
       idx: `#${i + 1}`,
-      delegators: numeral(x.delegators).format('0,0'),
-      validator: (
+      // delegators: numeral(x.delegators).format('0,0'),
+      name: (
         <AvatarName
           address={x.validator.address}
           imageUrl={x.validator.imageUrl}
           name={x.validator.name}
         />
       ),
-      commission: `${numeral(x.commission).format('0.[00]')}%`,
-      self: `${numeral(x.selfPercent).format('0.[00]')}%`,
-      condition: (
-        <Condition className={condition} />
-      ),
-      votingPower: (
-        <VotingPower
-          percentDisplay={percentDisplay}
-          percentage={x.votingPowerPercent}
-          content={votingPower}
-          topVotingPower={x.topVotingPower}
-        />
-      ),
-      status,
+      // commission: `${numeral(x.commission).format('0.[00]')}%`,
+      // self: `${numeral(x.selfPercent).format('0.[00]')}%`,
+      // condition: (
+      //   <Condition className={condition} />
+      // ),
+      // votingPower: (
+      //   <VotingPower
+      //     percentDisplay={percentDisplay}
+      //     percentage={x.votingPowerPercent}
+      //     content={votingPower}
+      //     topVotingPower={x.topVotingPower}
+      //   />
+      // ),
+      // status,
     });
   });
 

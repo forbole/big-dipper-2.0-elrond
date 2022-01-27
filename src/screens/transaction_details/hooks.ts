@@ -4,6 +4,8 @@ import {
 // import axios from 'axios';
 import * as R from 'ramda';
 import { useRouter } from 'next/router';
+import { chainConfig } from '@configs';
+import { formatToken } from '@utils/format_token';
 // import { TRANSACTION_DETAILS } from '@api';
 import { TransactionDetailsState } from './types';
 import { fakeData } from './fake';
@@ -65,6 +67,7 @@ export const useTransactionDetails = () => {
         };
       }
 
+      // operations
       const operations = R.pathOr([], ['operations'], transactionData).map((x) => {
         return ({
           action: R.pathOr('', ['action'], x),
@@ -74,12 +77,24 @@ export const useTransactionDetails = () => {
         });
       });
 
+      // results
+      const results = R.pathOr([], ['results'], transactionData).map((x) => {
+        return ({
+          hash: R.pathOr('', ['hash'], x),
+          sender: R.pathOr('', ['sender'], x),
+          receiver: R.pathOr('', ['receiver'], x),
+          data: R.pathOr('', ['data'], x),
+          value: formatToken(R.pathOr(0, ['value'], x), chainConfig.primaryTokenUnit),
+        });
+      });
+
       handleSetState({
         loading: false,
         overview,
         data: R.pathOr('', ['data'], transactionData),
         action,
         operations,
+        results,
       });
     } catch (error) {
       handleSetState({

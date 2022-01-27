@@ -1,10 +1,114 @@
 import React from 'react';
+import classnames from 'classnames';
+import useTranslation from 'next-translate/useTranslation';
+import Link from 'next/link';
+import {
+  Typography, Divider,
+} from '@material-ui/core';
+import {
+  NoData,
+  Box,
+} from '@components';
+import { formatNumber } from '@utils/format_token';
+import { ACCOUNT_DETAILS } from '@utils/go_to_page';
+import { decodeBase64 } from '@utils/base64';
+import { ResultType } from '../../types';
+import { CodeBlock } from '..';
+import { useStyles } from './styles';
 
-const SmartContractResults = () => {
+const SmartContractResults: React.FC<{results: ResultType[]} & ComponentDefault> = (props) => {
+  const { t } = useTranslation('transactions');
+  const classes = useStyles();
+
+  if (!props.results.length) {
+    return (
+      <NoData />
+    );
+  }
+
+  const formattedItems = props.results.map((x) => {
+    return ({
+      hash: x.hash,
+      sender: (
+        <Link href={ACCOUNT_DETAILS(x.sender)} passHref>
+          <Typography variant="body1" className="value" component="a">
+            {x.sender}
+          </Typography>
+        </Link>
+      ),
+      receiver: (
+        <Link href={ACCOUNT_DETAILS(x.receiver)} passHref>
+          <Typography variant="body1" className="value" component="a">
+            {x.receiver}
+          </Typography>
+        </Link>
+      ),
+      value: `${formatNumber(x.value.value, x.value.exponent)} ${x.value.displayDenom.toUpperCase()}`,
+      data: decodeBase64(x.data),
+    });
+  });
+
   return (
-    <div>
-      SmartContractResults
-    </div>
+    <Box>
+      <Typography className={classes.title} variant="h2">{t('smartContractResults')}</Typography>
+      <div>
+        {formattedItems.map((x, i) => {
+          return (
+            <React.Fragment key={`${x.data}-${i}`}>
+              <div className={classes.itemWrap}>
+                <div className={classes.desktopFlex}>
+                  <div className={classes.item}>
+                    <Typography variant="h4" className="label">
+                      {t('hash')}
+                    </Typography>
+                    {x.hash}
+                  </div>
+                  <div className={classnames(classes.item, classes.desktop)}>
+                    <Typography variant="h4" className="label">
+                      {t('value')}
+                    </Typography>
+                    <Typography variant="body1" className="value">
+                      {x.value}
+                    </Typography>
+                  </div>
+                </div>
+                <div className={classes.desktopFlex}>
+                  <div className={classes.item}>
+                    <Typography variant="h4" className="label">
+                      {t('sender')}
+                    </Typography>
+                    {x.sender}
+                  </div>
+                  <div className={classes.item}>
+                    <Typography variant="h4" className="label">
+                      {t('receiver')}
+                    </Typography>
+                    <Typography variant="body1" className="value">
+                      {x.receiver}
+                    </Typography>
+                  </div>
+                </div>
+                <div className={classnames(classes.item, classes.mobile)}>
+                  <Typography variant="h4" className="label">
+                    {t('value')}
+                  </Typography>
+                  <Typography variant="body1" className="value">
+                    {x.value}
+                  </Typography>
+                </div>
+                <div className={classes.item}>
+                  <Typography variant="h4" className="label">
+                    {t('data')}
+                  </Typography>
+                  <CodeBlock message={x.data} />
+                </div>
+              </div>
+              {i !== formattedItems.length - 1 && <Divider />}
+            </React.Fragment>
+          );
+        })}
+      </div>
+    </Box>
   );
 };
 

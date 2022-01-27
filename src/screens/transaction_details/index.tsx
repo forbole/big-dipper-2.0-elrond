@@ -41,7 +41,7 @@ const TransactionDetails = () => {
           <Operations items={state.operations} />
         )}
         {!!state.results && (
-          <SmartContractResults />
+          <SmartContractResults results={state.results} />
         )}
       </Layout>
     </>

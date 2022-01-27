@@ -20,5 +20,7 @@
   "sender": "Sender",
   "receiver": "Receiver",
   "identifier": "Identifier",
-  "operations": "Operations"
+  "operations": "Operations",
+  "smartContractResults": "Smart Contract Results",
+  "value": "Value"
 }

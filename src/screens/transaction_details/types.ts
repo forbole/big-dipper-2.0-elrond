@@ -29,7 +29,7 @@ export type ResultType = {
   sender: string;
   receiver: string;
   data: string;
-  value: number;
+  value: TokenUnit;
 }
 
 export type TransactionDetailsState = {

@@ -11,6 +11,12 @@
     "account": "desmos"
   },
   "primaryTokenUnit": "udsm",
+  "tokenUnits": {
+    "udsm": {
+      "display": "egld",
+      "exponent": 18
+    }
+  },
   "extra": {
     "profile": false
   }

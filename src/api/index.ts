@@ -15,5 +15,6 @@ export const BLOCKS = `${BASE_URL}/blocks`;
 export const BLOCK_DETAILS = (hash: string) => `${BASE_URL}/blocks/${hash}`;
 export const MINIBLOCK_DETAILS = (hash: string) => `${BASE_URL}/miniblocks/${hash}`;
 export const TRANSACTIONS = `${BASE_URL}/transactions`;
+export const TRANSACTION_DETAILS = (hash: string) => `${BASE_URL}/transactions/${hash}`;
 export const STATS = `${BASE_URL}/stats`;
 export const PRICE_HISTORY = 'https://data.elrond.com/latestcomplete/quoteshistorical/egld/price';

@@ -5,5 +5,22 @@
   "from": "From",
   "to": "To",
   "status": "Status",
-  "time": "Time"
+  "time": "Time",
+  "transactionDetails": "Transaction Details",
+  "miniblockHash": "Miniblock Hash",
+  "senderShard": "Sender Shard",
+  "receiverShard": "Receiver Shard",
+  "overview": "Overview",
+  "shardNumber": "Shard {{num}}",
+  "data": "Data",
+  "action": "Action",
+  "category": "Category",
+  "name": "Name",
+  "description": "Description",
+  "sender": "Sender",
+  "receiver": "Receiver",
+  "identifier": "Identifier",
+  "operations": "Operations",
+  "smartContractResults": "Smart Contract Results",
+  "value": "Value"
 }

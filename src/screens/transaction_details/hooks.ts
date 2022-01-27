@@ -1,0 +1,109 @@
+import {
+  useState, useEffect,
+} from 'react';
+import axios from 'axios';
+import * as R from 'ramda';
+import { useRouter } from 'next/router';
+import { chainConfig } from '@configs';
+import { formatToken } from '@utils/format_token';
+import { TRANSACTION_DETAILS } from '@api';
+import { TransactionDetailsState } from './types';
+
+export const useTransactionDetails = () => {
+  const router = useRouter();
+  const [state, setState] = useState<TransactionDetailsState>({
+    loading: true,
+    exists: true,
+    overview: {
+      hash: '',
+      fromShard: 0,
+      toShard: 0,
+      from: '',
+      to: '',
+      timestamp: 0,
+      status: '',
+      miniblockHash: '',
+    },
+    data: '',
+    operations: [],
+    results: [],
+  });
+
+  useEffect(() => {
+    getTransactionDetail();
+  }, [router.query.hash]);
+
+  const handleSetState = (stateChange: any) => {
+    setState((prevState) => R.mergeDeepLeft(stateChange, prevState));
+  };
+
+  const getTransactionDetail = async () => {
+    try {
+      const { data: transactionData } = await axios.get(
+        TRANSACTION_DETAILS(router.query.hash as string),
+      );
+
+      // overview
+      const overview = {
+        hash: transactionData.txHash,
+        fromShard: transactionData.senderShard,
+        toShard: transactionData.receiverShard,
+        from: transactionData.sender,
+        to: transactionData.receiver,
+        timestamp: transactionData.timestamp,
+        status: transactionData.status,
+        miniblockHash: transactionData.miniBlockHash,
+      };
+
+      // action
+      let action = null;
+      if (transactionData.action) {
+        action = {
+          category: R.pathOr('', ['category'], transactionData.action),
+          name: R.pathOr('', ['name'], transactionData.action),
+          description: R.pathOr('', ['description'], transactionData.action),
+        };
+      }
+
+      // operations
+      const operations = R.pathOr([], ['operations'], transactionData).map((x) => {
+        return ({
+          action: R.pathOr('', ['action'], x),
+          sender: R.pathOr('', ['sender'], x),
+          receiver: R.pathOr('', ['receiver'], x),
+          identifier: R.pathOr('', ['identifier'], x),
+        });
+      });
+
+      // results
+      const results = R.pathOr([], ['results'], transactionData).map((x) => {
+        return ({
+          hash: R.pathOr('', ['hash'], x),
+          sender: R.pathOr('', ['sender'], x),
+          receiver: R.pathOr('', ['receiver'], x),
+          data: R.pathOr('', ['data'], x),
+          value: formatToken(R.pathOr(0, ['value'], x), chainConfig.primaryTokenUnit),
+        });
+      });
+
+      handleSetState({
+        loading: false,
+        overview,
+        data: R.pathOr('', ['data'], transactionData),
+        action,
+        operations,
+        results,
+      });
+    } catch (error) {
+      handleSetState({
+        loading: false,
+        exists: false,
+      });
+      console.log(error.message);
+    }
+  };
+
+  return {
+    state,
+  };
+};

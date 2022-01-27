@@ -5,6 +5,7 @@ import {
   Layout,
   TransactionsList,
   Box,
+  LoadAndExist,
 } from '@components';
 import { Overview } from './components';
 import { useBlockDetails } from './hooks';
@@ -26,10 +27,15 @@ const MiniBlockDetails = () => {
         navTitle={t('miniBlockDetails')}
         className={classes.root}
       >
-        <Overview {...state.overview} />
-        <Box>
-          <TransactionsList items={state.transactions} />
-        </Box>
+        <LoadAndExist
+          loading={state.loading}
+          exists={state.exists}
+        >
+          <Overview {...state.overview} />
+          <Box>
+            <TransactionsList items={state.transactions} />
+          </Box>
+        </LoadAndExist>
       </Layout>
     </>
   );

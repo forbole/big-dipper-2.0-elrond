@@ -10,50 +10,34 @@ import {
   Typography,
 } from '@material-ui/core';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
-import {
-  TRANSACTION_DETAILS, ACCOUNT_DETAILS,
-} from '@utils/go_to_page';
-import { Result } from '@components';
-import dayjs from '@utils/dayjs';
+import { ACCOUNT_DETAILS } from '@utils/go_to_page';
 import { columns } from './utils';
-import { Shard } from '..';
+import { OperationType } from '../../../../types';
 
-const Desktop: React.FC<{items: TransactionType[]} & ComponentDefault> = (props) => {
+const Desktop: React.FC<{items: OperationType[]} & ComponentDefault> = (props) => {
   const { t } = useTranslation('transactions');
   const formattedItems = props.items.map((x) => {
     return ({
-      hash: (
-        <Link href={TRANSACTION_DETAILS(x.hash)} passHref>
+      action: x.action.replace(/([A-Z])/g, ' $1').toUpperCase(),
+      identifier: x.identifier,
+      sender: (
+        <Link href={ACCOUNT_DETAILS(x.sender)} passHref>
           <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.hash, {
+            {getMiddleEllipsis(x.sender, {
               beginning: 13, ending: 15,
             })}
           </Typography>
         </Link>
       ),
-      shard: <Shard to={x.toShard} from={x.fromShard} />,
-      from: (
-        <Link href={ACCOUNT_DETAILS(x.from)} passHref>
+      receiver: (
+        <Link href={ACCOUNT_DETAILS(x.receiver)} passHref>
           <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.from, {
+            {getMiddleEllipsis(x.receiver, {
               beginning: 13, ending: 15,
             })}
           </Typography>
         </Link>
       ),
-      to: (
-        <Link href={ACCOUNT_DETAILS(x.to)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.to, {
-              beginning: 13, ending: 15,
-            })}
-          </Typography>
-        </Link>
-      ),
-      status: (
-        <Result status={x.status} />
-      ),
-      time: dayjs.utc(dayjs.unix(x.timestamp)).fromNow(),
     });
   });
   return (

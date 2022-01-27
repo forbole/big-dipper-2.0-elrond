@@ -6,3 +6,4 @@
 - Add Home Page
 - Add Block Details Page
 - Add Miniblock Details Page
+- Add Transaction Details Page

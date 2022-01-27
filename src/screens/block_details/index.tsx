@@ -3,6 +3,7 @@ import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import {
   Layout,
+  LoadAndExist,
 } from '@components';
 import {
   Overview,
@@ -28,11 +29,16 @@ const BlockDetails = () => {
         navTitle={t('blockDetails')}
         className={classes.root}
       >
-        <Overview {...state.overview} />
-        {!!state.miniBlocks.length && (
+        <LoadAndExist
+          loading={state.loading}
+          exists={state.exists}
+        >
+          <Overview {...state.overview} />
+          {!!state.miniBlocks.length && (
           <Miniblocks miniBlocks={state.miniBlocks} />
-        )}
-        <Consensus className={classes.consensus} consensus={state.consensus} />
+          )}
+          <Consensus className={classes.consensus} consensus={state.consensus} />
+        </LoadAndExist>
       </Layout>
     </>
   );

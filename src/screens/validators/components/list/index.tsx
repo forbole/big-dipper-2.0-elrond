@@ -55,14 +55,10 @@ const List: React.FC<{
           {items.length ? (
             <>
               {isDesktop ? (
-                // <Desktop
-                //   className={classes.desktop}
-                //   sortDirection={state.sortDirection}
-                //   sortKey={state.sortKey}
-                //   handleSort={handleSort}
-                //   items={items}
-                // />
-                <Mobile
+                <Desktop
+                  sortDirection={state.sortDirection}
+                  sortKey={state.sortKey}
+                  handleSort={handleSort}
                   items={items}
                 />
               ) : (

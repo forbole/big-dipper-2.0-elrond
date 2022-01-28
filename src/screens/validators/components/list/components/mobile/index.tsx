@@ -37,7 +37,7 @@ const Mobile: React.FC<{
           name={x.validator.name}
         />
       ),
-      stake: `${formatNumber(x.stake.value, x.stake.exponent)} ${x.stake.displayDenom.toUpperCase()}`,
+      stake: `${formatNumber(x.stake.value, x.stake.exponent)} ${x.stake.displayDenom.toUpperCase()} (${x.stakePercent}%)`,
       nodes: numeral(x.nodes).format('0,0'),
     });
   });

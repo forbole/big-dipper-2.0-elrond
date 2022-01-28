@@ -16,6 +16,7 @@ import LoadAndExist from './load_and_exist';
 import LinearLoading from './linear_loading';
 import AvatarName from './avatar_name';
 import Avatar from './avatar';
+import SortArrows from './sort_arrows';
 
 export {
   Layout,
@@ -36,4 +37,5 @@ export {
   LinearLoading,
   AvatarName,
   Avatar,
+  SortArrows,
 };

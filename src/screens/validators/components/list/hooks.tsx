@@ -10,10 +10,8 @@ import { formatToken } from '@utils/format_token';
 import { chainConfig } from '@configs';
 import {
   ValidatorsState,
-  ValidatorType,
   ItemType,
 } from './types';
-import { fakeData } from './fakes';
 
 export const useValidators = () => {
   const [search, setSearch] = useState('');
@@ -22,8 +20,9 @@ export const useValidators = () => {
     exists: true,
     tab: 0,
     items: [],
-    sortKey: 'validator.name',
-    sortDirection: 'asc',
+    // sortKey: 'validator.name',
+    sortKey: 'stakePercent',
+    sortDirection: 'desc',
   });
 
   useEffect(() => {
@@ -59,12 +58,8 @@ export const useValidators = () => {
   const sortItems = (items: ItemType[]) => {
     let sorted: ItemType[] = R.clone(items);
 
-    if (state.tab === 0) {
-      // sorted = sorted.filter((x) => x.status === 3);
-    }
-
     if (state.tab === 1) {
-      // sorted = sorted.filter((x) => x.status !== 3);
+      sorted = sorted.filter((x) => x.provider);
     }
 
     if (search) {
@@ -106,8 +101,7 @@ export const useValidators = () => {
 
   const getValidators = async () => {
     try {
-      // const { data: validatorsData } = await axios.get(IDENTITIES);
-      const validatorsData = fakeData;
+      const { data: validatorsData } = await axios.get(IDENTITIES);
 
       const items = validatorsData.map((x) => {
         return ({

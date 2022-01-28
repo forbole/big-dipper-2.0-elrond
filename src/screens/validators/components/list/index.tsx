@@ -39,7 +39,10 @@ const List: React.FC<{
       id: 1,
       key: 'providers',
       component: (
-        <Providers />
+        <Providers
+          search={state.search}
+          items={state.providers}
+        />
       ),
     },
   ];

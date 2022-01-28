@@ -10,9 +10,7 @@ import { formatToken } from '@utils/format_token';
 import { chainConfig } from '@configs';
 import {
   ValidatorsState,
-  // ItemType,
 } from './types';
-import { fakeProvider } from './fakes';
 
 export const useValidators = () => {
   const [state, setState] = useState<ValidatorsState>({
@@ -48,8 +46,7 @@ export const useValidators = () => {
   const getValidators = async () => {
     try {
       const { data: validatorsData } = await axios.get(IDENTITIES);
-      // const { data: providersData } = await axios.get(PROVIDERS);
-      const providersData = fakeProvider;
+      const { data: providersData } = await axios.get(PROVIDERS);
 
       // identities
       const identities = {};
@@ -98,7 +95,7 @@ export const useValidators = () => {
         const validator = R.pathOr({
           address: R.pathOr('', ['provider'], x),
           imageUrl: '',
-          name: '',
+          name: R.pathOr('', ['provider'], x),
         }, [identity], identities);
 
         return ({
@@ -108,7 +105,7 @@ export const useValidators = () => {
             chainConfig.primaryTokenUnit,
           ),
           nodes: R.pathOr(0, ['numNodes'], x),
-          serviceFee: R.pathOr(0, ['serviceFee'], x),
+          commission: R.pathOr(0, ['serviceFee'], x),
           apr: R.pathOr(0, ['apr'], x),
         });
       });

@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import * as R from 'ramda';
 import { ValidatorsState } from './types';
-import { ValidatorType } from '../../types';
+import { ProviderType } from '../../types';
 
-// .sort((a, b) => (Big(a.amount.value).lt(b.amount.value) ? 1 : -1));
-
-export const useValidators = (search: string) => {
+export const useProviders = (search: string) => {
   const [state, setState] = useState<ValidatorsState>({
     sortKey: 'stake.value',
     sortDirection: 'desc',
@@ -26,8 +24,8 @@ export const useValidators = (search: string) => {
     }
   };
 
-  const sortItems = (items: ValidatorType[]) => {
-    let sorted: ValidatorType[] = R.clone(items);
+  const sortItems = (items: ProviderType[]) => {
+    let sorted: ProviderType[] = R.clone(items);
 
     if (search) {
       sorted = sorted.filter((x) => {

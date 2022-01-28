@@ -7,5 +7,7 @@
   "stake": "Stake",
   "nodes": "Nodes",
   "searchValidator": "Search Validator",
-  "identities": "Identities"
+  "identities": "Identities",
+  "commission": "Commission",
+  "apr": "Apr"
 }

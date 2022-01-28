@@ -6,5 +6,6 @@
   "validator": "Validator",
   "stake": "Stake",
   "nodes": "Nodes",
-  "searchValidator": "Search Validator"
+  "searchValidator": "Search Validator",
+  "identities": "Identities"
 }

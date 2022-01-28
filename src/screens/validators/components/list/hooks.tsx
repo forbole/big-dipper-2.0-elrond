@@ -20,8 +20,7 @@ export const useValidators = () => {
     exists: true,
     tab: 0,
     items: [],
-    // sortKey: 'validator.name',
-    sortKey: 'stakePercent',
+    sortKey: 'validator.name',
     sortDirection: 'desc',
   });
 
@@ -57,6 +56,10 @@ export const useValidators = () => {
 
   const sortItems = (items: ItemType[]) => {
     let sorted: ItemType[] = R.clone(items);
+
+    if (state.tab === 0) {
+      sorted = sorted.filter((x) => x.validator.address);
+    }
 
     if (state.tab === 1) {
       sorted = sorted.filter((x) => x.provider);

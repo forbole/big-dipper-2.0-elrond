@@ -1,4 +1,5 @@
 export const tabLabels = [
-  'validators',
+  'identities',
   'providers',
+  'allValidators',
 ];

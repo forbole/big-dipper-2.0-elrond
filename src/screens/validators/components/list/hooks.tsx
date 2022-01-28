@@ -10,18 +10,19 @@ import { formatToken } from '@utils/format_token';
 import { chainConfig } from '@configs';
 import {
   ValidatorsState,
-  ItemType,
+  // ItemType,
 } from './types';
 
 export const useValidators = () => {
-  const [search, setSearch] = useState('');
   const [state, setState] = useState<ValidatorsState>({
     loading: true,
     exists: true,
     tab: 0,
-    items: [],
-    sortKey: 'validator.name',
-    sortDirection: 'desc',
+    search: '',
+    validators: [],
+    identities: {},
+    // sortKey: 'validator.name',
+    // sortDirection: 'desc',
   });
 
   useEffect(() => {
@@ -39,91 +40,45 @@ export const useValidators = () => {
     }));
   };
 
-  const handleSort = (key: string) => {
-    if (key === state.sortKey) {
-      setState((prevState) => ({
-        ...prevState,
-        sortDirection: prevState.sortDirection === 'asc' ? 'desc' : 'asc',
-      }));
-    } else {
-      setState((prevState) => ({
-        ...prevState,
-        sortKey: key,
-        sortDirection: 'asc', // new key so we start the sort by asc
-      }));
-    }
-  };
-
-  const sortItems = (items: ItemType[]) => {
-    let sorted: ItemType[] = R.clone(items);
-
-    if (state.tab === 0) {
-      sorted = sorted.filter((x) => x.validator.address);
-    }
-
-    if (state.tab === 1) {
-      sorted = sorted.filter((x) => x.provider);
-    }
-
-    if (search) {
-      sorted = sorted.filter((x) => {
-        const formattedSearch = search.toLowerCase().replace(/ /g, '');
-        return (
-          x.validator.name.toLowerCase().replace(/ /g, '').includes(formattedSearch)
-          || x.validator.address.toLowerCase().includes(formattedSearch)
-        );
-      });
-    }
-
-    if (state.sortKey && state.sortDirection) {
-      sorted.sort((a, b) => {
-        let compareA = R.pathOr(undefined, [...state.sortKey.split('.')], a);
-        let compareB = R.pathOr(undefined, [...state.sortKey.split('.')], b);
-
-        if (typeof compareA === 'string') {
-          compareA = compareA.toLowerCase();
-          compareB = compareB.toLowerCase();
-        }
-
-        if (compareA < compareB) {
-          return state.sortDirection === 'asc' ? -1 : 1;
-        }
-        if (compareA > compareB) {
-          return state.sortDirection === 'asc' ? 1 : -1;
-        }
-        return 0;
-      });
-    }
-
-    return sorted;
-  };
-
   const handleSearch = (value: string) => {
-    setSearch(value);
+    handleSetState({
+      search: value,
+    });
   };
 
   const getValidators = async () => {
     try {
       const { data: validatorsData } = await axios.get(IDENTITIES);
+      const identities = {};
+      const validators = validatorsData.map((x) => {
+        const identity = R.pathOr('', ['identity'], x);
+        const imageUrl = R.pathOr('', ['avatar'], x);
+        const name = R.pathOr('', ['name'], x);
 
-      const items = validatorsData.map((x) => {
+        const validator: AvatarName = {
+          address: identity,
+          imageUrl,
+          name,
+        };
+
+        if (identity) {
+          identities[identity] = validator;
+        }
+
         return ({
-          identity: R.pathOr('', ['identity'], x),
-          validator: R.pathOr('', ['name'], x),
-          imageUrl: R.pathOr('', ['avatar'], x),
+          validator,
           stake: formatToken(
             R.pathOr('0', ['stake'], x),
             chainConfig.primaryTokenUnit,
           ),
           stakePercent: R.pathOr(0, ['stakePercent'], x),
           nodes: R.pathOr(0, ['validators'], x),
-          provider: !!R.pathOr([], ['providers'], x).length,
         });
       });
 
       handleSetState({
         loading: false,
-        items,
+        validators,
       });
     } catch (error) {
       handleSetState({
@@ -137,8 +92,6 @@ export const useValidators = () => {
   return ({
     state,
     handleTabChange,
-    handleSort,
     handleSearch,
-    sortItems,
   });
 };

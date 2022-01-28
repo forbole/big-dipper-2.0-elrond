@@ -1,11 +1,51 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
+import { useScreenSize } from '@hooks';
+import {
+  NoData,
+} from '@components';
+import { useValidators } from './hooks';
+import {
+  ValidatorType,
+  SearchType,
+} from '../../types';
 
-const Identities = () => {
+const Desktop = dynamic(() => import('./components/desktop'));
+const Mobile = dynamic(() => import('./components/mobile'));
+
+const Validators: React.FC<
+{search: SearchType, items: ValidatorType[]} &ComponentDefault> = (props) => {
+  const { isDesktop } = useScreenSize();
+  const {
+    state,
+    handleSort,
+    sortItems,
+  } = useValidators(props.search);
+
+  const items = sortItems(props.items);
+
   return (
-    <div>
-      Identites
-    </div>
+    <>
+      {props.items.length ? (
+        <>
+          {isDesktop ? (
+            <Desktop
+              sortDirection={state.sortDirection}
+              sortKey={state.sortKey}
+              handleSort={handleSort}
+              items={items}
+            />
+          ) : (
+            <Mobile
+              items={items}
+            />
+          )}
+        </>
+      ) : (
+        <NoData />
+      )}
+    </>
   );
 };
 
-export default Identities;
+export default Validators;

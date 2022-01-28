@@ -11,16 +11,20 @@ import {
   SortArrows,
   AvatarName,
 } from '@components';
+import {
+  NODE_DETAILS,
+  VALIDATOR_DETAILS,
+} from '@utils/go_to_page';
 import { useStyles } from './styles';
 import { fetchColumns } from './utils';
-import { ItemType } from '../../types';
+import { ValidatorType } from '../../../../types';
 
 const Desktop: React.FC<{
   className?: string;
   sortDirection: 'desc' | 'asc';
   sortKey: string;
   handleSort: (key: string) => void;
-  items: ItemType[];
+  items: ValidatorType[];
 }> = (props) => {
   const { t } = useTranslation('validators');
   const classes = useStyles();
@@ -42,6 +46,7 @@ const Desktop: React.FC<{
           address={x.validator.address}
           imageUrl={x.validator.imageUrl}
           name={x.validator.name}
+          href={x.validator.address ? VALIDATOR_DETAILS : NODE_DETAILS}
         />
       ),
       stake: `${formatNumber(x.stake.value, x.stake.exponent)} ${x.stake.displayDenom.toUpperCase()} (${x.stakePercent}%)`,

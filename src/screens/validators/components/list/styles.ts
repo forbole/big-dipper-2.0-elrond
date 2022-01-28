@@ -6,7 +6,6 @@ export const useStyles = () => {
       return ({
         root: {
           height: '100%',
-          background: 'blue',
         },
         list: {
           minHeight: '500px',
@@ -14,18 +13,6 @@ export const useStyles = () => {
           [theme.breakpoints.up('lg')]: {
             minHeight: '65vh',
           },
-        },
-        mobile: {
-          height: '100%',
-          // [theme.breakpoints.up('lg')]: {
-          //   display: 'none',
-          // },
-        },
-        desktop: {
-          // display: 'none',
-          // [theme.breakpoints.up('lg')]: {
-          //   display: 'block',
-          // },
         },
       });
     },

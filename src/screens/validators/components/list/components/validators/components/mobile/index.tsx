@@ -6,17 +6,21 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import { Divider } from '@material-ui/core';
 import { AvatarName } from '@components';
 import {
+  NODE_DETAILS,
+  VALIDATOR_DETAILS,
+} from '@utils/go_to_page';
+import {
   useList,
   useListRow,
 } from '@hooks';
 import { formatNumber } from '@utils/format_token';
 import { SingleValidator } from './component';
-import { ItemType } from '../../types';
+import { ValidatorType } from '../../../../types';
 import { useStyles } from './styles';
 
 const Mobile: React.FC<{
   className?: string;
-  items: ItemType[];
+  items: ValidatorType[];
 }> = ({
   className, items,
 }) => {
@@ -35,6 +39,7 @@ const Mobile: React.FC<{
           address={x.validator.address}
           imageUrl={x.validator.imageUrl}
           name={x.validator.name}
+          href={x.validator.address ? VALIDATOR_DETAILS : NODE_DETAILS}
         />
       ),
       stake: `${formatNumber(x.stake.value, x.stake.exponent)} ${x.stake.displayDenom.toUpperCase()} (${x.stakePercent}%)`,

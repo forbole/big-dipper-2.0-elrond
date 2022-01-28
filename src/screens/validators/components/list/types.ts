@@ -5,27 +5,23 @@ export type TabType = {
 }
 
 export type ValidatorType = {
-  validator: string;
-  identity: string;
-  imageUrl: string;
+  validator: AvatarName;
   stake: TokenUnit;
   stakePercent: number;
-  provider: boolean;
   nodes: number;
 }
 
-export type identity = {
-  identity: string;
-  imageUrl: string;
-}
+export type SearchType = string;
 
 export type ValidatorsState = {
   loading: boolean;
   exists: boolean;
   tab: number;
-  sortKey: string;
-  sortDirection: 'asc' | 'desc';
-  items: ValidatorType[];
+  search: SearchType;
+  // sortKey: string;
+  // sortDirection: 'asc' | 'desc';
+  identities: {
+    [key: string]: AvatarName;
+  }
+  validators: ValidatorType[];
 }
-
-export type ItemType = Override<ValidatorType, { validator: AvatarName }>;

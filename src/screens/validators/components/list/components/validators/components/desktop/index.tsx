@@ -28,7 +28,7 @@ const Desktop: React.FC<{
 }> = (props) => {
   const { t } = useTranslation('validators');
   const classes = useStyles();
-  const columns = fetchColumns(t);
+  const columns = fetchColumns();
 
   const {
     gridRef,

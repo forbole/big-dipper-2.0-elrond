@@ -7,42 +7,38 @@ import {
 } from '@material-ui/core';
 import { a11yProps } from '@utils/allyProps';
 import { Search } from '@components';
-import { tabLabels } from './utils';
 import { useStyles } from './styles';
+import { TabType } from '../../types';
 
 const TabsHeader: React.FC<{
   className?: string;
+  tabs: TabType[];
   tab: number;
   handleTabChange: (event:any, newvalue:number) => void;
   handleSearch: (value: string) => void;
-}> = ({
-  className,
-  tab,
-  handleTabChange,
-  handleSearch,
-}) => {
+}> = (props) => {
   const classes = useStyles();
   const { t } = useTranslation('validators');
 
   return (
-    <div className={classnames(className, classes.root)}>
+    <div className={classnames(props.className, classes.root)}>
       <Tabs
         variant="scrollable"
         scrollButtons="off"
-        value={tab}
-        onChange={handleTabChange}
+        value={props.tab}
+        onChange={props.handleTabChange}
       >
-        {tabLabels.map((x, i) => (
+        {props.tabs.map((x, i) => (
           <Tab
-            key={x}
-            label={t(x)}
+            key={x.id}
+            label={t(x.key)}
             {...a11yProps(i)}
           />
         ))}
       </Tabs>
       <Search
         className={classes.searchBar}
-        callback={handleSearch}
+        callback={props.handleSearch}
         placeholder={t('searchValidator')}
       />
     </div>

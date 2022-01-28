@@ -1,3 +1,9 @@
+export type TabType = {
+  id: number,
+  key: string,
+  component?: React.ReactNode;
+}
+
 export type ValidatorType = {
   validator: string;
   identity: string;

@@ -4,6 +4,10 @@ export const useStyles = () => {
   const styles = makeStyles(
     (theme) => {
       return ({
+        root: {
+          height: '100%',
+          background: 'blue',
+        },
         list: {
           minHeight: '500px',
           height: '50vh',

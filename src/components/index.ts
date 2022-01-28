@@ -17,6 +17,7 @@ import LinearLoading from './linear_loading';
 import AvatarName from './avatar_name';
 import Avatar from './avatar';
 import SortArrows from './sort_arrows';
+import TabPanel from './tab_panel';
 
 export {
   Layout,
@@ -38,4 +39,5 @@ export {
   AvatarName,
   Avatar,
   SortArrows,
+  TabPanel,
 };

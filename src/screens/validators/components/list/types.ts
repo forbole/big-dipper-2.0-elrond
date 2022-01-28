@@ -14,6 +14,11 @@ export type ValidatorType = {
   nodes: number;
 }
 
+export type identity = {
+  identity: string;
+  imageUrl: string;
+}
+
 export type ValidatorsState = {
   loading: boolean;
   exists: boolean;

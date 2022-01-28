@@ -4,7 +4,7 @@ import {
 import * as R from 'ramda';
 import axios from 'axios';
 import {
-  IDENTITIES,
+  IDENTITIES, PROVIDERS,
 } from '@api';
 import { formatToken } from '@utils/format_token';
 import { chainConfig } from '@configs';
@@ -12,6 +12,7 @@ import {
   ValidatorsState,
   // ItemType,
 } from './types';
+import { fakeProvider } from './fakes';
 
 export const useValidators = () => {
   const [state, setState] = useState<ValidatorsState>({
@@ -20,9 +21,7 @@ export const useValidators = () => {
     tab: 0,
     search: '',
     validators: [],
-    identities: {},
-    // sortKey: 'validator.name',
-    // sortDirection: 'desc',
+    providers: [],
   });
 
   useEffect(() => {
@@ -49,8 +48,12 @@ export const useValidators = () => {
   const getValidators = async () => {
     try {
       const { data: validatorsData } = await axios.get(IDENTITIES);
+      // const { data: providersData } = await axios.get(PROVIDERS);
+      const providersData = fakeProvider;
+
+      // identities
       const identities = {};
-      const validators = validatorsData.map((x) => {
+      validatorsData.forEach((x) => {
         const identity = R.pathOr('', ['identity'], x);
         const imageUrl = R.pathOr('', ['avatar'], x);
         const name = R.pathOr('', ['name'], x);
@@ -64,6 +67,19 @@ export const useValidators = () => {
         if (identity) {
           identities[identity] = validator;
         }
+      });
+
+      // validators
+      const validators = validatorsData.map((x) => {
+        const identity = R.pathOr('', ['identity'], x);
+        const imageUrl = R.pathOr('', ['avatar'], x);
+        const name = R.pathOr('', ['name'], x);
+
+        const validator: AvatarName = {
+          address: identity,
+          imageUrl,
+          name,
+        };
 
         return ({
           validator,
@@ -76,9 +92,31 @@ export const useValidators = () => {
         });
       });
 
+      // providers
+      const providers = providersData.map((x) => {
+        const identity = R.pathOr(null, ['identity'], x);
+        const validator = R.pathOr({
+          address: R.pathOr('', ['provider'], x),
+          imageUrl: '',
+          name: '',
+        }, [identity], identities);
+
+        return ({
+          validator,
+          stake: formatToken(
+            R.pathOr('0', ['stake'], x),
+            chainConfig.primaryTokenUnit,
+          ),
+          nodes: R.pathOr(0, ['numNodes'], x),
+          serviceFee: R.pathOr(0, ['serviceFee'], x),
+          apr: R.pathOr(0, ['apr'], x),
+        });
+      });
+
       handleSetState({
         loading: false,
         validators,
+        providers,
       });
     } catch (error) {
       handleSetState({

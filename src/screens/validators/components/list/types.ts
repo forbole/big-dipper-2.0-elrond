@@ -11,6 +11,14 @@ export type ValidatorType = {
   nodes: number;
 }
 
+export type ProviderType = {
+  validator: AvatarName;
+  stake: TokenUnit;
+  nodes: number;
+  commission: number;
+  apr: number;
+}
+
 export type SearchType = string;
 
 export type ValidatorsState = {
@@ -18,10 +26,6 @@ export type ValidatorsState = {
   exists: boolean;
   tab: number;
   search: SearchType;
-  // sortKey: string;
-  // sortDirection: 'asc' | 'desc';
-  identities: {
-    [key: string]: AvatarName;
-  }
   validators: ValidatorType[];
+  providers: ProviderType[];
 }

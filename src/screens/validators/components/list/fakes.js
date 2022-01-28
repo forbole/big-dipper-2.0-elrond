@@ -45,3 +45,20 @@ for (let i = 0; i < 10; i += 1) {
   fakeData.push(d);
   fakeData.push(t);
 }
+
+export const fakeProvider = [{
+  provider: 'erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqq8hlllls7a6h85',
+  serviceFee: 0.165,
+  delegationCap: '660999810000000000000000',
+  apr: 13.79,
+  numUsers: 9328,
+  cumulatedRewards: '55249886006775104532096',
+  identity: 'justminingfr',
+  numNodes: 224,
+  stake: '557500000000000000000000',
+  topUp: '77387046349874707313513',
+  locked: '634887046349874707313513',
+  featured: true,
+}];
+
+export const fake = Array(20).fill(fakeProvider);

@@ -15,7 +15,6 @@ const SingleBlock: React.FC<{
   description,
 }) => {
   const classes = useStyles();
-
   return (
     <div className={classnames(className, classes.root)}>
       <Typography variant="body2" className="label">

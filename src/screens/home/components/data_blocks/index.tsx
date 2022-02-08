@@ -31,8 +31,11 @@ const DataBlocks: React.FC<ComponentDefault> = (props) => {
       className: classes.price,
     },
     {
-      key: t('nodes'),
-      value: numeral(state.nodes).format('0,0'),
+      key: t('activeValidators'),
+      value: numeral(state.validators.active).format('0,0'),
+      description: t('outOfValidators', {
+        count: numeral(state.validators.total).format('0,0'),
+      }),
       className: classes.validators,
     },
   ];
@@ -45,6 +48,7 @@ const DataBlocks: React.FC<ComponentDefault> = (props) => {
           label={x.key}
           value={x.value}
           className={x.className}
+          description={x.description}
         />
       ))}
     </div>

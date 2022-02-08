@@ -18,3 +18,6 @@ export const TRANSACTIONS = `${BASE_URL}/transactions`;
 export const TRANSACTION_DETAILS = (hash: string) => `${BASE_URL}/transactions/${hash}`;
 export const STATS = `${BASE_URL}/stats`;
 export const PRICE_HISTORY = 'https://data.elrond.com/latestcomplete/quoteshistorical/egld/price';
+export const IDENTITIES = `${BASE_URL}/identities`;
+export const PROVIDERS = `${BASE_URL}/providers`;
+export const STAKE = `${BASE_URL}/stake`;

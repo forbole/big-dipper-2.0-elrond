@@ -7,7 +7,7 @@ import {
   POLLING_INTERVAL,
   LATEST_BLOCK_HEIGHT,
   TRANSACTIONS_COUNT,
-  NODES_COUNT,
+  STAKE,
 } from '@api';
 import { useInterval } from '@hooks';
 import {
@@ -18,7 +18,10 @@ export const useDataBlocks = () => {
   const [state, setState] = useState<DataBlockState>({
     blockHeight: 0,
     transactions: 0,
-    nodes: 0,
+    validators: {
+      total: 0,
+      active: 0,
+    },
   });
 
   const handleSetState = (stateChange: any) => {
@@ -26,14 +29,17 @@ export const useDataBlocks = () => {
   };
 
   useEffect(() => {
-    getNodesCount();
+    getValidatorsCount();
   }, []);
 
-  const getNodesCount = async () => {
+  const getValidatorsCount = async () => {
     try {
-      const { data: nodes } = await axios.get(NODES_COUNT);
+      const { data: validators } = await axios.get(STAKE);
       handleSetState({
-        nodes,
+        validators: {
+          total: R.pathOr(0, ['totalValidators'], validators),
+          active: R.pathOr(0, ['activeValidators'], validators),
+        },
       });
     } catch (error) {
       console.log(error.message);

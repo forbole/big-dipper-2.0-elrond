@@ -6,3 +6,5 @@ export const TRANSACTIONS = '/transactions';
 export const TRANSACTION_DETAILS = (hash: string) => `/transactions/${hash}`;
 export const NODE_DETAILS = (hash: string) => `/nodes/${hash}`;
 export const ACCOUNT_DETAILS = (hash: string) => `/accounts/${hash}`;
+export const VALIDATORS = '/validators';
+export const VALIDATOR_DETAILS = (hash: string) => `/validators/${hash}`;

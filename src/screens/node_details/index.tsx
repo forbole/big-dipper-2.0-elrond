@@ -5,7 +5,13 @@ import {
   Layout,
   LoadAndExist,
 } from '@components';
-import { Profile } from './components';
+import {
+  Profile,
+  Overview,
+  Stats,
+  Consensus,
+  Blocks,
+} from './components';
 import { useNodeDetails } from './hooks';
 import { useStyles } from './styles';
 
@@ -29,7 +35,11 @@ const NodeDetails = () => {
           loading={state.loading}
           exists={state.exists}
         >
-          <Profile profile={state.profile} />
+          <Profile className={classes.profile} profile={state.profile} />
+          <Overview className={classes.overview} />
+          <Stats className={classes.stats} />
+          <Consensus className={classes.consensus} />
+          <Blocks className={classes.blocks} />
         </LoadAndExist>
       </Layout>
     </>

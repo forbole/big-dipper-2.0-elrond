@@ -1,5 +1,6 @@
 {
   "nodeDetails": "Node Details",
   "pubkey": "Pubkey",
-  "validator": "Validator"
+  "validator": "Validator",
+  "overview": "Overview"
 }

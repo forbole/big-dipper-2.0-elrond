@@ -21,6 +21,13 @@ export const useNodeDetails = () => {
       pubkey: '',
       validator: '',
     },
+    overview: {
+      shard: 0,
+      type: '',
+      status: '',
+      online: false,
+      instances: 0,
+    },
   });
 
   useEffect(() => {
@@ -50,6 +57,13 @@ export const useNodeDetails = () => {
           version: nodeData.version,
           pubkey: nodeData.bls,
           validator,
+        },
+        overview: {
+          shard: R.pathOr(0, ['shard'], nodeData),
+          type: R.pathOr('', ['type'], nodeData),
+          status: R.pathOr('', ['status'], nodeData),
+          online: R.pathOr(false, ['online'], nodeData),
+          instances: R.pathOr(0, ['instances'], nodeData),
         },
       });
     } catch (error) {

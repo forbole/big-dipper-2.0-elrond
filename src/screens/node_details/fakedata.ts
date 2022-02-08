@@ -24,3 +24,26 @@ export const fakeData = {
   validatorSuccess: 2,
   position: 0,
 };
+
+export const fakeIdentity = {
+  locked: '568656056696916643436800',
+  distribution: {
+    erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqhllllsajxzat: 1,
+  },
+  identity: 'staking_agency',
+  avatar: 'https://s3.amazonaws.com/keybase_processed_uploads/1c615712df066d5f4aa15cf40aff8a05_360_360.jpg',
+  description: 'The smart way to manage your stakes',
+  name: 'Staking Agency',
+  website: 'http://staking.agency',
+  location: 'Romania',
+  score: 21839,
+  validators: 182,
+  stake: '455000000000000000000000',
+  topUp: '113656056696916643436800',
+  providers: [
+    'erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqhllllsajxzat',
+  ],
+  stakePercent: 5.12,
+  apr: 16.19,
+  rank: 3,
+};

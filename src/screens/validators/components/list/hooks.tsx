@@ -80,6 +80,10 @@ export const useValidators = () => {
 
         return ({
           validator,
+          locked: formatToken(
+            R.pathOr('0', ['locked'], x),
+            chainConfig.primaryTokenUnit,
+          ),
           stake: formatToken(
             R.pathOr('0', ['stake'], x),
             chainConfig.primaryTokenUnit,

@@ -15,6 +15,7 @@ import {
 } from '@hooks';
 import { formatNumber } from '@utils/format_token';
 import { SingleValidator } from './component';
+import { VotingPower } from '..';
 import { ValidatorType } from '../../../../types';
 import { useStyles } from './styles';
 
@@ -42,7 +43,14 @@ const Mobile: React.FC<{
           href={x.validator.address ? VALIDATOR_DETAILS : NODE_DETAILS}
         />
       ),
-      stake: `${formatNumber(x.stake.value, x.stake.exponent)} ${x.stake.displayDenom.toUpperCase()} (${x.stakePercent}%)`,
+      locked: (
+        <VotingPower
+          percentDisplay={`${x.stakePercent}%`}
+          percentage={x.stakePercent}
+          content={formatNumber(x.locked.value, 2)}
+        />
+      ),
+      stake: `${formatNumber(x.stake.value, 2)} ${x.stake.displayDenom.toUpperCase()}`,
       nodes: numeral(x.nodes).format('0,0'),
     });
   });

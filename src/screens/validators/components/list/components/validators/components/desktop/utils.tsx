@@ -16,20 +16,27 @@ export const fetchColumns = (): {
     {
       key: 'validator',
       sortKey: 'validator.name',
-      width: 45,
+      width: 30,
+      sort: true,
+    },
+    {
+      key: 'locked',
+      sortKey: 'stakePercent',
+      width: 35,
       sort: true,
     },
     {
       key: 'stake',
       sortKey: 'stakePercent',
-      width: 25,
+      width: 15,
       sort: true,
+      align: 'right',
     },
     {
       key: 'nodes',
       sortKey: 'nodes',
       align: 'right',
-      width: 25,
+      width: 15,
       sort: true,
     },
   ]);

@@ -9,5 +9,6 @@
   "searchValidator": "Search Validator",
   "identities": "Identities",
   "commission": "Commission",
-  "apr": "Apr"
+  "apr": "Apr",
+  "locked": "Locked"
 }

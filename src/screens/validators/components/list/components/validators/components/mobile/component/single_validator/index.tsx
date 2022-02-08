@@ -10,6 +10,7 @@ const SingleValidator: React.FC<{
   className?: string;
   idx: string;
   validator: React.ReactNode;
+  locked: React.ReactNode;
   stake: string;
   nodes: string;
 }> = (props) => {
@@ -35,17 +36,25 @@ const SingleValidator: React.FC<{
       </div>
       <div className={classes.item}>
         <Typography variant="h4" className="label">
-          {t('stake')}
+          {t('locked')}
         </Typography>
-        {props.stake}
+        {props.locked}
       </div>
-      <div className={classes.item}>
-        <Typography variant="h4" className="label">
-          {t('nodes')}
-        </Typography>
-        <Typography variant="body1" className="value">
-          {props.nodes}
-        </Typography>
+      <div className={classes.flex}>
+        <div className={classes.item}>
+          <Typography variant="h4" className="label">
+            {t('stake')}
+          </Typography>
+          {props.stake}
+        </div>
+        <div className={classes.item}>
+          <Typography variant="h4" className="label">
+            {t('nodes')}
+          </Typography>
+          <Typography variant="body1" className="value">
+            {props.nodes}
+          </Typography>
+        </div>
       </div>
     </div>
 

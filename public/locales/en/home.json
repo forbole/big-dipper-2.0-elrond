@@ -12,5 +12,7 @@
   "staked": "Staked",
   "notStaked": "Not Staked",
   "stakedPercent": "Staked\n{{percent}}",
-  "notStakedPercent": "Not Staked\n{{percent}}"
+  "notStakedPercent": "Not Staked\n{{percent}}",
+  "activeValidators": "Active Validators",
+  "outOfValidators": "out of {{count}} validators"
 }

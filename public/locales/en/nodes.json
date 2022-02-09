@@ -8,5 +8,11 @@
   "type": "Type",
   "networkStatus": "Network Status",
   "online": "Online",
-  "offline": "Offline"
+  "offline": "Offline",
+  "ignoredSignatures": "Ignored Signatures",
+  "leaderSuccess": "Leader Success",
+  "leaderFailure": "Leader Failure",
+  "validatorSuccess": "Validator Success",
+  "validatorFailure": "Validator Failure",
+  "stats": "Stats"
 }

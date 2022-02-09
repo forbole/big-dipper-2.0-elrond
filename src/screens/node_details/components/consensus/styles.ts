@@ -33,19 +33,18 @@ export const useStyles = () => {
             },
           },
           [theme.breakpoints.up('md')]: {
-            width: '32px',
-            height: '32px',
+            width: '28px',
+            height: '28px',
           },
           [theme.breakpoints.up('lg')]: {
-            width: '25px',
-            height: '25px',
+            width: '29px',
+            height: '29px',
           },
         },
         toolTip: {
           boxShadow: theme.shadows[3],
         },
         item: {
-          marginBottom: theme.spacing(2),
           '& .label': {
             marginBottom: theme.spacing(1),
             color: theme.palette.custom.fonts.fontThree,

@@ -17,5 +17,6 @@
   "stats": "Stats",
   "rating": "Rating",
   "consensus": "Consensus",
-  "blocks": "Blocks"
+  "blocks": "Blocks",
+  "round": "Round"
 }

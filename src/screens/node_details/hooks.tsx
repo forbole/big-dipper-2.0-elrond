@@ -134,10 +134,10 @@ export const useNodeDetails = () => {
           });
           return consensusData.map((x) => ({
             round: x.round,
-            proposed: x.proposed,
+            proposed: x.blockWasProposed,
           }));
         };
-        newState.stats = await formatConsensus();
+        newState.consensus = await formatConsensus();
       }
 
       handleSetState(newState);

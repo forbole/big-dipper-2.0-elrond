@@ -14,5 +14,6 @@
   "leaderFailure": "Leader Failure",
   "validatorSuccess": "Validator Success",
   "validatorFailure": "Validator Failure",
-  "stats": "Stats"
+  "stats": "Stats",
+  "rating": "Rating"
 }

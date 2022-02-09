@@ -60,14 +60,22 @@ const Profile: React.FC<{profile: ProfileType } & ComponentDefault> = (props) =>
 
   return (
     <Box className={classnames(props.className)}>
-      <div className={classes.nametag}>
-        <Typography variant="h2" className="name">
-          {props.profile.name}
-        </Typography>
-        <Typography className="version">
-          (
-          {props.profile.version}
-          )
+      <div className={classes.topWrapper}>
+        <div className={classes.nametag}>
+          <Typography variant="h2" className="name">
+            {props.profile.name}
+          </Typography>
+          <Typography className="version">
+            (
+            {props.profile.version}
+            )
+          </Typography>
+        </div>
+        <Typography className={classes.rating}>
+          {t('rating')}
+          {' '}
+          {props.profile.rating}
+          %
         </Typography>
       </div>
       <Divider className={classes.divider} />

@@ -4,6 +4,13 @@ export const useStyles = () => {
   const styles = makeStyles(
     (theme) => {
       return ({
+        topWrapper: {
+          [theme.breakpoints.up('md')]: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          },
+        },
         nametag: {
           display: 'flex',
           flexDirection: 'column',
@@ -17,6 +24,13 @@ export const useStyles = () => {
             '& .version': {
               color: theme.palette.custom.fonts.fontThree,
             },
+          },
+        },
+        rating: {
+          display: 'none',
+          [theme.breakpoints.up('md')]: {
+            display: 'block',
+            color: theme.palette.custom.primaryData.one,
           },
         },
         divider: {

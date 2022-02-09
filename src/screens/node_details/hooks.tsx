@@ -20,6 +20,7 @@ export const useNodeDetails = () => {
       version: '',
       pubkey: '',
       validator: '',
+      rating: 0,
     },
     overview: {
       shard: 0,
@@ -63,6 +64,7 @@ export const useNodeDetails = () => {
           name: nodeData.name,
           version: nodeData.version,
           pubkey: nodeData.bls,
+          rating: R.pathOr(0, ['rating'], nodeData),
           validator,
         },
         overview: {

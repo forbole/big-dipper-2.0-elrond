@@ -22,10 +22,16 @@ export type StatsType = {
   validatorFailure: number;
 }
 
+export type ConsensusType = {
+  round: number;
+  proposed: boolean;
+}[];
+
 export type NodeDetailsState = {
   loading: boolean;
   exists: boolean;
   profile: ProfileType;
   overview: OverviewType;
   stats: StatsType;
+  consensus: ConsensusType;
 }

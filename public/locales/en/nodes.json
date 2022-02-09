@@ -15,5 +15,7 @@
   "validatorSuccess": "Validator Success",
   "validatorFailure": "Validator Failure",
   "stats": "Stats",
-  "rating": "Rating"
+  "rating": "Rating",
+  "consensus": "Consensus",
+  "blocks": "Blocks"
 }

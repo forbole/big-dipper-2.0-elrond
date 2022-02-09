@@ -39,6 +39,7 @@ export const useNodeDetails = () => {
       validatorSuccess: 0,
       validatorFailure: 0,
     },
+    consensus: [],
   });
 
   useEffect(() => {
@@ -131,10 +132,12 @@ export const useNodeDetails = () => {
             shard,
             epoch,
           });
-          console.log(consensusData, 'wow');
+          return consensusData.map((x) => ({
+            round: x.round,
+            proposed: x.proposed,
+          }));
         };
-        await formatConsensus();
-        // newState.stats = await formatConsensus();
+        newState.stats = await formatConsensus();
       }
 
       handleSetState(newState);
@@ -169,7 +172,7 @@ export const useNodeDetails = () => {
       },
     });
 
-    return roundsData;
+    return roundsData || [];
   };
 
   const getEpoch = async () => {

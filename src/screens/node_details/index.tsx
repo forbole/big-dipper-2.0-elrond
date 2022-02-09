@@ -44,7 +44,7 @@ const NodeDetails = () => {
             {state.overview.type.toLowerCase() === 'validator' && (
             <>
               <Stats className={classes.stats} stats={state.stats} />
-              <Consensus className={classes.consensus} />
+              <Consensus className={classes.consensus} consensus={state.consensus} />
               <Blocks className={classes.blocks} />
             </>
             )}

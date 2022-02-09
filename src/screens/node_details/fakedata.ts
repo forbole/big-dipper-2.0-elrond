@@ -60,3 +60,9 @@ export const fakeIdentity = {
   apr: 16.19,
   rank: 3,
 };
+
+export const fakeRound = {
+  blockWasProposed: true, round: 8044422, shard: 2, epoch: 558, timestamp: 1644384132,
+};
+
+export const fakeRounds = Array(100).fill(fakeRound);

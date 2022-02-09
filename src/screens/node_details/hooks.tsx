@@ -53,35 +53,43 @@ export const useNodeDetails = () => {
 
       let validator = '';
 
-      if (nodeData.identity) {
+      if (R.pathOr('', ['identity'], nodeData)) {
         const identity = await getIdentity();
-        validator = identity || nodeData.provider;
+        const nodeDataProvider = R.pathOr('', ['provider'], nodeData);
+        validator = identity || nodeDataProvider;
       }
 
-      handleSetState({
+      const newState: any = {
         loading: false,
-        profile: {
-          name: nodeData.name,
-          version: nodeData.version,
-          pubkey: nodeData.bls,
-          rating: R.pathOr(0, ['rating'], nodeData),
-          validator,
-        },
-        overview: {
-          shard: R.pathOr(0, ['shard'], nodeData),
-          type: R.pathOr('', ['type'], nodeData),
-          status: R.pathOr('', ['status'], nodeData),
-          online: R.pathOr(false, ['online'], nodeData),
-          instances: R.pathOr(0, ['instances'], nodeData),
-        },
-        stats: {
+      };
+
+      newState.profile = {
+        name: R.pathOr('', ['name'], nodeData),
+        version: R.pathOr('', ['version'], nodeData),
+        pubkey: R.pathOr('', ['bls'], nodeData),
+        rating: R.pathOr(0, ['rating'], nodeData),
+        validator,
+      };
+
+      newState.overview = {
+        shard: R.pathOr(0, ['shard'], nodeData),
+        type: R.pathOr('', ['type'], nodeData),
+        status: R.pathOr('', ['status'], nodeData),
+        online: R.pathOr(false, ['online'], nodeData),
+        instances: R.pathOr(0, ['instances'], nodeData),
+      };
+
+      if (R.pathOr('', ['type'], nodeData).toLowerCase() === 'validator') {
+        newState.stats = {
           ignoredSignatures: R.pathOr(0, ['validatorIgnoredSignatures'], nodeData),
           leaderSuccess: R.pathOr(0, ['leaderSuccess'], nodeData),
           leaderFailure: R.pathOr(0, ['leaderFailure'], nodeData),
           validatorSuccess: R.pathOr(0, ['validatorSuccess'], nodeData),
           validatorFailure: R.pathOr(0, ['validatorFailure'], nodeData),
-        },
-      });
+        };
+      }
+
+      handleSetState(newState);
     } catch (error) {
       handleSetState({
         loading: false,

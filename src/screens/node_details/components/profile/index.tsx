@@ -17,7 +17,7 @@ import { useProfile } from './hooks';
 import { useStyles } from './styles';
 import { ProfileType } from '../../types';
 
-const Profile: React.FC<{profile: ProfileType } & ComponentDefault> = (props) => {
+const Profile: React.FC<{profile: ProfileType, showRating: boolean} & ComponentDefault> = (props) => {
   const { t } = useTranslation('nodes');
   const classes = useStyles();
   const { isDesktop } = useScreenSize();
@@ -71,12 +71,14 @@ const Profile: React.FC<{profile: ProfileType } & ComponentDefault> = (props) =>
             )
           </Typography>
         </div>
-        <Typography className={classes.rating}>
-          {t('rating')}
-          {' '}
-          {props.profile.rating}
-          %
-        </Typography>
+        {!!props.showRating && (
+          <Typography className={classes.rating}>
+            {t('rating')}
+            {' '}
+            {props.profile.rating}
+            %
+          </Typography>
+        )}
       </div>
       <Divider className={classes.divider} />
       <div className={classes.addresses}>

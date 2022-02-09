@@ -25,6 +25,19 @@ export const fakeData = {
   position: 0,
 };
 
+export const fakeData2 = {
+  bls: '029e452976ab13bc81d42cd0e619163183fe20a0ac5fafa14f3c4db27a110b9b9d84fe85daefbbe80418afce800f9c0df1a9f82b207569ef674d00181a0a2b6a9c28e013af1e201210debdde414603df9c1dd19fae0f80f678f538d074abdd81',
+  name: 'flying-basalt-1-UK0',
+  version: 'v1.2.38.0',
+  ratingModifier: 0,
+  shard: 0,
+  type: 'observer',
+  online: true,
+  nonce: 8043073,
+  instances: 1,
+  position: 0,
+};
+
 export const fakeIdentity = {
   locked: '568656056696916643436800',
   distribution: {

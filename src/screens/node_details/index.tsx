@@ -29,17 +29,26 @@ const NodeDetails = () => {
       />
       <Layout
         navTitle={t('nodeDetails')}
-        className={classes.root}
       >
         <LoadAndExist
           loading={state.loading}
           exists={state.exists}
         >
-          <Profile className={classes.profile} profile={state.profile} />
-          <Overview className={classes.overview} overview={state.overview} />
-          <Stats className={classes.stats} stats={state.stats} />
-          <Consensus className={classes.consensus} />
-          <Blocks className={classes.blocks} />
+          <div className={classes.root}>
+            <Profile
+              className={classes.profile}
+              profile={state.profile}
+              showRating={state.overview.type.toLowerCase() === 'validator'}
+            />
+            <Overview className={classes.overview} overview={state.overview} />
+            {state.overview.type.toLowerCase() === 'validator' && (
+            <>
+              <Stats className={classes.stats} stats={state.stats} />
+              <Consensus className={classes.consensus} />
+              <Blocks className={classes.blocks} />
+            </>
+            )}
+          </div>
         </LoadAndExist>
       </Layout>
     </>

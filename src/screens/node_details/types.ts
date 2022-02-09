@@ -13,9 +13,18 @@ export type OverviewType = {
   instances: number;
 }
 
+export type StatsType = {
+  ignoredSignatures: number;
+  leaderSuccess: number;
+  leaderFailure: number;
+  validatorSuccess: number;
+  validatorFailure: number;
+}
+
 export type NodeDetailsState = {
   loading: boolean;
   exists: boolean;
   profile: ProfileType;
   overview: OverviewType;
+  stats: StatsType;
 }

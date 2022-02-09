@@ -5,17 +5,19 @@ import { Typography } from '@material-ui/core';
 import {
   Box,
 } from '@components';
-import { type } from 'os';
+import { getShardDisplay } from '@utils/get_shard_display';
 import { useStyles } from './style';
 import { OverviewType } from '../../types';
 
 const Overview: React.FC<{overview: OverviewType} & ComponentDefault> = (props) => {
   const { t } = useTranslation('nodes');
   const classes = useStyles();
+  const shard = getShardDisplay(props.overview.shard);
+
   const items = [
     {
       key: t('shard'),
-      value: props.overview.shard,
+      value: shard.key === 'metachain' ? t('common:metachain') : props.overview.shard,
     },
     {
       key: t('instances'),
@@ -23,7 +25,17 @@ const Overview: React.FC<{overview: OverviewType} & ComponentDefault> = (props) 
     },
     {
       key: t('type'),
-      value: `${props.overview.type.toUpperCase()} (${props.overview.status})`,
+      value: (
+        <Typography>
+          {props.overview.type.toUpperCase()}
+          {' '}
+          <span className="item__value--status">
+            (
+            {props.overview.status.toUpperCase()}
+            )
+          </span>
+        </Typography>
+      ),
     },
     {
       key: t('networkStatus'),

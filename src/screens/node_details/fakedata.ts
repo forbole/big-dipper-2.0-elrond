@@ -6,7 +6,7 @@ export const fakeData = {
   rating: 100,
   tempRating: 100,
   ratingModifier: 1.2,
-  shard: 2,
+  shard: 4294967295,
   type: 'validator',
   status: 'waiting',
   online: true,

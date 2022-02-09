@@ -28,6 +28,13 @@ export const useNodeDetails = () => {
       online: false,
       instances: 0,
     },
+    stats: {
+      ignoredSignatures: 0,
+      leaderSuccess: 0,
+      leaderFailure: 0,
+      validatorSuccess: 0,
+      validatorFailure: 0,
+    },
   });
 
   useEffect(() => {
@@ -64,6 +71,13 @@ export const useNodeDetails = () => {
           status: R.pathOr('', ['status'], nodeData),
           online: R.pathOr(false, ['online'], nodeData),
           instances: R.pathOr(0, ['instances'], nodeData),
+        },
+        stats: {
+          ignoredSignatures: R.pathOr(0, ['validatorIgnoredSignatures'], nodeData),
+          leaderSuccess: R.pathOr(0, ['leaderSuccess'], nodeData),
+          leaderFailure: R.pathOr(0, ['leaderFailure'], nodeData),
+          validatorSuccess: R.pathOr(0, ['validatorSuccess'], nodeData),
+          validatorFailure: R.pathOr(0, ['validatorFailure'], nodeData),
         },
       });
     } catch (error) {

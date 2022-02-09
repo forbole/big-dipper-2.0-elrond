@@ -23,6 +23,9 @@ export const useStyles = () => {
           '& .item__key': {
             color: theme.palette.custom.fonts.fontThree,
           },
+          '& .item__value--status': {
+            color: theme.palette.custom.fonts.fontFour,
+          },
         },
         hash: {
           display: 'flex',

@@ -11,5 +11,6 @@
   "commission": "Commission",
   "apr": "Apr",
   "locked": "Locked",
-  "topUp": "Top Up"
+  "topUp": "Top Up",
+  "validatorDetails": "Validator Details"
 }

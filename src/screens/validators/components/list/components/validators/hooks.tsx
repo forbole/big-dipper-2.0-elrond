@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import * as R from 'ramda';
+import Big from 'big.js';
 import { ValidatorsState } from './types';
 import { ValidatorType } from '../../types';
 
@@ -44,9 +45,17 @@ export const useValidators = (search: string) => {
         let compareA = R.pathOr(undefined, [...state.sortKey.split('.')], a);
         let compareB = R.pathOr(undefined, [...state.sortKey.split('.')], b);
 
-        if (state.sortKey === 'stake.value') {
+        const specialCases = ['stake.value', 'topUp.value'];
+
+        if (specialCases.includes(state.sortKey)) {
           compareA = Number(compareA);
           compareB = Number(compareB);
+          if (Big(compareA).lt(compareB)) {
+            return state.sortDirection === 'asc' ? -1 : 1;
+          }
+          if (Big(compareA).gt(compareB)) {
+            return state.sortDirection === 'asc' ? 1 : -1;
+          }
         } else if (typeof compareA === 'string') {
           compareA = compareA.toLowerCase();
           compareB = compareB.toLowerCase();

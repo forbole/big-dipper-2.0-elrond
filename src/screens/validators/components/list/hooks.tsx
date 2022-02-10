@@ -84,6 +84,10 @@ export const useValidators = () => {
             R.pathOr('0', ['locked'], x),
             chainConfig.primaryTokenUnit,
           ),
+          topUp: formatToken(
+            R.pathOr('0', ['topUp'], x),
+            chainConfig.primaryTokenUnit,
+          ),
           stake: formatToken(
             R.pathOr('0', ['stake'], x),
             chainConfig.primaryTokenUnit,

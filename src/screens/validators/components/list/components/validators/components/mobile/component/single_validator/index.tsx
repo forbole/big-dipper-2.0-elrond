@@ -12,6 +12,7 @@ const SingleValidator: React.FC<{
   validator: React.ReactNode;
   locked: React.ReactNode;
   stake: string;
+  topUp: string;
   nodes: string;
 }> = (props) => {
   const { t } = useTranslation('validators');
@@ -25,6 +26,14 @@ const SingleValidator: React.FC<{
           </Typography>
           <Typography variant="body1" className="value">
             {props.idx}
+          </Typography>
+        </div>
+        <div className={classes.item}>
+          <Typography variant="h4" className="label">
+            {t('nodes')}
+          </Typography>
+          <Typography variant="body1" className="value">
+            {props.nodes}
           </Typography>
         </div>
       </div>
@@ -49,11 +58,9 @@ const SingleValidator: React.FC<{
         </div>
         <div className={classes.item}>
           <Typography variant="h4" className="label">
-            {t('nodes')}
+            {t('topUp')}
           </Typography>
-          <Typography variant="body1" className="value">
-            {props.nodes}
-          </Typography>
+          {props.topUp}
         </div>
       </div>
     </div>

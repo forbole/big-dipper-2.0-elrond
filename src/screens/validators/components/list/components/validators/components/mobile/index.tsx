@@ -50,6 +50,7 @@ const Mobile: React.FC<{
           content={formatNumber(x.locked.value, 2)}
         />
       ),
+      topUp: `${formatNumber(x.topUp.value, 2)} ${x.stake.displayDenom.toUpperCase()}`,
       stake: `${formatNumber(x.stake.value, 2)} ${x.stake.displayDenom.toUpperCase()}`,
       nodes: numeral(x.nodes).format('0,0'),
     });

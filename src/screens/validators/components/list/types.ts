@@ -8,6 +8,7 @@ export type ValidatorType = {
   validator: AvatarName;
   stake: TokenUnit;
   locked: TokenUnit;
+  topUp: TokenUnit;
   stakePercent: number;
   nodes: number;
 }

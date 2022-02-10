@@ -18,5 +18,9 @@
   "rating": "Rating",
   "consensus": "Consensus",
   "blocks": "Blocks",
-  "round": "Round"
+  "round": "Round",
+  "metachain": "Metachain",
+  "version": "Version",
+  "status": "Status",
+  "name": "Name"
 }

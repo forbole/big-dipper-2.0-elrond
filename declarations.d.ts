@@ -28,6 +28,15 @@ type TransactionType = {
   status: string;
 }
 
+type BlockType = {
+  block: number; // round
+  timestamp: number;
+  txs: number;
+  shard: number;
+  size: number;
+  hash: string;
+}
+
 // type Transactions = {
 //   height: number;
 //   hash: string;

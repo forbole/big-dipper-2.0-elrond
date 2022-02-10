@@ -10,7 +10,6 @@ import {
 } from '@material-ui/core';
 import { BLOCK_DETAILS } from '@utils/go_to_page';
 import { SingleBlockMobile } from '@components';
-import { BlockType } from '../../types';
 
 const Mobile: React.FC<{items: BlockType[]} & ComponentDefault> = (props) => {
   const { t } = useTranslation('blocks');

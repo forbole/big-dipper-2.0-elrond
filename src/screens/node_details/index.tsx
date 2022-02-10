@@ -45,7 +45,7 @@ const NodeDetails = () => {
             <>
               <Stats className={classes.stats} stats={state.stats} />
               <Consensus className={classes.consensus} consensus={state.consensus} />
-              <Blocks className={classes.blocks} />
+              <Blocks className={classes.blocks} blocks={state.blocks} />
             </>
             )}
           </div>

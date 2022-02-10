@@ -10,6 +10,7 @@ import {
   STATS,
   NODE_DETAILS,
   IDENTITY,
+  BLOCKS,
 } from '@api';
 import { NodeDetailsState } from './types';
 
@@ -40,6 +41,7 @@ export const useNodeDetails = () => {
       validatorFailure: 0,
     },
     consensus: [],
+    blocks: [],
   });
 
   useEffect(() => {
@@ -102,6 +104,18 @@ export const useNodeDetails = () => {
       newState.overview = formatOverview();
 
       // =============================================
+      // Epoch
+      // =============================================
+      let epoch = 0;
+      if (R.pathOr('', ['type'], nodeData).toLowerCase() === 'validator') {
+        const getEpoch = async () => {
+          const { data: statsData } = await axios.get(STATS);
+          return R.pathOr(0, ['epoch'], statsData);
+        };
+
+        epoch = await getEpoch();
+      }
+      // =============================================
       // Stats
       // =============================================
 
@@ -126,7 +140,6 @@ export const useNodeDetails = () => {
         const formatConsensus = async () => {
           const validator = R.pathOr('', ['bls'], nodeData);
           const shard = R.pathOr('', ['shard'], nodeData);
-          const epoch = await getEpoch();
           const consensusData = await getConsensus({
             validator,
             shard,
@@ -138,6 +151,32 @@ export const useNodeDetails = () => {
           }));
         };
         newState.consensus = await formatConsensus();
+      }
+
+      // =============================================
+      // Blocks
+      // =============================================
+
+      if (R.pathOr('', ['type'], nodeData).toLowerCase() === 'validator') {
+        const formatBlocks = async () => {
+          const validator = R.pathOr('', ['bls'], nodeData);
+          const shard = R.pathOr('', ['shard'], nodeData);
+          const blocksData = await getBlocks({
+            validator,
+            shard,
+            epoch,
+          });
+
+          return blocksData.map((x) => ({
+            block: x.round,
+            timestamp: x.timestamp,
+            hash: x.hash,
+            txs: x.txCount,
+            shard: x.shard,
+            size: x.sizeTxs,
+          }));
+        };
+        newState.blocks = await formatBlocks();
       }
 
       handleSetState(newState);
@@ -164,7 +203,7 @@ export const useNodeDetails = () => {
   }) => {
     const { data: roundsData } = await axios.get(ROUNDS, {
       params: {
-        size: 100,
+        size: 138,
         from: 0,
         validator,
         shard,
@@ -175,9 +214,19 @@ export const useNodeDetails = () => {
     return roundsData || [];
   };
 
-  const getEpoch = async () => {
-    const { data: statsData } = await axios.get(STATS);
-    return R.pathOr(0, ['epoch'], statsData);
+  const getBlocks = async ({
+    validator, shard, epoch,
+  }) => {
+    const { data: blocksData } = await axios.get(BLOCKS, {
+      params: {
+        size: 25,
+        from: 0,
+        validator,
+        shard,
+        epoch,
+      },
+    });
+    return blocksData || [];
   };
 
   return ({

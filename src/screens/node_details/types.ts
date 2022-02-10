@@ -34,4 +34,5 @@ export type NodeDetailsState = {
   overview: OverviewType;
   stats: StatsType;
   consensus: ConsensusType;
+  blocks: BlockType[];
 }

@@ -18,6 +18,7 @@ import AvatarName from './avatar_name';
 import Avatar from './avatar';
 import SortArrows from './sort_arrows';
 import TabPanel from './tab_panel';
+import BlocksList from './blocks_list';
 
 export {
   Layout,
@@ -40,4 +41,5 @@ export {
   Avatar,
   SortArrows,
   TabPanel,
+  BlocksList,
 };

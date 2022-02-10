@@ -64,6 +64,7 @@
     }
   ],
   "rules": {
+    "max-len": "warn",
     "react/destructuring-assignment": "off",
     "no-bitwise": "off",
     "@typescript-eslint/ban-types": "warn",

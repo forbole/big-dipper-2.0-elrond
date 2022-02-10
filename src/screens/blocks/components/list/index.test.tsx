@@ -16,16 +16,12 @@ import List from '.';
 // unit tests
 // ==================================
 
-jest.mock('./components', () => ({
-  Desktop: (props) => <div id="Desktop" {...props} />,
-  Mobile: (props) => <div id="Mobile" {...props} />,
-}));
-
 jest.mock('@components', () => ({
   Pagination: (props) => <div id="Pagination" {...props} />,
   NoData: (props) => <div id="NoData" {...props} />,
   Box: (props) => <div id="Box" {...props} />,
   Loading: (props) => <div id="Loading" {...props} />,
+  BlocksList: (props) => <div id="BlocksList" {...props} />,
 }));
 
 // ==================================

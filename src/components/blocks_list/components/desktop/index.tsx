@@ -14,7 +14,6 @@ import dayjs from '@utils/dayjs';
 import { BLOCK_DETAILS } from '@utils/go_to_page';
 import { getShardDisplay } from '@utils/get_shard_display';
 import { columns } from './utils';
-import { BlockType } from '../../types';
 
 const Desktop: React.FC<{items: BlockType[]} & ComponentDefault> = (props) => {
   const { t } = useTranslation('blocks');

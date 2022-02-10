@@ -58,6 +58,7 @@ const Desktop: React.FC<{
         />
       ),
       stake: `${formatNumber(x.stake.value, 2)} ${x.stake.displayDenom.toUpperCase()}`,
+      topUp: `${formatNumber(x.topUp.value, 2)} ${x.stake.displayDenom.toUpperCase()}`,
       nodes: numeral(x.nodes).format('0,0'),
     });
   });

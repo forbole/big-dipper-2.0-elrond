@@ -12,5 +12,8 @@
   "apr": "Apr",
   "locked": "Locked",
   "topUp": "Top Up",
-  "validatorDetails": "Validator Details"
+  "validatorDetails": "Validator Details",
+  "contract": "Contract",
+  "address": "Address",
+  "delegation": "Delegations"
 }

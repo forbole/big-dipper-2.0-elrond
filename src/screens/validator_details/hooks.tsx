@@ -2,6 +2,7 @@ import {
   useState, useEffect,
 } from 'react';
 import * as R from 'ramda';
+import Big from 'big.js';
 import axios from 'axios';
 import { chainConfig } from '@configs';
 import { useRouter } from 'next/router';
@@ -11,7 +12,9 @@ import {
   STAKE,
 } from '@api';
 import { isBech32 } from '@utils/bech32';
-import { formatToken } from '@utils/format_token';
+import {
+  formatToken, formatNumber,
+} from '@utils/format_token';
 import { ValidatorDetailsState } from './types';
 
 const defaultTokenUnit: TokenUnit = {
@@ -52,29 +55,15 @@ export const useValidatorDetails = () => {
 
   const getValidator = async () => {
     try {
-      const { data: identityData } = await axios.get(IDENTITY(router.query.identity as string));
-      const params: any = {
-        size: 1,
-      };
-
-      if (isBech32(router.query.identity as string)) {
-        params.provider = router.query.identity;
-      } else {
-        params.identity = router.query.identity;
-      }
-
-      const { data: providerRawData } = await axios.get(PROVIDERS, {
-        params: router.query.identity,
-      });
-
-      const providerData = R.pathOr(null, [0], providerRawData);
-
+      const identityData = await getIdentity();
+      const providerData = await getProvider();
       const isProvider = !!providerData;
 
       const newState: any = {
         loading: false,
         isProvider,
       };
+
       // =====================================
       // contract
       // =====================================
@@ -104,24 +93,29 @@ export const useValidatorDetails = () => {
       // =====================================
       const getStake = async () => {
         const { data: stakeData } = await axios.get(STAKE);
+        const locked = R.pathOr('0', ['locked'], identityData | providerData);
+        const totalStaked = R.pathOr('0', ['totalStaked'], stakeData);
+
+        const stakePercentString = Big(locked).div(totalStaked === '0' ? 1 : totalStaked).times(100).toFixed(3);
+
         return ({
           locked: formatToken(
-            R.pathOr('0', ['locked'], identityData),
+            locked,
             chainConfig.primaryTokenUnit,
           ),
           stake: formatToken(
-            R.pathOr('0', ['stake'], identityData),
+            R.pathOr('0', ['stake'], identityData | providerData),
             chainConfig.primaryTokenUnit,
           ),
           topUp: formatToken(
-            R.pathOr('0', ['topUp'], identityData),
+            R.pathOr('0', ['topUp'], identityData | providerData),
             chainConfig.primaryTokenUnit,
           ),
           totalStaked: formatToken(
-            R.pathOr('0', ['totalStaked'], stakeData),
+            totalStaked,
             chainConfig.primaryTokenUnit,
           ),
-          stakePercent: R.pathOr(0, ['stakePercent'], identityData),
+          stakePercent: Number(formatNumber(stakePercentString, 2)),
         });
       };
       newState.stake = await getStake();
@@ -146,6 +140,40 @@ export const useValidatorDetails = () => {
         exists: false,
       });
       console.log(error.message);
+    }
+  };
+
+  const getIdentity = async () => {
+    try {
+      if (isBech32(router.query.identity as string)) {
+        return null;
+      }
+      const { data: identityData } = await axios.get(IDENTITY(router.query.identity as string));
+      return identityData;
+    } catch {
+      return null;
+    }
+  };
+
+  const getProvider = async () => {
+    try {
+      const params: any = {
+        size: 1,
+      };
+      if (isBech32(router.query.identity as string)) {
+        params.provider = router.query.identity;
+      } else {
+        params.identity = router.query.identity;
+      }
+
+      const { data: providerRawData } = await axios.get(PROVIDERS, {
+        params,
+      });
+
+      const providerData = R.pathOr(null, [0], providerRawData);
+      return providerData;
+    } catch {
+      return null;
     }
   };
 

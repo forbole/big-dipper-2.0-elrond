@@ -28,7 +28,7 @@ export const useStyles = () => {
             gridColumn: '1/3',
           },
         },
-        details: {
+        overview: {
           [theme.breakpoints.up('lg')]: {
             gridColumn: '3/4',
           },

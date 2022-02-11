@@ -4,6 +4,7 @@ import {
 import * as R from 'ramda';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import { isBech32 } from '@utils/bech32';
 import {
   POLLING_INTERVAL,
   NODES_COUNT,
@@ -41,11 +42,17 @@ export const useBlocks = () => {
 
   const getNodesTotal = async () => {
     try {
+      const params:any = {
+        type: 'validator',
+      };
+      if (isBech32(router.query.identity as string)) {
+        params.provider = router.query.identity;
+      } else {
+        params.identity = router.query.identity;
+      }
+
       const { data: total } = await axios.get(NODES_COUNT, {
-        params: {
-          identity: router.query.identity,
-          type: 'validator',
-        },
+        params,
       });
       handleSetState({
         total,
@@ -57,13 +64,18 @@ export const useBlocks = () => {
 
   const getBlocksByPage = async (page: number) => {
     try {
+      const params:any = {
+        from: page * PAGE_SIZE,
+        size: PAGE_SIZE,
+        type: 'validator',
+      };
+      if (isBech32(router.query.identity as string)) {
+        params.provider = router.query.identity;
+      } else {
+        params.identity = router.query.identity;
+      }
       const { data: blocksData } = await axios.get(NODES, {
-        params: {
-          from: page * PAGE_SIZE,
-          size: PAGE_SIZE,
-          identity: router.query.identity,
-          type: 'validator',
-        },
+        params,
       });
 
       const items = blocksData.map((x) => {

@@ -15,5 +15,6 @@
   "validatorDetails": "Validator Details",
   "contract": "Contract",
   "address": "Address",
-  "delegation": "Delegations"
+  "delegation": "Delegations",
+  "delegators": "Delegators"
 }

@@ -21,6 +21,7 @@ export const PRICE_HISTORY = 'https://data.elrond.com/latestcomplete/quoteshisto
 export const IDENTITIES = `${BASE_URL}/identities`;
 export const IDENTITY = (identity: string) => `${BASE_URL}/identities/${identity}`;
 export const PROVIDERS = `${BASE_URL}/providers`;
+export const PROVIDER_DETAILS = (provider:string) => `${BASE_URL}/providers/${provider}`;
 export const STAKE = `${BASE_URL}/stake`;
 export const ROUNDS = `${BASE_URL}/rounds`;
 export const NODES = `${BASE_URL}/nodes`;

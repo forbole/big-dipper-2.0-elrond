@@ -24,24 +24,28 @@ const ContractDetails: React.FC<{contract: ContractType} & ComponentDefault> = (
       ),
     },
     {
-      label: t('locked'),
-      detail: `${formatNumber(props.contract.locked.value, 2)} ${props.contract.locked.displayDenom.toUpperCase()}`,
+      label: t('commission'),
+      detail: `${numeral(props.contract.commission * 100).format('0,0.[00]')}%`,
+    },
+    {
+      label: t('delegators'),
+      detail: numeral(props.contract.delegators).format('0,0'),
+    },
+    {
+      label: t('nodes'),
+      detail: numeral(props.contract.nodes).format('0,0'),
     },
     {
       label: t('apr'),
       detail: `${props.contract.apr}%`,
     },
     {
-      label: t('commission'),
-      detail: `${numeral(props.contract.commission * 100).format('0,0.[00]')}%`,
+      label: t('locked'),
+      detail: `${formatNumber(props.contract.locked.value, 2)} ${props.contract.locked.displayDenom.toUpperCase()}`,
     },
     {
       label: t('delegation'),
       detail: `${formatNumber(props.contract.locked.value, 2)} ${props.contract.locked.displayDenom.toUpperCase()} / ${formatNumber(props.contract.delegationCap.value, 2)} ${props.contract.delegationCap.displayDenom.toUpperCase()}`,
-    },
-    {
-      label: t('nodes'),
-      detail: numeral(props.contract.nodes).format('0,0'),
     },
   ];
 

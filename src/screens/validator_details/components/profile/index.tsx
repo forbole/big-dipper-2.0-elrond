@@ -4,12 +4,14 @@ import {
   Typography,
   // Divider,
 } from '@material-ui/core';
-import useTranslation from 'next-translate/useTranslation';
+// import useTranslation from 'next-translate/useTranslation';
 import {
   Box,
   Avatar,
   Markdown,
 } from '@components';
+import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
+import { isBech32 } from '@utils/bech32';
 import { useStyles } from './styles';
 import { ProfileType } from '../../types';
 
@@ -18,6 +20,12 @@ const Profile: React.FC<{profile: ProfileType} & ComponentDefault> = ({
 }) => {
   const classes = useStyles();
   // const { t } = useTranslation('validators');
+  let { name } = profile;
+  if (isBech32(name)) {
+    name = getMiddleEllipsis(profile.name, {
+      beginning: 10, ending: 8,
+    });
+  }
 
   return (
     <Box className={classnames(className)}>
@@ -40,7 +48,7 @@ const Profile: React.FC<{profile: ProfileType} & ComponentDefault> = ({
               />
               <div className="header__content">
                 <Typography variant="h2">
-                  {profile.name}
+                  {name}
                 </Typography>
               </div>
             </div>

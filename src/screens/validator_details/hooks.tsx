@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import {
   IDENTITY,
   PROVIDERS,
+  PROVIDER_DETAILS,
   STAKE,
 } from '@api';
 import { isBech32 } from '@utils/bech32';
@@ -82,6 +83,7 @@ export const useValidatorDetails = () => {
               R.pathOr('0', ['delegationCap'], providerData),
               chainConfig.primaryTokenUnit,
             ),
+            delegators: R.pathOr(0, ['numUsers'], providerData),
           });
         };
 
@@ -93,7 +95,13 @@ export const useValidatorDetails = () => {
       // =====================================
       const getStake = async () => {
         const { data: stakeData } = await axios.get(STAKE);
-        const locked = R.pathOr('0', ['locked'], identityData | providerData);
+        let reference;
+        if (identityData) {
+          reference = identityData;
+        } else {
+          reference = providerData;
+        }
+        const locked = R.pathOr('0', ['locked'], reference);
         const totalStaked = R.pathOr('0', ['totalStaked'], stakeData);
 
         const stakePercentString = Big(locked).div(totalStaked === '0' ? 1 : totalStaked).times(100).toFixed(3);
@@ -104,11 +112,11 @@ export const useValidatorDetails = () => {
             chainConfig.primaryTokenUnit,
           ),
           stake: formatToken(
-            R.pathOr('0', ['stake'], identityData | providerData),
+            R.pathOr('0', ['stake'], reference),
             chainConfig.primaryTokenUnit,
           ),
           topUp: formatToken(
-            R.pathOr('0', ['topUp'], identityData | providerData),
+            R.pathOr('0', ['topUp'], reference),
             chainConfig.primaryTokenUnit,
           ),
           totalStaked: formatToken(
@@ -163,20 +171,22 @@ export const useValidatorDetails = () => {
 
   const getProvider = async () => {
     try {
-      const params: any = {
-        size: 1,
-      };
+      let providerData = null;
       if (isBech32(router.query.identity as string)) {
-        params.provider = router.query.identity;
+        const { data: providerRawData } = await axios.get(
+          PROVIDER_DETAILS(router.query.identity as string),
+        );
+        providerData = providerRawData;
       } else {
-        params.identity = router.query.identity;
+        const { data: providerRawData } = await axios.get(PROVIDERS, {
+          params: {
+            size: 1,
+            identity: router.query.identity,
+          },
+        });
+        providerData = R.pathOr(null, [0], providerRawData);
       }
 
-      const { data: providerRawData } = await axios.get(PROVIDERS, {
-        params,
-      });
-
-      const providerData = R.pathOr(null, [0], providerRawData);
       return providerData;
     } catch {
       return null;

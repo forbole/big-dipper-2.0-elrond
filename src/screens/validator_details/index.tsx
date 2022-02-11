@@ -9,7 +9,7 @@ import { useValidatorDetails } from './hooks';
 import {
   Profile,
   Stake,
-  Details,
+  Overview,
   ContractDetails,
   Nodes,
 } from './components';
@@ -37,11 +37,9 @@ const NodeDetails = () => {
           <div className={classes.root}>
             <Profile className={classes.profile} profile={state.profile} />
             <Stake className={classes.stake} stake={state.stake} />
+            <Overview className={classes.overview} />
             {state.isProvider && (
-              <>
-                <Details className={classes.details} />
-                <ContractDetails className={classes.contractDetails} contract={state.contract} />
-              </>
+              <ContractDetails className={classes.contractDetails} contract={state.contract} />
             )}
             <Nodes className={classes.nodes} />
           </div>

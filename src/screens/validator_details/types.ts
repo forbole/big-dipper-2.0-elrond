@@ -5,6 +5,7 @@ export type ContractType = {
   apr: number;
   commission: number;
   delegationCap: TokenUnit;
+  delegators: number;
 };
 
 export type StakeType = {

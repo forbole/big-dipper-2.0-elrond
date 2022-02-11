@@ -19,6 +19,7 @@ export const fakeIdentity = {
   distribution: {
     erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqq9hllllsz2je7q: 1,
   },
+  description: 'A highly scalable, fast and secure blockchain platform for distributed apps, enterprise use cases and the new internet economy.',
   identity: 'partnerstaking',
   avatar: 'https://s3.amazonaws.com/keybase_processed_uploads/4f24240833d93c3b81722305c0062205_360_360.jpg',
   name: 'Partner Staking',

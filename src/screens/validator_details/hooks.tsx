@@ -10,11 +10,9 @@ import {
   PROVIDERS,
   STAKE,
 } from '@api';
+import { isBech32 } from '@utils/bech32';
 import { formatToken } from '@utils/format_token';
 import { ValidatorDetailsState } from './types';
-import {
-  fakeIdentity, fakeprovider,
-} from './fakedata';
 
 const defaultTokenUnit: TokenUnit = {
   value: '0',
@@ -26,8 +24,7 @@ const defaultTokenUnit: TokenUnit = {
 export const useValidatorDetails = () => {
   const router = useRouter();
   const [state, setState] = useState<ValidatorDetailsState>({
-    // loading: true,
-    loading: false,
+    loading: true,
     exists: true,
     isProvider: false,
     contract: null,
@@ -37,6 +34,11 @@ export const useValidatorDetails = () => {
       stake: defaultTokenUnit,
       topUp: defaultTokenUnit,
       stakePercent: 0,
+    },
+    profile: {
+      name: '',
+      imageUrl: '',
+      description: '',
     },
   });
 
@@ -50,15 +52,21 @@ export const useValidatorDetails = () => {
 
   const getValidator = async () => {
     try {
-      // const { data: identityData } = await axios.get(IDENTITY(router.query.identity as string));
-      // const { data: providersData } = await axios.get(PROVIDERS, {
-      //   params: {
-      //     identity: router.query.identity,
-      //     size: 1,
-      //   },
-      // });
-      const identityData = fakeIdentity;
-      const providerRawData = fakeprovider;
+      const { data: identityData } = await axios.get(IDENTITY(router.query.identity as string));
+      const params: any = {
+        size: 1,
+      };
+
+      if (isBech32(router.query.identity as string)) {
+        params.provider = router.query.identity;
+      } else {
+        params.identity = router.query.identity;
+      }
+
+      const { data: providerRawData } = await axios.get(PROVIDERS, {
+        params: router.query.identity,
+      });
+
       const providerData = R.pathOr(null, [0], providerRawData);
 
       const isProvider = !!providerData;
@@ -117,6 +125,19 @@ export const useValidatorDetails = () => {
         });
       };
       newState.stake = await getStake();
+
+      // =====================================
+      // profile
+      // =====================================
+      const getProfile = () => {
+        return ({
+          name: R.pathOr('', ['name'], identityData),
+          imageUrl: R.pathOr('', ['avatar'], identityData),
+          description: R.pathOr('', ['description'], identityData),
+          identity: R.pathOr('', ['identity'], identityData),
+        });
+      };
+      newState.profile = await getProfile();
 
       handleSetState(newState);
     } catch (error) {

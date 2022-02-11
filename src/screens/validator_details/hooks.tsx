@@ -124,11 +124,17 @@ export const useValidatorDetails = () => {
       // profile
       // =====================================
       const getProfile = () => {
+        if (identityData) {
+          return ({
+            name: R.pathOr('', ['name'], identityData),
+            imageUrl: R.pathOr('', ['avatar'], identityData),
+            description: R.pathOr('', ['description'], identityData),
+          });
+        }
         return ({
-          name: R.pathOr('', ['name'], identityData),
-          imageUrl: R.pathOr('', ['avatar'], identityData),
-          description: R.pathOr('', ['description'], identityData),
-          identity: R.pathOr('', ['identity'], identityData),
+          name: R.pathOr('', ['provider'], providerData),
+          imageUrl: '',
+          description: '',
         });
       };
       newState.profile = await getProfile();

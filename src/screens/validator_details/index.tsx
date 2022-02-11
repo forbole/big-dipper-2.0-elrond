@@ -5,7 +5,6 @@ import {
   Layout,
   LoadAndExist,
 } from '@components';
-import { SatelliteSharp } from '@material-ui/icons';
 import { useValidatorDetails } from './hooks';
 import {
   Profile,
@@ -37,7 +36,7 @@ const NodeDetails = () => {
         >
           <div className={classes.root}>
             <Profile className={classes.profile} />
-            <Stake className={classes.stake} />
+            <Stake className={classes.stake} stake={state.stake} />
             {state.isProvider && (
               <>
                 <Details className={classes.details} />

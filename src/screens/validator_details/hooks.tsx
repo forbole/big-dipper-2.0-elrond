@@ -8,12 +8,20 @@ import { useRouter } from 'next/router';
 import {
   IDENTITY,
   PROVIDERS,
+  STAKE,
 } from '@api';
 import { formatToken } from '@utils/format_token';
 import { ValidatorDetailsState } from './types';
 import {
   fakeIdentity, fakeprovider,
 } from './fakedata';
+
+const defaultTokenUnit: TokenUnit = {
+  value: '0',
+  baseDenom: '',
+  displayDenom: '',
+  exponent: 0,
+};
 
 export const useValidatorDetails = () => {
   const router = useRouter();
@@ -23,6 +31,13 @@ export const useValidatorDetails = () => {
     exists: true,
     isProvider: false,
     contract: null,
+    stake: {
+      totalStaked: defaultTokenUnit,
+      locked: defaultTokenUnit,
+      stake: defaultTokenUnit,
+      topUp: defaultTokenUnit,
+      stakePercent: 0,
+    },
   });
 
   const handleSetState = (stateChange: any) => {
@@ -75,6 +90,34 @@ export const useValidatorDetails = () => {
 
         newState.contract = getContract();
       }
+
+      // =====================================
+      // stake
+      // =====================================
+      const getStake = async () => {
+        const { data: stakeData } = await axios.get(STAKE);
+        return ({
+          locked: formatToken(
+            R.pathOr('0', ['locked'], identityData),
+            chainConfig.primaryTokenUnit,
+          ),
+          stake: formatToken(
+            R.pathOr('0', ['stake'], identityData),
+            chainConfig.primaryTokenUnit,
+          ),
+          topUp: formatToken(
+            R.pathOr('0', ['topUp'], identityData),
+            chainConfig.primaryTokenUnit,
+          ),
+          totalStaked: formatToken(
+            R.pathOr('0', ['totalStaked'], stakeData),
+            chainConfig.primaryTokenUnit,
+          ),
+          stakePercent: R.pathOr(0, ['stakePercent'], identityData),
+        });
+      };
+      newState.stake = await getStake();
+
       handleSetState(newState);
     } catch (error) {
       handleSetState({

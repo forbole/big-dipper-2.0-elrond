@@ -35,3 +35,10 @@ export const fakeIdentity = {
   apr: 16.38,
   rank: 6,
 };
+
+export const fakeStake = {
+  totalValidators: 3200,
+  activeValidators: 3199,
+  queueSize: 60,
+  totalStaked: '11125648549106987295488157',
+};

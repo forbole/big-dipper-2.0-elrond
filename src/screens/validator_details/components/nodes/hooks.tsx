@@ -43,7 +43,9 @@ export const useBlocks = () => {
   const getNodesTotal = async () => {
     try {
       const params:any = {
-        type: 'validator',
+        // come back to this later
+        // brave will block the api if type validator is present
+        // type: 'validator',
       };
       if (isBech32(router.query.identity as string)) {
         params.provider = router.query.identity;

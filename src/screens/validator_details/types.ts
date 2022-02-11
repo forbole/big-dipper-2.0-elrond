@@ -26,6 +26,10 @@ export type OverviewType = {
   location: string;
   website: string;
   identity: string;
+  stakeDistribution: {
+    key: string;
+    value: number;
+  }[];
 }
 
 export type ValidatorDetailsState = {

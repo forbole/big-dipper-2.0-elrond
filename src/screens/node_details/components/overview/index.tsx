@@ -30,10 +30,19 @@ const Overview: React.FC<{overview: OverviewType} & ComponentDefault> = (props) 
         <Typography>
           {props.overview.type.toUpperCase()}
           {' '}
+
           <span className="item__value--status">
-            (
-            {props.overview.status.toUpperCase()}
-            )
+            {props.overview.type === 'validator' ? (
+              <>
+                (
+                {props.overview.status.toUpperCase()}
+                )
+              </>
+            ) : (
+              <>
+                {props.overview.status.toUpperCase()}
+              </>
+            )}
           </span>
         </Typography>
       ),

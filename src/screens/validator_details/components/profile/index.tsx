@@ -2,9 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import {
   Typography,
-  // Divider,
 } from '@material-ui/core';
-// import useTranslation from 'next-translate/useTranslation';
 import {
   Box,
   Avatar,
@@ -19,7 +17,6 @@ const Profile: React.FC<{profile: ProfileType} & ComponentDefault> = ({
   className, profile,
 }) => {
   const classes = useStyles();
-  // const { t } = useTranslation('validators');
   let { name } = profile;
   if (isBech32(name)) {
     name = getMiddleEllipsis(profile.name, {
@@ -63,16 +60,6 @@ const Profile: React.FC<{profile: ProfileType} & ComponentDefault> = ({
           )}
         </div>
       </div>
-
-      {/* <Divider className={classes.divider} />
-      <div>
-        <div className={classes.item}>
-          <Typography variant="h4" className="label">
-            {t('website')}
-          </Typography>
-          {formattedItem.website}
-        </div>
-      </div> */}
     </Box>
   );
 };

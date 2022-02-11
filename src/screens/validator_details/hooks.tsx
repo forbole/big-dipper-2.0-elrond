@@ -48,6 +48,7 @@ export const useValidatorDetails = () => {
       location: '',
       website: '',
       identity: '',
+      stakeDistribution: [],
     },
   });
 
@@ -156,10 +157,23 @@ export const useValidatorDetails = () => {
       // overview
       // =====================================
       const getOverview = () => {
+        // distribution
+        let distribution = [];
+        if (identityData) {
+          const keys = R.keys(R.pathOr([], ['distribution'], identityData));
+          distribution = keys.map((x) => {
+            return ({
+              key: x,
+              value: R.pathOr(0, ['distribution', x], identityData),
+            });
+          });
+        }
+
         return ({
           location: R.pathOr('', ['location'], identityData),
           website: R.pathOr('', ['website'], identityData),
           identity: R.pathOr('', ['identity'], identityData),
+          stakeDistribution: distribution,
         });
       };
       newState.overview = await getOverview();

@@ -4,20 +4,14 @@ export const useStyles = () => {
   const styles = makeStyles(
     (theme) => {
       return ({
+        root: {
+          '& .MuiTypography-h2': {
+            marginBottom: theme.spacing(2),
+          },
+        },
         paginate: {
           marginTop: theme.spacing(3),
         },
-        // mobile: {
-        //   [theme.breakpoints.up('lg')]: {
-        //     display: 'none',
-        //   },
-        // },
-        // desktop: {
-        //   display: 'none',
-        //   [theme.breakpoints.up('lg')]: {
-        //     display: 'flex',
-        //   },
-        // },
       });
     },
   )();

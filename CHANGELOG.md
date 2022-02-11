@@ -8,3 +8,5 @@
 - Add Miniblock Details Page
 - Add Transaction Details Page
 - Add Validators Page
+- Add Node Details Page
+- Add Validator Details Page

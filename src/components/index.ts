@@ -19,6 +19,7 @@ import Avatar from './avatar';
 import SortArrows from './sort_arrows';
 import TabPanel from './tab_panel';
 import BlocksList from './blocks_list';
+import Markdown from './markdown';
 
 export {
   Layout,
@@ -42,4 +43,5 @@ export {
   SortArrows,
   TabPanel,
   BlocksList,
+  Markdown,
 };

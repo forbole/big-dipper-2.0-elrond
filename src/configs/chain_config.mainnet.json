@@ -6,13 +6,11 @@
     "default": "https://raw.githubusercontent.com/forbole/big-dipper-assets/master/elrond/logo.svg?sanitize=true"
   },
   "prefix": {
-    "consensus": "desmosvalcons",
-    "validator": "desmosvaloper",
-    "account": "desmos"
+    "account": "erd1"
   },
-  "primaryTokenUnit": "udsm",
+  "primaryTokenUnit": "egld",
   "tokenUnits": {
-    "udsm": {
+    "egld": {
       "display": "egld",
       "exponent": 18
     }

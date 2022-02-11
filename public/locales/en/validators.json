@@ -11,5 +11,15 @@
   "commission": "Commission",
   "apr": "Apr",
   "locked": "Locked",
-  "topUp": "Top Up"
+  "topUp": "Top Up",
+  "validatorDetails": "Validator Details",
+  "contract": "Contract",
+  "address": "Address",
+  "delegation": "Delegations",
+  "delegators": "Delegators",
+  "overview": "Overview",
+  "location": "Location",
+  "website": "Website",
+  "identity": "Identity",
+  "distribution": "Distribution"
 }

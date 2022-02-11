@@ -44,6 +44,11 @@ export const useValidatorDetails = () => {
       imageUrl: '',
       description: '',
     },
+    overview: {
+      location: '',
+      website: '',
+      identity: '',
+    },
   });
 
   const handleSetState = (stateChange: any) => {
@@ -146,6 +151,18 @@ export const useValidatorDetails = () => {
         });
       };
       newState.profile = await getProfile();
+
+      // =====================================
+      // overview
+      // =====================================
+      const getOverview = () => {
+        return ({
+          location: R.pathOr('', ['location'], identityData),
+          website: R.pathOr('', ['website'], identityData),
+          identity: R.pathOr('', ['identity'], identityData),
+        });
+      };
+      newState.overview = await getOverview();
 
       handleSetState(newState);
     } catch (error) {

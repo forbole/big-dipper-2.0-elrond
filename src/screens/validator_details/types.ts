@@ -22,6 +22,12 @@ export type ProfileType = {
   description: string;
 }
 
+export type OverviewType = {
+  location: string;
+  website: string;
+  identity: string;
+}
+
 export type ValidatorDetailsState = {
   loading: boolean;
   exists: boolean;
@@ -29,4 +35,5 @@ export type ValidatorDetailsState = {
   contract: ContractType | null;
   stake: StakeType;
   profile: ProfileType;
+  overview: OverviewType;
 }

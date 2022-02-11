@@ -37,7 +37,7 @@ const NodeDetails = () => {
           <div className={classes.root}>
             <Profile className={classes.profile} profile={state.profile} />
             <Stake className={classes.stake} stake={state.stake} />
-            <Overview className={classes.overview} />
+            <Overview className={classes.overview} overview={state.overview} />
             {state.isProvider && (
               <ContractDetails className={classes.contractDetails} contract={state.contract} />
             )}

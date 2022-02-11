@@ -16,5 +16,9 @@
   "contract": "Contract",
   "address": "Address",
   "delegation": "Delegations",
-  "delegators": "Delegators"
+  "delegators": "Delegators",
+  "overview": "Overview",
+  "location": "Location",
+  "website": "Website",
+  "identity": "Identity"
 }

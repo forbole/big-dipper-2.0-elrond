@@ -32,6 +32,7 @@ export const NODE_DETAILS = (node: string) => `${BASE_URL}/nodes/${node}`;
 
 // https://elrondscan.com/api/address/name
 // This gets the hero names
+// https://elrondscan.com/api/address/herotag
 
 // address reference
 // https://api.elrondscan.com/address/erd184lfpask626dwrpdsxzheznf7wngeknlrck4rst0ppxp76jq537qjd7v5z

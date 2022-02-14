@@ -19,6 +19,7 @@ export type ProviderType = {
   nodes: number;
   commission: number;
   apr: number;
+  delegators: number;
 }
 
 export type SearchType = string;

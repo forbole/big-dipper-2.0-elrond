@@ -48,6 +48,7 @@ const Desktop: React.FC<{
       ),
       stake: `${formatNumber(x.stake.value, x.stake.exponent)} ${x.stake.displayDenom.toUpperCase()}`,
       nodes: numeral(x.nodes).format('0,0'),
+      delegators: numeral(x.delegators).format('0,0'),
       commission: `${numeral(x.commission * 100).format('0,0.[00]')}%`,
       apr: `${x.apr}%`,
     });

@@ -12,6 +12,7 @@ const SingleValidator: React.FC<{
   validator: React.ReactNode;
   stake: string;
   nodes: string;
+  delegators: string;
   commission: string;
   apr: string;
 }> = (props) => {
@@ -28,6 +29,12 @@ const SingleValidator: React.FC<{
             {props.idx}
           </Typography>
         </div>
+        <div className={classes.item}>
+          <Typography variant="h4" className="label">
+            {t('stake')}
+          </Typography>
+          {props.stake}
+        </div>
       </div>
       <div className={classes.item}>
         <Typography variant="h4" className="label">
@@ -38,9 +45,9 @@ const SingleValidator: React.FC<{
       <div className={classes.flex}>
         <div className={classes.item}>
           <Typography variant="h4" className="label">
-            {t('stake')}
+            {t('delegators')}
           </Typography>
-          {props.stake}
+          {props.delegators}
         </div>
         <div className={classes.item}>
           <Typography variant="h4" className="label">

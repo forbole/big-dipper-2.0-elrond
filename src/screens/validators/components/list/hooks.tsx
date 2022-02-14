@@ -114,6 +114,7 @@ export const useValidators = () => {
           ),
           nodes: R.pathOr(0, ['numNodes'], x),
           commission: R.pathOr(0, ['serviceFee'], x),
+          delegators: R.pathOr(0, ['numUsers'], x),
           apr: R.pathOr(0, ['apr'], x),
         });
       });

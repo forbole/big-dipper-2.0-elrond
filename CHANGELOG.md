@@ -12,3 +12,4 @@
 - Add Validator Details Page
 - Add delegator column to validators page
 - Add Account Details Page
+- Add Transactions to Validator Details if provider

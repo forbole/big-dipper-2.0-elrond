@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import useTranslation from 'next-translate/useTranslation';
 import Link from 'next/link';
 import {
@@ -16,10 +17,12 @@ import {
 import { Result } from '@components';
 import dayjs from '@utils/dayjs';
 import { columns } from './utils';
+import { useStyles } from './styles';
 import { Shard } from '..';
 
 const Desktop: React.FC<{items: TransactionType[]} & ComponentDefault> = (props) => {
   const { t } = useTranslation('transactions');
+  const classes = useStyles();
   const formattedItems = props.items.map((x) => {
     return ({
       hash: (
@@ -57,7 +60,7 @@ const Desktop: React.FC<{items: TransactionType[]} & ComponentDefault> = (props)
     });
   });
   return (
-    <div className={props.className}>
+    <div className={classnames(props.className, classes.root)}>
       <Table>
         <TableHead>
           <TableRow>

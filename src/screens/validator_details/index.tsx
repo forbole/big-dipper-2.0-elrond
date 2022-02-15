@@ -15,7 +15,7 @@ import {
 } from './components';
 import { useStyles } from './styles';
 
-const NodeDetails = () => {
+const ValidatorDetails = () => {
   const classes = useStyles();
   const { t } = useTranslation('validators');
   const { state } = useValidatorDetails();
@@ -49,4 +49,4 @@ const NodeDetails = () => {
   );
 };
 
-export default NodeDetails;
+export default ValidatorDetails;

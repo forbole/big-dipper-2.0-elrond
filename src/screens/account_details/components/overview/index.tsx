@@ -30,7 +30,7 @@ const Overview: React.FC<{overview: OverviewType} & ComponentDefault> = (props) 
       value: shard.key === 'metachain' ? t('common:metachain') : props.overview.shard,
     },
     {
-      key: t('tokenCount'),
+      key: t('tokens'),
       value: numeral(props.overview.tokenCount).format('0,0'),
     },
   ];

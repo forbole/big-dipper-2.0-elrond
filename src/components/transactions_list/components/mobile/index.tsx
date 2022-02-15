@@ -71,31 +71,24 @@ const Mobile: React.FC<{items: TransactionType[]} & ComponentDefault> = (props) 
                 </Typography>
                 {x.shard}
               </div>
-
               <div className={classes.item}>
                 <Typography variant="h4" className="label">
                   {t('from')}
                 </Typography>
-                <Typography variant="body1" className="value">
-                  {x.from}
-                </Typography>
+                {x.from}
               </div>
               <div className={classes.item}>
                 <Typography variant="h4" className="label">
                   {t('to')}
                 </Typography>
-                <Typography variant="body1" className="value">
-                  {x.to}
-                </Typography>
+                {x.to}
               </div>
               <div className={classes.flex}>
                 <div className={classes.item}>
                   <Typography variant="h4" className="label">
                     {t('status')}
                   </Typography>
-                  <Typography variant="body1" className="value">
-                    {x.status}
-                  </Typography>
+                  {x.status}
                 </div>
                 <div className={classes.item}>
                   <Typography variant="h4" className="label">

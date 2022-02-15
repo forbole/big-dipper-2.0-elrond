@@ -43,6 +43,11 @@ export const useStyles = () => {
             gridColumn: '1/4',
           },
         },
+        transaction: {
+          [theme.breakpoints.up('lg')]: {
+            gridColumn: '1/4',
+          },
+        },
       });
     },
   )();

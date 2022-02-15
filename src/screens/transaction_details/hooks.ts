@@ -5,10 +5,7 @@ import axios from 'axios';
 import * as R from 'ramda';
 import { useRouter } from 'next/router';
 import { chainConfig } from '@configs';
-import {
-  formatToken, formatNumber,
-} from '@utils/format_token';
-import Big from 'big.js';
+import { formatToken } from '@utils/format_token';
 import { TRANSACTION_DETAILS } from '@api';
 import { TransactionDetailsState } from './types';
 

@@ -5,30 +5,28 @@ import {
   Layout,
   LoadAndExist,
 } from '@components';
-import { useValidatorDetails } from './hooks';
+import { useStyles } from './styles';
+import { useAccountDetails } from './hooks';
 import {
   Profile,
-  Stake,
+  Transactions,
   Overview,
-  ContractDetails,
-  Nodes,
 } from './components';
-import { useStyles } from './styles';
 
-const ValidatorDetails = () => {
+const AccountDetails = () => {
   const classes = useStyles();
-  const { t } = useTranslation('validators');
-  const { state } = useValidatorDetails();
+  const { t } = useTranslation('accounts');
+  const { state } = useAccountDetails();
   return (
     <>
       <NextSeo
-        title={t('validatorDetails')}
+        title={t('accountDetails')}
         openGraph={{
-          title: t('validatorDetails'),
+          title: t('accountDetails'),
         }}
       />
       <Layout
-        navTitle={t('validatorDetails')}
+        navTitle={t('accountDetails')}
       >
         <LoadAndExist
           loading={state.loading}
@@ -36,12 +34,8 @@ const ValidatorDetails = () => {
         >
           <div className={classes.root}>
             <Profile className={classes.profile} profile={state.profile} />
-            <Stake className={classes.stake} stake={state.stake} />
             <Overview className={classes.overview} overview={state.overview} />
-            {state.isProvider && (
-              <ContractDetails className={classes.contractDetails} contract={state.contract} />
-            )}
-            <Nodes className={classes.nodes} />
+            <Transactions className={classes.transactions} />
           </div>
         </LoadAndExist>
       </Layout>
@@ -49,4 +43,4 @@ const ValidatorDetails = () => {
   );
 };
 
-export default ValidatorDetails;
+export default AccountDetails;

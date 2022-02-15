@@ -26,3 +26,21 @@ export const STAKE = `${BASE_URL}/stake`;
 export const ROUNDS = `${BASE_URL}/rounds`;
 export const NODES = `${BASE_URL}/nodes`;
 export const NODE_DETAILS = (node: string) => `${BASE_URL}/nodes/${node}`;
+export const ACCOUNT_DETAILS = (account: string) => `${BASE_URL}/accounts/${account}`;
+export const ACCOUNT_DETAILS_TOKEN_COUNT = (account: string) => `${BASE_URL}/accounts/${account}/tokens/count`;
+export const ACCOUNT_DETAILS_TRANSACTIONS = (account: string) => `${BASE_URL}/accounts/${account}/transactions`;
+export const ACCOUNT_DETAILS_TRANSACTIONS_COUNT = (account: string) => `${BASE_URL}/accounts/${account}/transactions/count`;
+
+// tx detail with hero tag
+// https://elrondscan.com/transaction/d9ff0b785e9b794b0538669db18f7e5911549834283d05200bec0d7b63b123b4
+
+// https://elrondscan.com/api/address/name
+// This gets the hero names
+// https://elrondscan.com/api/address/herotag
+
+// address reference
+// https://api.elrondscan.com/address/erd184lfpask626dwrpdsxzheznf7wngeknlrck4rst0ppxp76jq537qjd7v5z
+// https://api.elrondscan.com/accounts/erd184lfpask626dwrpdsxzheznf7wngeknlrck4rst0ppxp76jq537qjd7v5z
+
+// has staked
+// https://elrondscan.com/account/erd16gtp7fcyhrjthpg85kzglppxnlvqdwmvauqrxj5ww92mkhs44gsq2j7ven

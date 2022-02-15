@@ -12,6 +12,7 @@ module.exports = {
     'rgx:^/transactions': ['transactions', 'blocks'],
     'rgx:^/validators': ['validators', 'nodes'],
     'rgx:^/nodes': ['nodes', 'blocks'],
+    'rgx:^/accounts': ['accounts', 'transactions'],
     // 'rgx:^/@*': ['profiles', 'accounts'],
     // 'rgx:^/transactions': ['transactions', 'message_labels', 'message_contents'],
     // 'rgx:^/proposals': ['proposals'],

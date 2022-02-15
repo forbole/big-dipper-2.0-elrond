@@ -62,5 +62,6 @@
   "profilesNotEnabled": "Profiles not enabled for this explorer",
   "insertValidDtag": "Please insert a valid dtag",
   "metachain": "Metachain",
-  "shardNumber": "Shard {{num}}"
+  "shardNumber": "Shard {{num}}",
+  "tokens": "Tokens"
 }

@@ -29,7 +29,7 @@ const Desktop: React.FC<{items: TransactionType[]} & ComponentDefault> = (props)
         <Link href={TRANSACTION_DETAILS(x.hash)} passHref>
           <Typography variant="body1" className="value" component="a">
             {getMiddleEllipsis(x.hash, {
-              beginning: 13, ending: 15,
+              beginning: 10, ending: 10,
             })}
           </Typography>
         </Link>
@@ -39,7 +39,7 @@ const Desktop: React.FC<{items: TransactionType[]} & ComponentDefault> = (props)
         <AvatarName
           address={x.from}
           name={getMiddleEllipsis(x.from, {
-            beginning: 13, ending: 15,
+            beginning: 10, ending: 10,
           })}
         />
       ),
@@ -47,7 +47,7 @@ const Desktop: React.FC<{items: TransactionType[]} & ComponentDefault> = (props)
         <AvatarName
           address={x.to}
           name={getMiddleEllipsis(x.to, {
-            beginning: 13, ending: 15,
+            beginning: 10, ending: 10,
           })}
         />
       ),

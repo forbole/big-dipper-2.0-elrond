@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import { AppProps } from 'next/app';
 import InitialLoad from '@screens/initial_load';
 // import { useSettingsRecoil } from '@recoil/settings';
-// import { useBigDipperNetworksRecoil } from '@recoil/big_dipper_networks';
+import { useBigDipperNetworksRecoil } from '@recoil/big_dipper_networks';
 import { useMarketRecoil } from '@recoil/market';
 // import { useValidatorRecoil } from '@recoil/validators';
 import { InnerApp } from '..';
@@ -18,7 +18,7 @@ const Main = (props: AppProps) => {
   // init recoil values
   // =====================================
   // useSettingsRecoil();
-  // useBigDipperNetworksRecoil();
+  useBigDipperNetworksRecoil();
   useMarketRecoil();
   // const { loading } = useValidatorRecoil();
 

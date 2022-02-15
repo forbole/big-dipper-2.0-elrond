@@ -14,7 +14,7 @@ import {
   useTransactions, PAGE_SIZE,
 } from './hooks';
 
-const Transactions = () => {
+const Transactions:React.FC<ComponentDefault> = (props) => {
   const { t } = useTranslation('accounts');
   const classes = useStyles();
   const {
@@ -41,7 +41,7 @@ const Transactions = () => {
   }
 
   return (
-    <Box>
+    <Box className={props.className}>
       <Typography variant="h2">{t('transactions')}</Typography>
       {component}
       <Pagination

@@ -34,7 +34,7 @@ const AccountDetails = () => {
         >
           <div className={classes.root}>
             <Profile className={classes.profile} profile={state.profile} />
-            <Overview className={classes.overview} />
+            <Overview className={classes.overview} overview={state.overview} />
             <Transactions className={classes.transactions} />
           </div>
         </LoadAndExist>

@@ -47,13 +47,11 @@ export const useAccountDetails = () => {
   }, [router.query.address]);
 
   const getAccount = async () => {
-    // const { data: accountData } = await axios.get(ACCOUNT_DETAILS(router.query.address as string));
+    const { data: accountData } = await axios.get(ACCOUNT_DETAILS(router.query.address as string));
 
-    // const { data: tokenCountData } = await axios.get(ACCOUNT_DETAILS_TOKEN_COUNT(router.query.address as string));
-
-    const accountData = two;
-
-    const tokenCount = fakeTokenCount;
+    const { data: tokenCount } = await axios.get(
+      ACCOUNT_DETAILS_TOKEN_COUNT(router.query.address as string),
+    );
 
     const newState: any = {
       loading: false,

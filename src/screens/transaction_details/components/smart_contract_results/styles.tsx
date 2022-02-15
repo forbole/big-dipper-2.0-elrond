@@ -5,10 +5,16 @@ export const useStyles = () => {
     (theme) => {
       return ({
         title: {
-          marginBottom: theme.spacing(2),
+          // marginBottom: theme.spacing(2),
         },
         itemWrap: {
-          margin: theme.spacing(2, 0),
+          '&:first-child': {
+            marginTop: theme.spacing(2),
+          },
+          '&:last-child': {
+            marginBottom: theme.spacing(2),
+          },
+          margin: theme.spacing(6, 0),
         },
         item: {
           marginBottom: theme.spacing(2),

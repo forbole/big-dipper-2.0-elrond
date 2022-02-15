@@ -8,3 +8,5 @@ export const NODE_DETAILS = (hash: string) => `/nodes/${hash}`;
 export const ACCOUNT_DETAILS = (hash: string) => `/accounts/${hash}`;
 export const VALIDATORS = '/validators';
 export const VALIDATOR_DETAILS = (hash: string) => `/validators/${hash}`;
+export const TOKENS = '/tokens';
+export const TOKEN_DETAILS = (token: string) => `/tokens/${token}`;

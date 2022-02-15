@@ -1,7 +1,7 @@
 import BlockIcon from '@assets/icon-block.svg';
 import HomeIcon from '@assets/icon-home.svg';
 import TransactionIcon from '@assets/icon-transaction.svg';
-// import ProposalsIcon from '@assets/icon-proposals.svg';
+import TokenIcon from '@assets/icon-token.svg';
 import UserIcon from '@assets/icon-user.svg';
 // import ParamIcon from '@assets/icon-param.svg';
 import {
@@ -9,6 +9,7 @@ import {
   BLOCKS,
   VALIDATORS,
   TRANSACTIONS,
+  TOKENS,
   // PROPOSALS,
   // PARAMS,
 } from '@utils/go_to_page';
@@ -40,11 +41,11 @@ export const getMenuItems = () => {
       url: TRANSACTIONS,
       icon: <TransactionIcon {...iconProps} />,
     },
-    // {
-    //   key: 'proposals',
-    //   url: PROPOSALS,
-    //   icon: <ProposalsIcon {...iconProps} />,
-    // },
+    {
+      key: 'tokens',
+      url: TOKENS,
+      icon: <TokenIcon {...iconProps} />,
+    },
     // {
     //   key: 'params',
     //   url: PARAMS,

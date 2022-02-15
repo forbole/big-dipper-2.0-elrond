@@ -5,7 +5,7 @@ import { getShardDisplay } from '@utils/get_shard_display';
 import { useStyles } from './styles';
 
 const Shard: React.FC<{to: number, from: number} & ComponentDefault> = (props) => {
-  const { t } = useTranslation('blocks');
+  const { t } = useTranslation('common');
   const classes = useStyles();
   const from = getShardDisplay(props.from);
   const to = getShardDisplay(props.to);

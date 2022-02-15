@@ -10,9 +10,6 @@ import {
 } from '@api';
 import { formatToken } from '@utils/format_token';
 import { AccountDetailsType } from './types';
-import {
-  two, fakeTokenCount,
-} from './fakeData';
 
 const defaultTokenUnit: TokenUnit = {
   value: '0',

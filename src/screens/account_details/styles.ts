@@ -15,23 +15,22 @@ export const useStyles = () => {
           gridGap: theme.spacing(1),
           [theme.breakpoints.up('lg')]: {
             gridGap: theme.spacing(2),
-            gridTemplateColumns: 'repeat(3, 1fr)',
           },
         },
         profile: {
-          [theme.breakpoints.up('lg')]: {
-            gridColumn: '1/4',
-          },
+          // [theme.breakpoints.up('lg')]: {
+          //   gridColumn: '1/4',
+          // },
         },
         overview: {
-          [theme.breakpoints.up('lg')]: {
-            gridColumn: '1/4',
-          },
+          // [theme.breakpoints.up('lg')]: {
+          //   gridColumn: '1/4',
+          // },
         },
         transactions: {
-          [theme.breakpoints.up('lg')]: {
-            gridColumn: '1/4',
-          },
+          // [theme.breakpoints.up('lg')]: {
+          //   gridColumn: '1/4',
+          // },
         },
       });
     },

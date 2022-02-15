@@ -1,11 +1,10 @@
 import React from 'react';
-import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
 import {
   Typography, Divider,
 } from '@material-ui/core';
-import { ACCOUNT_DETAILS } from '@utils/go_to_page';
+import { AvatarName } from '@components';
 import { useStyles } from './styles';
 import { OperationType } from '../../../../types';
 
@@ -17,22 +16,20 @@ const Mobile: React.FC<{items: OperationType[]} & ComponentDefault> = (props) =>
       action: x.action.replace(/([A-Z])/g, ' $1').toUpperCase(),
       identifier: x.identifier,
       sender: (
-        <Link href={ACCOUNT_DETAILS(x.sender)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.sender, {
-              beginning: 13, ending: 15,
-            })}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={x.sender}
+          name={getMiddleEllipsis(x.sender, {
+            beginning: 13, ending: 15,
+          })}
+        />
       ),
       receiver: (
-        <Link href={ACCOUNT_DETAILS(x.receiver)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.receiver, {
-              beginning: 13, ending: 15,
-            })}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={x.receiver}
+          name={getMiddleEllipsis(x.receiver, {
+            beginning: 13, ending: 15,
+          })}
+        />
       ),
     });
   });

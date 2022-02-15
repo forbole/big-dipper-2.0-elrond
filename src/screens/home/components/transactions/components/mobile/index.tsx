@@ -7,9 +7,11 @@ import {
   Typography, Divider,
 } from '@material-ui/core';
 import {
-  TRANSACTION_DETAILS, ACCOUNT_DETAILS,
+  TRANSACTION_DETAILS,
 } from '@utils/go_to_page';
-import { Result } from '@components';
+import {
+  Result, AvatarName,
+} from '@components';
 import { TransactionType } from '../../types';
 import { useStyles } from './styles';
 
@@ -29,22 +31,20 @@ const Mobile:React.FC<{ items: TransactionType[] } &ComponentDefault> = (props) 
         </Link>
       ),
       from: (
-        <Link href={ACCOUNT_DETAILS(x.from)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.from, {
-              beginning: 13, ending: 15,
-            })}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={x.from}
+          name={getMiddleEllipsis(x.from, {
+            beginning: 13, ending: 15,
+          })}
+        />
       ),
       to: (
-        <Link href={ACCOUNT_DETAILS(x.to)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.to, {
-              beginning: 13, ending: 15,
-            })}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={x.to}
+          name={getMiddleEllipsis(x.to, {
+            beginning: 13, ending: 15,
+          })}
+        />
       ),
       status: (
         <Result status={x.status} />

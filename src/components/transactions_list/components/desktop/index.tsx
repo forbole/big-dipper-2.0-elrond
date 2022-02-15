@@ -11,10 +11,10 @@ import {
   Typography,
 } from '@material-ui/core';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
+import { TRANSACTION_DETAILS } from '@utils/go_to_page';
 import {
-  TRANSACTION_DETAILS, ACCOUNT_DETAILS,
-} from '@utils/go_to_page';
-import { Result } from '@components';
+  Result, AvatarName,
+} from '@components';
 import dayjs from '@utils/dayjs';
 import { columns } from './utils';
 import { useStyles } from './styles';
@@ -29,29 +29,27 @@ const Desktop: React.FC<{items: TransactionType[]} & ComponentDefault> = (props)
         <Link href={TRANSACTION_DETAILS(x.hash)} passHref>
           <Typography variant="body1" className="value" component="a">
             {getMiddleEllipsis(x.hash, {
-              beginning: 13, ending: 15,
+              beginning: 10, ending: 10,
             })}
           </Typography>
         </Link>
       ),
       shard: <Shard to={x.toShard} from={x.fromShard} />,
       from: (
-        <Link href={ACCOUNT_DETAILS(x.from)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.from, {
-              beginning: 13, ending: 15,
-            })}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={x.from}
+          name={getMiddleEllipsis(x.from, {
+            beginning: 10, ending: 10,
+          })}
+        />
       ),
       to: (
-        <Link href={ACCOUNT_DETAILS(x.to)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.to, {
-              beginning: 13, ending: 15,
-            })}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={x.to}
+          name={getMiddleEllipsis(x.to, {
+            beginning: 10, ending: 10,
+          })}
+        />
       ),
       status: (
         <Result status={x.status} />

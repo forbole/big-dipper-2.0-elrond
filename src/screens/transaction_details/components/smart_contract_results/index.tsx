@@ -1,16 +1,15 @@
 import React from 'react';
 import classnames from 'classnames';
 import useTranslation from 'next-translate/useTranslation';
-import Link from 'next/link';
 import {
   Typography, Divider,
 } from '@material-ui/core';
 import {
   NoData,
   Box,
+  AvatarName,
 } from '@components';
 import { formatNumber } from '@utils/format_token';
-import { ACCOUNT_DETAILS } from '@utils/go_to_page';
 import { decodeBase64 } from '@utils/base64';
 import { ResultType } from '../../types';
 import { CodeBlock } from '..';
@@ -30,18 +29,16 @@ const SmartContractResults: React.FC<{results: ResultType[]} & ComponentDefault>
     return ({
       hash: x.hash,
       sender: (
-        <Link href={ACCOUNT_DETAILS(x.sender)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {x.sender}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={x.sender}
+          name={x.sender}
+        />
       ),
       receiver: (
-        <Link href={ACCOUNT_DETAILS(x.receiver)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {x.receiver}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={x.receiver}
+          name={x.receiver}
+        />
       ),
       value: `${formatNumber(x.value.value, x.value.exponent)} ${x.value.displayDenom.toUpperCase()}`,
       data: decodeBase64(x.data),

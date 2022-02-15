@@ -11,3 +11,4 @@
 - Add Node Details Page
 - Add Validator Details Page
 - Add delegator column to validators page
+- Add Account Details Page

@@ -3,15 +3,15 @@ import { Typography } from '@material-ui/core';
 import numeral from 'numeral';
 import Link from 'next/link';
 import {
-  BoxDetails, Result,
+  BoxDetails,
+  Result,
+  AvatarName,
 } from '@components';
 import dayjs, { formatDayJs } from '@utils/dayjs';
 import useTranslation from 'next-translate/useTranslation';
 import { useRecoilValue } from 'recoil';
 import { readDate } from '@recoil/settings';
-import {
-  ACCOUNT_DETAILS, MINIBLOCK_DETAILS,
-} from '@utils/go_to_page';
+import { MINIBLOCK_DETAILS } from '@utils/go_to_page';
 import { formatNumber } from '@utils/format_token';
 import { getShardDisplay } from '@utils/get_shard_display';
 import { chainConfig } from '@configs';
@@ -56,11 +56,10 @@ const Overview: React.FC<OverviewType & ComponentDefault> = (props) => {
             )
             {' '}
           </Typography>
-          <Link href={ACCOUNT_DETAILS(props.from)} passHref>
-            <Typography variant="body1" component="a">
-              {props.from}
-            </Typography>
-          </Link>
+          <AvatarName
+            address={props.from}
+            name={props.from}
+          />
         </div>
       ),
     },
@@ -76,11 +75,10 @@ const Overview: React.FC<OverviewType & ComponentDefault> = (props) => {
             )
             {' '}
           </Typography>
-          <Link href={ACCOUNT_DETAILS(props.to)} passHref>
-            <Typography variant="body1" component="a">
-              {props.to}
-            </Typography>
-          </Link>
+          <AvatarName
+            address={props.to}
+            name={props.to}
+          />
         </div>
       ),
     },

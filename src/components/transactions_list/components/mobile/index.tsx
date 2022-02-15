@@ -6,10 +6,10 @@ import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
 import {
   Typography, Divider,
 } from '@material-ui/core';
-import { Result } from '@components';
 import {
-  TRANSACTION_DETAILS, ACCOUNT_DETAILS,
-} from '@utils/go_to_page';
+  Result, AvatarName,
+} from '@components';
+import { TRANSACTION_DETAILS } from '@utils/go_to_page';
 import { useStyles } from './styles';
 import { Shard } from '..';
 
@@ -29,22 +29,20 @@ const Mobile: React.FC<{items: TransactionType[]} & ComponentDefault> = (props) 
       ),
       shard: <Shard to={x.toShard} from={x.fromShard} />,
       from: (
-        <Link href={ACCOUNT_DETAILS(x.from)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.from, {
-              beginning: 13, ending: 15,
-            })}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={x.from}
+          name={getMiddleEllipsis(x.from, {
+            beginning: 13, ending: 15,
+          })}
+        />
       ),
       to: (
-        <Link href={ACCOUNT_DETAILS(x.to)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.to, {
-              beginning: 13, ending: 15,
-            })}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={x.to}
+          name={getMiddleEllipsis(x.to, {
+            beginning: 13, ending: 15,
+          })}
+        />
       ),
       status: (
         <Result status={x.status} />

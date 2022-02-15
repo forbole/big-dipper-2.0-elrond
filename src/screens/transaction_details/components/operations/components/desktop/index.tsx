@@ -1,16 +1,14 @@
 import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
-import Link from 'next/link';
 import {
   Table,
   TableHead,
   TableRow,
   TableCell,
   TableBody,
-  Typography,
 } from '@material-ui/core';
+import { AvatarName } from '@components';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
-import { ACCOUNT_DETAILS } from '@utils/go_to_page';
 import { columns } from './utils';
 import { OperationType } from '../../../../types';
 
@@ -21,22 +19,20 @@ const Desktop: React.FC<{items: OperationType[]} & ComponentDefault> = (props) =
       action: x.action.replace(/([A-Z])/g, ' $1').toUpperCase(),
       identifier: x.identifier,
       sender: (
-        <Link href={ACCOUNT_DETAILS(x.sender)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.sender, {
-              beginning: 13, ending: 15,
-            })}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={x.sender}
+          name={getMiddleEllipsis(x.sender, {
+            beginning: 13, ending: 15,
+          })}
+        />
       ),
       receiver: (
-        <Link href={ACCOUNT_DETAILS(x.receiver)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.receiver, {
-              beginning: 13, ending: 15,
-            })}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={x.receiver}
+          name={getMiddleEllipsis(x.receiver, {
+            beginning: 13, ending: 15,
+          })}
+        />
       ),
     });
   });

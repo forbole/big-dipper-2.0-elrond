@@ -1,13 +1,11 @@
 import React from 'react';
 import numeral from 'numeral';
 import useTranslation from 'next-translate/useTranslation';
-import Link from 'next/link';
 import {
   BoxDetails,
+  AvatarName,
 } from '@components';
-import { ACCOUNT_DETAILS } from '@utils/go_to_page';
 import { formatNumber } from '@utils/format_token';
-import { Typography } from '@material-ui/core';
 import { ContractType } from '../../types';
 
 const ContractDetails: React.FC<{contract: ContractType} & ComponentDefault> = (props) => {
@@ -16,11 +14,10 @@ const ContractDetails: React.FC<{contract: ContractType} & ComponentDefault> = (
     {
       label: t('address'),
       detail: (
-        <Link href={ACCOUNT_DETAILS(props.contract.address)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {props.contract.address}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={props.contract.address}
+          name={props.contract.address}
+        />
       ),
     },
     {

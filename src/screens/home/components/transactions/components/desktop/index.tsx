@@ -10,9 +10,11 @@ import {
   TableBody,
   Typography,
 } from '@material-ui/core';
-import { Result } from '@components';
 import {
-  TRANSACTION_DETAILS, ACCOUNT_DETAILS,
+  Result, AvatarName,
+} from '@components';
+import {
+  TRANSACTION_DETAILS,
 } from '@utils/go_to_page';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
 import dayjs from '@utils/dayjs';
@@ -35,22 +37,20 @@ const Desktop:React.FC<{ items: TransactionType[] } &ComponentDefault> = (props)
         </Link>
       ),
       from: (
-        <Link href={ACCOUNT_DETAILS(x.from)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.from, {
-              beginning: 10, ending: 5,
-            })}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={x.from}
+          name={getMiddleEllipsis(x.from, {
+            beginning: 10, ending: 5,
+          })}
+        />
       ),
       to: (
-        <Link href={ACCOUNT_DETAILS(x.to)} passHref>
-          <Typography variant="body1" className="value" component="a">
-            {getMiddleEllipsis(x.to, {
-              beginning: 10, ending: 5,
-            })}
-          </Typography>
-        </Link>
+        <AvatarName
+          address={x.to}
+          name={getMiddleEllipsis(x.to, {
+            beginning: 10, ending: 5,
+          })}
+        />
       ),
       status: (
         <Result status={x.status} />

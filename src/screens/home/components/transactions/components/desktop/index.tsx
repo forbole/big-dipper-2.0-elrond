@@ -40,7 +40,7 @@ const Desktop:React.FC<{ items: TransactionType[] } &ComponentDefault> = (props)
         <AvatarName
           address={x.from}
           name={getMiddleEllipsis(x.from, {
-            beginning: 10, ending: 5,
+            beginning: 7, ending: 5,
           })}
         />
       ),
@@ -48,7 +48,7 @@ const Desktop:React.FC<{ items: TransactionType[] } &ComponentDefault> = (props)
         <AvatarName
           address={x.to}
           name={getMiddleEllipsis(x.to, {
-            beginning: 10, ending: 5,
+            beginning: 7, ending: 5,
           })}
         />
       ),

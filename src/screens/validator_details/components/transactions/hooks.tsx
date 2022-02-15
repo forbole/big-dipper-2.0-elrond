@@ -1,7 +1,6 @@
 import {
   useEffect, useState,
 } from 'react';
-import { useRouter } from 'next/router';
 import * as R from 'ramda';
 import axios from 'axios';
 import {
@@ -12,8 +11,7 @@ import { TransactionState } from './types';
 
 export const PAGE_SIZE = 10;
 
-export const useTransactions = () => {
-  const router = useRouter();
+export const useTransactions = (provider: string) => {
   const [state, setState] = useState<TransactionState>({
     page: 0,
     loading: true,
@@ -24,7 +22,7 @@ export const useTransactions = () => {
   useEffect(() => {
     getLatestTransactionCount();
     getTransactionsByPage(0);
-  }, [router.query.address]);
+  }, [provider]);
 
   const handleSetState = (stateChange: any) => {
     setState((prevState) => R.mergeDeepLeft(stateChange, prevState));
@@ -41,7 +39,7 @@ export const useTransactions = () => {
   const getLatestTransactionCount = async () => {
     try {
       const { data: total } = await axios.get(ACCOUNT_DETAILS_TRANSACTIONS_COUNT(
-        router.query.address as string,
+        provider,
       ));
       handleSetState({
         total,
@@ -54,7 +52,7 @@ export const useTransactions = () => {
   const getTransactionsByPage = async (page: number) => {
     try {
       const { data: transactionsData } = await axios.get(
-        ACCOUNT_DETAILS_TRANSACTIONS(router.query.address as string), {
+        ACCOUNT_DETAILS_TRANSACTIONS(provider), {
           params: {
             from: page * PAGE_SIZE,
             size: PAGE_SIZE,

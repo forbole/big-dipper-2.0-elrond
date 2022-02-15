@@ -13,7 +13,7 @@ import {
 import { useInterval } from '@hooks';
 import { NodeState } from './types';
 
-export const PAGE_SIZE = 25;
+export const PAGE_SIZE = 10;
 
 export const useBlocks = () => {
   const router = useRouter();

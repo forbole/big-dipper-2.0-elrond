@@ -12,6 +12,7 @@ import {
   Overview,
   ContractDetails,
   Nodes,
+  Transactions,
 } from './components';
 import { useStyles } from './styles';
 
@@ -42,6 +43,9 @@ const ValidatorDetails = () => {
               <ContractDetails className={classes.contractDetails} contract={state.contract} />
             )}
             <Nodes className={classes.nodes} />
+            {state.isProvider && (
+              <Transactions provider={state.contract.address} className={classes.transaction} />
+            )}
           </div>
         </LoadAndExist>
       </Layout>

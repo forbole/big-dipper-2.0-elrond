@@ -21,5 +21,6 @@
   "location": "Location",
   "website": "Website",
   "identity": "Identity",
-  "distribution": "Distribution"
+  "distribution": "Distribution",
+  "transactions": "Transactions"
 }

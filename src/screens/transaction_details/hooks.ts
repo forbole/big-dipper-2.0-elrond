@@ -5,9 +5,19 @@ import axios from 'axios';
 import * as R from 'ramda';
 import { useRouter } from 'next/router';
 import { chainConfig } from '@configs';
-import { formatToken } from '@utils/format_token';
+import {
+  formatToken, formatNumber,
+} from '@utils/format_token';
+import Big from 'big.js';
 import { TRANSACTION_DETAILS } from '@api';
 import { TransactionDetailsState } from './types';
+
+const defaultTokenUnit: TokenUnit = {
+  value: '0',
+  baseDenom: '',
+  displayDenom: '',
+  exponent: 0,
+};
 
 export const useTransactionDetails = () => {
   const router = useRouter();
@@ -23,6 +33,10 @@ export const useTransactionDetails = () => {
       timestamp: 0,
       status: '',
       miniblockHash: '',
+      gasLimit: 0,
+      gasPrice: defaultTokenUnit,
+      gasUsed: 0,
+      price: 0,
     },
     data: '',
     operations: [],
@@ -53,6 +67,10 @@ export const useTransactionDetails = () => {
         timestamp: transactionData.timestamp,
         status: transactionData.status,
         miniblockHash: transactionData.miniBlockHash,
+        gasUsed: transactionData.gasUsed,
+        gasLimit: transactionData.gasLimit,
+        gasPrice: formatToken(R.pathOr(0, ['gasPrice'], transactionData), chainConfig.primaryTokenUnit),
+        price: transactionData.price,
       };
 
       // action

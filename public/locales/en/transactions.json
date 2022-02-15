@@ -22,5 +22,8 @@
   "identifier": "Identifier",
   "operations": "Operations",
   "smartContractResults": "Smart Contract Results",
-  "value": "Value"
+  "value": "Value",
+  "gasUsedLimit": "Gas (Used/ Limit)",
+  "tokenPrice": "{{token}} Price",
+  "gasPrice": "Gas Price"
 }

@@ -31,5 +31,7 @@ export const two = {
   developerReward: '0',
 };
 
+export const fakeTokenCount = 4;
+
 // contract with balance
 // https://explorer.elrond.com/accounts/erd1qqqqqqqqqqqqqqqpqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzhllllsp9wvyl

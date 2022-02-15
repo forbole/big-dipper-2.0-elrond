@@ -7,6 +7,10 @@ export type OverviewType = {
   timestamp: number;
   status: string;
   miniblockHash: string;
+  gasUsed: number;
+  gasLimit: number;
+  gasPrice: TokenUnit;
+  price: number;
 }
 
 export type DataType = string;

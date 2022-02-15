@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
+import numeral from 'numeral';
 import Link from 'next/link';
 import {
   BoxDetails, Result,
@@ -11,7 +12,9 @@ import { readDate } from '@recoil/settings';
 import {
   ACCOUNT_DETAILS, MINIBLOCK_DETAILS,
 } from '@utils/go_to_page';
+import { formatNumber } from '@utils/format_token';
 import { getShardDisplay } from '@utils/get_shard_display';
+import { chainConfig } from '@configs';
 import { OverviewType } from '../../types';
 
 const Overview: React.FC<OverviewType & ComponentDefault> = (props) => {
@@ -42,36 +45,56 @@ const Overview: React.FC<OverviewType & ComponentDefault> = (props) => {
       ),
     },
     {
-      label: t('senderShard'),
-      detail: t(senderShard.key, {
-        num: senderShard.num,
-      }),
-    },
-    {
-      label: t('receiverShard'),
-      detail: t(receiverShard.key, {
-        num: receiverShard.num,
-      }),
-    },
-    {
       label: t('from'),
       detail: (
-        <Link href={ACCOUNT_DETAILS(props.from)} passHref>
-          <Typography variant="body1" component="a">
-            {props.from}
+        <div>
+          <Typography component="span">
+            (
+            {t(senderShard.key, {
+              num: senderShard.num,
+            })}
+            )
+            {' '}
           </Typography>
-        </Link>
+          <Link href={ACCOUNT_DETAILS(props.from)} passHref>
+            <Typography variant="body1" component="a">
+              {props.from}
+            </Typography>
+          </Link>
+        </div>
       ),
     },
     {
       label: t('to'),
       detail: (
-        <Link href={ACCOUNT_DETAILS(props.to)} passHref>
-          <Typography variant="body1" component="a">
-            {props.to}
+        <div>
+          <Typography component="span">
+            (
+            {t(receiverShard.key, {
+              num: receiverShard.num,
+            })}
+            )
+            {' '}
           </Typography>
-        </Link>
+          <Link href={ACCOUNT_DETAILS(props.to)} passHref>
+            <Typography variant="body1" component="a">
+              {props.to}
+            </Typography>
+          </Link>
+        </div>
       ),
+    },
+    {
+      label: t('tokenPrice', { token: chainConfig.primaryTokenUnit.toUpperCase() }),
+      detail: `$${props.price}`,
+    },
+    {
+      label: t('gasUsedLimit'),
+      detail: `${numeral(props.gasUsed).format('0,0')} / ${numeral(props.gasLimit).format('0,0')}`,
+    },
+    {
+      label: t('gasPrice'),
+      detail: `${formatNumber(props.gasPrice.value, props.gasPrice.exponent)} ${props.gasPrice.displayDenom.toUpperCase()}`,
     },
     {
       label: t('time'),

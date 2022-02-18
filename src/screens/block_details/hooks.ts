@@ -40,7 +40,8 @@ export const useBlockDetails = () => {
   const getBlockDetails = async () => {
     try {
       const { data: blockData } = await axios.get(BLOCK_DETAILS(router.query.hash as string));
-
+      const size = R.pathOr(0, ['size'], blockData);
+      const sizeTxs = R.pathOr(0, ['sizeTxs'], blockData);
       handleSetState({
         loading: false,
         overview: {
@@ -49,7 +50,7 @@ export const useBlockDetails = () => {
           proposer: blockData.proposer,
           timestamp: blockData.timestamp,
           txs: blockData.txCount,
-          size: blockData.sizeTxs,
+          size: size + sizeTxs,
           shard: blockData.shard,
           gasUsed: blockData.gasConsumed,
           gasProvided: blockData.maxGasLimit,

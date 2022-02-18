@@ -2,6 +2,8 @@ import React from 'react';
 import { VariableSizeList as List } from 'react-window';
 import useTranslation from 'next-translate/useTranslation';
 import AutoSizer from 'react-virtualized-auto-sizer';
+import Link from 'next/link';
+import { NODE_DETAILS } from '@utils/go_to_page';
 import {
   Divider, Typography,
 } from '@material-ui/core';
@@ -58,9 +60,11 @@ const Mobile: React.FC<{items: ConsensusType[]} & ComponentDefault> = (props) =>
                           <Typography variant="h4" className="label">
                             {t('validator')}
                           </Typography>
-                          <Typography className="value">
-                            {selectedItem}
-                          </Typography>
+                          <Link href={NODE_DETAILS(props.items[index])} passHref>
+                            <Typography variant="body1" className="value" component="a">
+                              {selectedItem}
+                            </Typography>
+                          </Link>
                         </div>
                       </div>
                       {/* single signature end */}

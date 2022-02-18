@@ -24,6 +24,7 @@ export const useNodeDetails = () => {
       version: '',
       pubkey: '',
       validator: '',
+      identity: '',
       rating: 0,
     },
     overview: {
@@ -76,11 +77,13 @@ export const useNodeDetails = () => {
           const nodeDataProvider = R.pathOr('', ['provider'], nodeData);
           validator = identity || nodeDataProvider;
         }
+
         return ({
           name: R.pathOr('', ['name'], nodeData),
           version: R.pathOr('', ['version'], nodeData),
           pubkey: R.pathOr('', ['bls'], nodeData),
           rating: R.pathOr(0, ['rating'], nodeData),
+          identity: nodeDataIdentity,
           validator,
         });
       };
@@ -219,7 +222,8 @@ export const useNodeDetails = () => {
   }) => {
     const { data: blocksData } = await axios.get(BLOCKS, {
       params: {
-        size: 25,
+        // size: 25,
+        size: 15,
         from: 0,
         validator,
         shard,

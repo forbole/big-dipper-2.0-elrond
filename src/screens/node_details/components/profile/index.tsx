@@ -41,7 +41,7 @@ const Profile: React.FC<{profile: ProfileType, showRating: boolean} & ComponentD
   if (props.profile.validator) {
     validator = (
       <div className="detail">
-        <Link href={VALIDATOR_DETAILS(props.profile.validator)} passHref>
+        <Link href={VALIDATOR_DETAILS(props.profile.identity)} passHref>
           <Typography variant="body1" className="value" component="a">
             {getMiddleEllipsis(props.profile.validator, ellipsis)}
           </Typography>

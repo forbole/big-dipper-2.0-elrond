@@ -6,7 +6,6 @@ import dayjs, { formatDayJs } from '@utils/dayjs';
 import useTranslation from 'next-translate/useTranslation';
 import { useRecoilValue } from 'recoil';
 import { readDate } from '@recoil/settings';
-import { formatBytes } from '@utils/format_bytes';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
 import { getShardDisplay } from '@utils/get_shard_display';
 import { OverviewType } from '../../types';
@@ -65,7 +64,10 @@ const Overview: React.FC<OverviewType & ComponentDefault> = (props) => {
       label: t('size'),
       detail: (
         <Typography variant="body1" className="value">
-          {formatBytes(props.size)}
+          {/* {formatBytes(props.size)} */}
+          {props.size / 1000}
+          {' '}
+          kB
         </Typography>
       ),
     },

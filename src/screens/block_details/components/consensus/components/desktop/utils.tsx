@@ -1,4 +1,7 @@
 import numeral from 'numeral';
+import Link from 'next/link';
+import { Typography } from '@material-ui/core';
+import { NODE_DETAILS } from '@utils/go_to_page';
 import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
 import { ConsensusType } from '../../../../types';
 
@@ -22,9 +25,15 @@ export const formatRows = (data: ConsensusType[]) => {
     return (
       {
         idx: numeral(i + 1).format('0,0'),
-        validator: getMiddleEllipsis(x, {
-          beginning: 40, ending: 30,
-        }),
+        validator: (
+          <Link href={NODE_DETAILS(x)} passHref>
+            <Typography variant="body1" className="value" component="a">
+              {getMiddleEllipsis(x, {
+                beginning: 40, ending: 30,
+              })}
+            </Typography>
+          </Link>
+        ),
       }
     );
   });

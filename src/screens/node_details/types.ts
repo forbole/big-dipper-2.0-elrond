@@ -3,6 +3,7 @@ export type ProfileType = {
   version: string;
   pubkey: string;
   validator: string;
+  identity: string;
   rating: number;
 }
 

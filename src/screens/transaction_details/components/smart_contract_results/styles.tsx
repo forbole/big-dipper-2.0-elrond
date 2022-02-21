@@ -4,6 +4,9 @@ export const useStyles = () => {
   const styles = makeStyles(
     (theme) => {
       return ({
+        root: {
+          overflow: 'auto',
+        },
         title: {
           // marginBottom: theme.spacing(2),
         },

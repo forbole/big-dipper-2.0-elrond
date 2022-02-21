@@ -4,18 +4,8 @@ import {
 import axios from 'axios';
 import * as R from 'ramda';
 import { useRouter } from 'next/router';
-import { chainConfig } from '@configs';
-import { formatToken } from '@utils/format_token';
 import { TOKEN_DETAILS } from '@api';
 import { TokenDetailsState } from './types';
-import { fakeTwo as fake } from './fakedata';
-
-const defaultTokenUnit: TokenUnit = {
-  value: '0',
-  baseDenom: '',
-  displayDenom: '',
-  exponent: 0,
-};
 
 export const useTokenDetails = () => {
   const router = useRouter();
@@ -34,6 +24,12 @@ export const useTokenDetails = () => {
       website: '',
       email: '',
     },
+    stats: {
+      identifier: '',
+      accounts: 0,
+      transactions: 0,
+      supply: '',
+    },
   });
 
   useEffect(() => {
@@ -46,10 +42,9 @@ export const useTokenDetails = () => {
 
   const getTokenDetail = async () => {
     try {
-      // const { data: tokenData } = await axios.get(
-      //   TOKEN_DETAILS(router.query.token as string),
-      // );
-      const tokenData = fake;
+      const { data: tokenData } = await axios.get(
+        TOKEN_DETAILS(router.query.token as string),
+      );
 
       // profile
       const profile = {
@@ -67,41 +62,19 @@ export const useTokenDetails = () => {
         email: R.pathOr('', ['assets', 'social', 'email'], tokenData),
       };
 
-      // // action
-      // let action = null;
-      // if (transactionData.action) {
-      //   action = {
-      //     category: R.pathOr('', ['category'], transactionData.action),
-      //     name: R.pathOr('', ['name'], transactionData.action),
-      //     description: R.pathOr('', ['description'], transactionData.action),
-      //   };
-      // }
-
-      // // operations
-      // const operations = R.pathOr([], ['operations'], transactionData).map((x) => {
-      //   return ({
-      //     action: R.pathOr('', ['action'], x),
-      //     sender: R.pathOr('', ['sender'], x),
-      //     receiver: R.pathOr('', ['receiver'], x),
-      //     identifier: R.pathOr('', ['identifier'], x),
-      //   });
-      // });
-
-      // // results
-      // const results = R.pathOr([], ['results'], transactionData).map((x) => {
-      //   return ({
-      //     hash: R.pathOr('', ['hash'], x),
-      //     sender: R.pathOr('', ['sender'], x),
-      //     receiver: R.pathOr('', ['receiver'], x),
-      //     data: R.pathOr('', ['data'], x),
-      //     value: formatToken(R.pathOr(0, ['value'], x), chainConfig.primaryTokenUnit),
-      //   });
-      // });
+      // stats
+      const stats = {
+        identifier: R.pathOr('', ['identifier'], tokenData),
+        accounts: R.pathOr(0, ['accounts'], tokenData),
+        transactions: R.pathOr(0, ['transactions'], tokenData),
+        supply: R.pathOr('', ['supply'], tokenData),
+      };
 
       handleSetState({
         loading: false,
         profile,
         overview,
+        stats,
       });
     } catch (error) {
       handleSetState({

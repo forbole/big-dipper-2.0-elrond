@@ -12,9 +12,17 @@ export type OverviewType = {
   email: string;
 }
 
+export type StatsType = {
+  identifier: string;
+  accounts: number;
+  transactions: number;
+  supply: string;
+}
+
 export type TokenDetailsState = {
   loading: boolean;
   exists: boolean;
   profile: ProfileType;
   overview: OverviewType;
+  stats: StatsType;
 }

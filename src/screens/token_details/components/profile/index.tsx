@@ -8,8 +8,6 @@ import {
   Avatar,
   Markdown,
 } from '@components';
-import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
-import { isBech32 } from '@utils/bech32';
 import { useStyles } from './styles';
 import { ProfileType } from '../../types';
 

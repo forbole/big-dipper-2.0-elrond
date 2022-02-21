@@ -36,7 +36,7 @@ const Overview: React.FC<{overview: OverviewType} & ComponentDefault> = (props) 
     },
     {
       label: t('email'),
-      detail: props.overview.email,
+      detail: props.overview.email || '-',
     },
   ];
 

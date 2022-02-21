@@ -25,12 +25,12 @@ export const useStyles = () => {
         },
         overview: {
           [theme.breakpoints.up('lg')]: {
-            gridColumn: '1/2',
+            gridColumn: '2/3',
           },
         },
         stats: {
           [theme.breakpoints.up('lg')]: {
-            gridColumn: '2/3',
+            gridColumn: '1/2',
           },
         },
         transaction: {

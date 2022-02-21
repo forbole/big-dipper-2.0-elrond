@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box } from '@components';
 
-const Overview: React.FC<ComponentDefault> = () => {
+const Overview: React.FC<ComponentDefault> = (props) => {
   return (
-    <Box>
+    <Box className={props.className}>
       Overview
     </Box>
   );

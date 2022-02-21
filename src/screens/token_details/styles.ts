@@ -9,13 +9,33 @@ export const useStyles = () => {
           '& a': {
             color: theme.palette.custom.fonts.highlight,
           },
-        },
-        box: {
-          minHeight: '500px',
-          height: '50vh',
+          display: 'grid',
+          gridTemplateRows: 'auto',
+          gridTemplateColumns: '1fr',
+          gridGap: theme.spacing(1),
           [theme.breakpoints.up('lg')]: {
-            height: '100%',
-            minHeight: '65vh',
+            gridGap: theme.spacing(2),
+            gridTemplateColumns: 'repeat(2, 1fr)',
+          },
+        },
+        profile: {
+          [theme.breakpoints.up('lg')]: {
+            gridColumn: '1/3',
+          },
+        },
+        overview: {
+          [theme.breakpoints.up('lg')]: {
+            gridColumn: '1/2',
+          },
+        },
+        stats: {
+          [theme.breakpoints.up('lg')]: {
+            gridColumn: '2/3',
+          },
+        },
+        transaction: {
+          [theme.breakpoints.up('lg')]: {
+            gridColumn: '1/3',
           },
         },
       });

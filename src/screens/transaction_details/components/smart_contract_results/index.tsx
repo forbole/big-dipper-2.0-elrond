@@ -46,7 +46,7 @@ const SmartContractResults: React.FC<{results: ResultType[]} & ComponentDefault>
   });
 
   return (
-    <Box>
+    <Box className={classes.root}>
       <Typography className={classes.title} variant="h2">{t('smartContractResults')}</Typography>
       <div>
         {formattedItems.map((x, i) => {

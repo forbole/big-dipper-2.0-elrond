@@ -16,9 +16,11 @@ import { formatNumber } from '@utils/format_token';
 import { getShardDisplay } from '@utils/get_shard_display';
 import { chainConfig } from '@configs';
 import { OverviewType } from '../../types';
+import { useStyles } from './styles';
 
 const Overview: React.FC<OverviewType & ComponentDefault> = (props) => {
   const { t } = useTranslation('transactions');
+  const classes = useStyles();
   const dateFormat = useRecoilValue(readDate);
   const senderShard = getShardDisplay(props.fromShard);
   const receiverShard = getShardDisplay(props.toShard);
@@ -45,42 +47,48 @@ const Overview: React.FC<OverviewType & ComponentDefault> = (props) => {
       ),
     },
     {
-      label: t('from'),
-      detail: (
+      label: (
         <div>
           <Typography component="span">
+            {t('from')}
+          </Typography>
+          {' '}
+          <Typography component="span" className={classes.shard}>
             (
-            {t(senderShard.key, {
+            {t(`common:${senderShard.key}`, {
               num: senderShard.num,
             })}
             )
-            {' '}
           </Typography>
-          <AvatarName
-            address={props.from}
-            name={props.from}
-          />
         </div>
+      ),
+      detail: (
+        <AvatarName
+          address={props.from}
+          name={props.from}
+        />
       ),
     },
     {
-      label: t('to'),
-      detail: (
+      label: (
         <div>
           <Typography component="span">
+            {t('to')}
+          </Typography>
+          {' '}
+          <Typography component="span" className={classes.shard}>
             (
-            {t(receiverShard.key, {
+            {t(`common:${receiverShard.key}`, {
               num: receiverShard.num,
             })}
             )
-            {' '}
           </Typography>
-          <AvatarName
-            address={props.to}
-            name={props.to}
-          />
         </div>
       ),
+      detail: <AvatarName
+        address={props.to}
+        name={props.to}
+      />,
     },
     {
       label: t('tokenPrice', { token: chainConfig.primaryTokenUnit.toUpperCase() }),

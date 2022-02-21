@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import useTranslation from 'next-translate/useTranslation';
 import { usePagination } from '@hooks';
 import {
@@ -41,7 +42,7 @@ const Transactions:React.FC<ComponentDefault> = (props) => {
   }
 
   return (
-    <Box className={props.className}>
+    <Box className={classnames(props.className, classes.root)}>
       <Typography variant="h2">{t('transactions')}</Typography>
       {component}
       <Pagination

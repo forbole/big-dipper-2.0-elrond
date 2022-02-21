@@ -30,6 +30,8 @@ export const ACCOUNT_DETAILS = (account: string) => `${BASE_URL}/accounts/${acco
 export const ACCOUNT_DETAILS_TOKEN_COUNT = (account: string) => `${BASE_URL}/accounts/${account}/tokens/count`;
 export const ACCOUNT_DETAILS_TRANSACTIONS = (account: string) => `${BASE_URL}/accounts/${account}/transactions`;
 export const ACCOUNT_DETAILS_TRANSACTIONS_COUNT = (account: string) => `${BASE_URL}/accounts/${account}/transactions/count`;
+export const ACCOUNT_DETAILS_TOKENS_COUNT = (account: string) => `${BASE_URL}/accounts/${account}/tokens/count`;
+export const ACCOUNT_DETAILS_TOKENS = (account: string) => `${BASE_URL}/accounts/${account}/tokens`;
 export const TOKENS = `${BASE_URL}/tokens`;
 export const TOKENS_COUNT = `${BASE_URL}/tokens/count`;
 export const TOKEN_DETAILS = (token: string) => `${BASE_URL}/tokens/${token}`;

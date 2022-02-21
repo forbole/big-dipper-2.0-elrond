@@ -36,7 +36,7 @@ const TransactionDetails = () => {
           exists={state.exists}
         >
           <Overview {...state.overview} />
-          {!!state.data && (
+          {/* {!!state.data && (
           <Data data={state.data} />
           )}
           {!!state.action && (
@@ -47,7 +47,7 @@ const TransactionDetails = () => {
           )}
           {!!state.results.length && (
           <SmartContractResults results={state.results} />
-          )}
+          )} */}
         </LoadAndExist>
       </Layout>
     </>

@@ -12,7 +12,7 @@ module.exports = {
     'rgx:^/validators': ['validators', 'nodes', 'transactions'],
     'rgx:^/nodes': ['nodes', 'blocks'],
     'rgx:^/accounts': ['accounts', 'transactions'],
-    'rgx:^/tokens': ['tokens'],
+    'rgx:^/tokens': ['tokens', 'transactions'],
   },
   loadLocaleFrom: (lang, ns) => import(`./public/locales/${lang}/${ns}.json`).then((m) => m.default),
 };

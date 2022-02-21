@@ -32,6 +32,7 @@ export const ACCOUNT_DETAILS_TRANSACTIONS = (account: string) => `${BASE_URL}/ac
 export const ACCOUNT_DETAILS_TRANSACTIONS_COUNT = (account: string) => `${BASE_URL}/accounts/${account}/transactions/count`;
 export const TOKENS = `${BASE_URL}/tokens`;
 export const TOKENS_COUNT = `${BASE_URL}/tokens/count`;
+export const TOKEN_DETAILS = (token: string) => `${BASE_URL}/tokens/${token}`;
 
 // tx detail with hero tag
 // https://elrondscan.com/transaction/d9ff0b785e9b794b0538669db18f7e5911549834283d05200bec0d7b63b123b4

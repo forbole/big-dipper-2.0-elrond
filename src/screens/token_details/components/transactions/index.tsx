@@ -1,4 +1,5 @@
 import React from 'react';
+import useTranslation from 'next-translate/useTranslation';
 import { usePagination } from '@hooks';
 import {
   Pagination,
@@ -7,16 +8,18 @@ import {
   Loading,
   TransactionsList,
 } from '@components';
+import { Typography } from '@material-ui/core';
 import { useStyles } from './styles';
 import {
-  useBlocks, PAGE_SIZE,
+  useTransactions, PAGE_SIZE,
 } from './hooks';
 
-const List = () => {
+const Transactions:React.FC<ComponentDefault> = (props) => {
+  const { t } = useTranslation('tokens');
   const classes = useStyles();
   const {
     state, handlePageChangeCallback,
-  } = useBlocks();
+  } = useTransactions();
   const {
     page,
     rowsPerPage,
@@ -38,7 +41,8 @@ const List = () => {
   }
 
   return (
-    <Box>
+    <Box className={props.className}>
+      <Typography variant="h2">{t('transactions')}</Typography>
       {component}
       <Pagination
         className={classes.paginate}
@@ -52,4 +56,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default Transactions;

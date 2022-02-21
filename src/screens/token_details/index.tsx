@@ -3,16 +3,22 @@ import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
 import {
   Layout,
+  LoadAndExist,
 } from '@components';
-// import {
-//   List,
-// } from './components';
+import {
+  Profile,
+  Overview,
+  Stats,
+  Transactions,
+} from './components';
 import { useStyles } from './styles';
+import { useTokenDetails } from './hooks';
 
 const TokenDetails = () => {
   const classes = useStyles();
   const { t } = useTranslation('tokens');
-
+  const { state } = useTokenDetails();
+  console.log(state, 'stat');
   return (
     <>
       <NextSeo
@@ -25,8 +31,15 @@ const TokenDetails = () => {
         navTitle={t('tokenDetails')}
         className={classes.root}
       >
-        start point
-        {/* <List /> */}
+        <LoadAndExist
+          loading={state.loading}
+          exists={state.exists}
+        >
+          <Profile className={classes.profile} profile={state.profile} />
+          <Stats className={classes.stats} stats={state.stats} />
+          <Overview className={classes.overview} overview={state.overview} />
+          <Transactions className={classes.transaction} />
+        </LoadAndExist>
       </Layout>
     </>
   );

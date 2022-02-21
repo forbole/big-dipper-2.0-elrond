@@ -3,17 +3,17 @@ import {
 } from 'react';
 import * as R from 'ramda';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 import {
-  POLLING_INTERVAL,
-  TRANSACTIONS,
   TRANSACTIONS_COUNT,
+  TRANSACTIONS,
 } from '@api';
-import { useInterval } from '@hooks';
 import { TransactionState } from './types';
 
-export const PAGE_SIZE = 25;
+export const PAGE_SIZE = 10;
 
-export const useBlocks = () => {
+export const useTransactions = () => {
+  const router = useRouter();
   const [state, setState] = useState<TransactionState>({
     page: 0,
     loading: true,
@@ -23,7 +23,8 @@ export const useBlocks = () => {
 
   useEffect(() => {
     getLatestTransactionCount();
-  }, []);
+    getTransactionsByPage(0);
+  }, [router.query.token]);
 
   const handleSetState = (stateChange: any) => {
     setState((prevState) => R.mergeDeepLeft(stateChange, prevState));
@@ -39,7 +40,11 @@ export const useBlocks = () => {
 
   const getLatestTransactionCount = async () => {
     try {
-      const { data: total } = await axios.get(TRANSACTIONS_COUNT);
+      const { data: total } = await axios.get(TRANSACTIONS_COUNT, {
+        params: {
+          token: router.query.token as string,
+        },
+      });
       handleSetState({
         total,
       });
@@ -50,12 +55,16 @@ export const useBlocks = () => {
 
   const getTransactionsByPage = async (page: number) => {
     try {
-      const { data: transactionsData } = await axios.get(TRANSACTIONS, {
-        params: {
-          from: page * PAGE_SIZE,
-          size: PAGE_SIZE,
+      const { data: transactionsData } = await axios.get(
+        TRANSACTIONS, {
+          params: {
+            from: page * PAGE_SIZE,
+            size: PAGE_SIZE,
+            withLogs: false,
+            token: router.query.token as string,
+          },
         },
-      });
+      );
 
       const items = transactionsData.map((x) => {
         return ({
@@ -77,14 +86,6 @@ export const useBlocks = () => {
       console.log(error.message);
     }
   };
-
-  const getTransactionsInterval = async () => {
-    if (state.page === 0) {
-      await getTransactionsByPage(0);
-    }
-  };
-
-  useInterval(getTransactionsInterval, POLLING_INTERVAL);
 
   return ({
     state,

@@ -5,8 +5,16 @@ export type ProfileType = {
   imageUrl: string;
 }
 
+export type OverviewType = {
+  owner: string;
+  decimals: number;
+  website: string;
+  email: string;
+}
+
 export type TokenDetailsState = {
   loading: boolean;
   exists: boolean;
   profile: ProfileType;
+  overview: OverviewType;
 }

@@ -8,7 +8,7 @@ import { chainConfig } from '@configs';
 import { formatToken } from '@utils/format_token';
 import { TOKEN_DETAILS } from '@api';
 import { TokenDetailsState } from './types';
-import { fake } from './fakedata';
+import { fakeTwo as fake } from './fakedata';
 
 const defaultTokenUnit: TokenUnit = {
   value: '0',
@@ -27,6 +27,12 @@ export const useTokenDetails = () => {
       identifier: '',
       description: '',
       imageUrl: '',
+    },
+    overview: {
+      owner: '',
+      decimals: 0,
+      website: '',
+      email: '',
     },
   });
 
@@ -51,6 +57,14 @@ export const useTokenDetails = () => {
         identifier: R.pathOr('', ['identifier'], tokenData),
         description: R.pathOr('', ['assets', 'description'], tokenData),
         imageUrl: R.pathOr('', ['assets', 'pngUrl'], tokenData),
+      };
+
+      // overview
+      const overview = {
+        owner: R.pathOr('', ['owner'], tokenData),
+        decimals: R.pathOr(0, ['decimals'], tokenData),
+        website: R.pathOr('', ['assets', 'website'], tokenData),
+        email: R.pathOr('', ['assets', 'social', 'email'], tokenData),
       };
 
       // // action
@@ -87,6 +101,7 @@ export const useTokenDetails = () => {
       handleSetState({
         loading: false,
         profile,
+        overview,
       });
     } catch (error) {
       handleSetState({

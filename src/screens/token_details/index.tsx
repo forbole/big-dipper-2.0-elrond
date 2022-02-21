@@ -36,7 +36,7 @@ const TokenDetails = () => {
           exists={state.exists}
         >
           <Profile className={classes.profile} profile={state.profile} />
-          <Overview className={classes.overview} />
+          <Overview className={classes.overview} overview={state.overview} />
           <Stats className={classes.stats} />
           <Transactions className={classes.transaction} />
         </LoadAndExist>

@@ -27,3 +27,38 @@ export const fake = {
   supply: '2510909',
   circulatingSupply: '2510909',
 };
+
+export const fakeTwo = {
+  identifier: 'MUNCHKIN-3865e6',
+  name: 'Munchkin',
+  ticker: 'MUNCHKIN',
+  owner: 'erd193ezmy673rrgw26qt5c2pzsjzewf0kdjxh7238ajvc2j206daxuqvk5gha',
+  minted: '100000000000000000000',
+  burnt: '0',
+  decimals: 8,
+  isPaused: false,
+  assets: {
+    website: 'https://munchkintoken.com/',
+    description: '$MUNCHKIN is a community MEME token trying to reach faraway galaxies.',
+    social: {
+      email: 'munchkintoken@gmail.com',
+      twitter: 'https://twitter.com/munchkinelrond',
+      whitepaper: 'https://munchkintoken.com',
+      telegram: 'https://t.me/munchkintokengroup',
+    },
+    status: 'active',
+    pngUrl: 'https://media.elrond.com/tokens/asset/MUNCHKIN-3865e6/logo.png',
+    svgUrl: 'https://media.elrond.com/tokens/asset/MUNCHKIN-3865e6/logo.svg',
+  },
+  transactions: 10048,
+  accounts: 5318,
+  canUpgrade: true,
+  canMint: false,
+  canBurn: true,
+  canChangeOwner: false,
+  canPause: false,
+  canFreeze: false,
+  canWipe: false,
+  supply: '420126175690',
+  circulatingSupply: '420126175690',
+};

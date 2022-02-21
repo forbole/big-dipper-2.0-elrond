@@ -14,3 +14,4 @@
 - Add Account Details Page
 - Add Transactions to Validator Details if provider
 - Add Tokens Page
+- Add Tokens Details Page

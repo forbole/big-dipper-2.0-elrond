@@ -1,5 +1,11 @@
-import List from './list';
+import Profile from './profile';
+import Stats from './stats';
+import Overview from './overview';
+import Transactions from './transactions';
 
 export {
-  List,
+  Profile,
+  Stats,
+  Overview,
+  Transactions,
 };

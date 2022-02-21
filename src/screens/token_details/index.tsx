@@ -4,9 +4,12 @@ import useTranslation from 'next-translate/useTranslation';
 import {
   Layout,
 } from '@components';
-// import {
-//   List,
-// } from './components';
+import {
+  Profile,
+  Overview,
+  Stats,
+  Transactions,
+} from './components';
 import { useStyles } from './styles';
 
 const TokenDetails = () => {
@@ -25,8 +28,10 @@ const TokenDetails = () => {
         navTitle={t('tokenDetails')}
         className={classes.root}
       >
-        start point
-        {/* <List /> */}
+        <Profile />
+        <Overview />
+        <Stats />
+        <Transactions />
       </Layout>
     </>
   );

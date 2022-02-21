@@ -2,8 +2,10 @@ import React from 'react';
 import { BoxDetails } from '@components';
 import useTranslation from 'next-translate/useTranslation';
 import { ActionType } from '../../types';
+import { useStyles } from './styles';
 
 const Action: React.FC<ActionType & ComponentDefault> = (props) => {
+  const classes = useStyles();
   const { t } = useTranslation('transactions');
 
   const details = [
@@ -18,6 +20,7 @@ const Action: React.FC<ActionType & ComponentDefault> = (props) => {
     {
       label: t('description'),
       detail: props.description.toUpperCase(),
+      className: classes.description,
     },
   ];
 

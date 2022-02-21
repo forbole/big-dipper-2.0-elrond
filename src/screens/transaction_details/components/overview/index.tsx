@@ -2,13 +2,11 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 import numeral from 'numeral';
 import Link from 'next/link';
-import { useScreenSize } from '@hooks';
 import {
   BoxDetails,
   Result,
   AvatarName,
 } from '@components';
-import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
 import dayjs, { formatDayJs } from '@utils/dayjs';
 import useTranslation from 'next-translate/useTranslation';
 import { useRecoilValue } from 'recoil';

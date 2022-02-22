@@ -1,13 +1,16 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
+import { Typography } from '@material-ui/core';
 import {
   Layout,
   TransactionsList,
   Box,
   LoadAndExist,
 } from '@components';
-import { Overview } from './components';
+import {
+  Overview, Transactions,
+} from './components';
 import { useBlockDetails } from './hooks';
 import { useStyles } from './styles';
 
@@ -32,9 +35,7 @@ const MiniBlockDetails = () => {
           exists={state.exists}
         >
           <Overview {...state.overview} />
-          <Box>
-            <TransactionsList items={state.transactions} />
-          </Box>
+          <Transactions />
         </LoadAndExist>
       </Layout>
     </>

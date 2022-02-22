@@ -9,11 +9,11 @@ export const columns:{
   },
   {
     key: 'shard',
-    width: 10,
+    width: 15,
   },
   {
     key: 'hash',
-    width: 35,
+    width: 30,
   },
   {
     key: 'txs',

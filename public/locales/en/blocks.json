@@ -23,5 +23,6 @@
   "receiverShard": "Receiver Shard",
   "senderBlockHash": "Sender Block",
   "receiverBlockHash": "Receiver Block",
-  "type": "Type"
+  "type": "Type",
+  "transactions": "Transactions"
 }

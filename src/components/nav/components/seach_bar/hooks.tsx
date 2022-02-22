@@ -1,21 +1,16 @@
-// import numeral from 'numeral';
-// import { chainConfig } from '@configs';
-// import { useRouter } from 'next/router';
-// import {
-//   VALIDATOR_DETAILS,
-//   ACCOUNT_DETAILS,
-//   BLOCK_DETAILS,
-//   TRANSACTION_DETAILS,
-//   PROFILE_DETAILS,
-// } from '@utils/go_to_page';
-// import { readValidator } from '@recoil/validators';
-// import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
+import {
+  ACCOUNT_DETAILS,
+} from '@utils/go_to_page';
 
 export const useSearchBar = (_t) => {
-  // const router = useRouter();
+  const router = useRouter();
 
-  const handleOnSubmit = (_value: string, _clear?: () => void) => {
-    console.log('search bar place holder');
+  const handleOnSubmit = (value: string, clear?: () => void) => {
+    router.push(ACCOUNT_DETAILS(value));
+    if (clear) {
+      clear();
+    }
   };
 
   return {

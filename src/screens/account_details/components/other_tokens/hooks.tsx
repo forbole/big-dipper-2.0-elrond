@@ -65,6 +65,8 @@ export const useOtherTokens = () => {
       );
 
       const items = data.map((x) => {
+        const balance = R.pathOr('0', ['balance'], x);
+        const exponent = R.pathOr(0, ['decimals'], x);
         return ({
           identifier: R.pathOr('', ['identifier'], x),
           name: R.pathOr('', ['name'], x),
@@ -72,7 +74,7 @@ export const useOtherTokens = () => {
             displayDenom: R.pathOr('', ['name'], x),
             baseDenom: R.pathOr('', ['name'], x),
             exponent: R.pathOr(0, ['decimals'], x),
-            value: formatTokenByExponent(R.pathOr('0', ['balance'], x)),
+            value: formatTokenByExponent(balance, exponent),
           },
           imageUrl: R.pathOr('', ['assets', 'pngUrl'], x),
         });

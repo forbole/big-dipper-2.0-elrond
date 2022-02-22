@@ -19,8 +19,7 @@ const List: React.FC<{items: OtherTokenType[] } & ComponentDefault> = (props) =>
   return (
     <>
       {isDesktop ? (
-        // <Desktop items={props.items} />
-        <Mobile items={props.items} />
+        <Desktop items={props.items} />
       ) : (
         <Mobile items={props.items} />
       )}

@@ -13,7 +13,7 @@ import { OtherTokensState } from './types';
 
 export const PAGE_SIZE = 10;
 
-export const useOtherTokens = () => {
+export const useTokens = () => {
   const router = useRouter();
   const [state, setState] = useState<OtherTokensState>({
     page: 0,

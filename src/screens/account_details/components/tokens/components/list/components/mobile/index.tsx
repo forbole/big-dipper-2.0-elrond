@@ -19,6 +19,7 @@ const Mobile: React.FC<{items: OtherTokenType[]} & ComponentDefault> = (props) =
         <AvatarName
           address={x.identifier}
           name={x.name}
+          imageUrl={x.imageUrl}
           href={TOKEN_DETAILS}
         />
       ),

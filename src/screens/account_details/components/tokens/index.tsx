@@ -12,15 +12,15 @@ import { Typography } from '@material-ui/core';
 import { useStyles } from './styles';
 import { List } from './components';
 import {
-  useOtherTokens, PAGE_SIZE,
+  useTokens, PAGE_SIZE,
 } from './hooks';
 
-const OtherTokens:React.FC<ComponentDefault> = (props) => {
+const Tokens:React.FC<ComponentDefault> = (props) => {
   const { t } = useTranslation('accounts');
   const classes = useStyles();
   const {
     state, handlePageChangeCallback,
-  } = useOtherTokens();
+  } = useTokens();
   const {
     page,
     rowsPerPage,
@@ -43,7 +43,7 @@ const OtherTokens:React.FC<ComponentDefault> = (props) => {
 
   return (
     <Box className={classnames(props.className, classes.root)}>
-      <Typography variant="h2">{t('otherTokens')}</Typography>
+      <Typography variant="h2">{t('tokens')}</Typography>
       {component}
       <Pagination
         className={classes.paginate}
@@ -57,4 +57,4 @@ const OtherTokens:React.FC<ComponentDefault> = (props) => {
   );
 };
 
-export default OtherTokens;
+export default Tokens;

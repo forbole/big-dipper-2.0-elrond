@@ -18,3 +18,4 @@
 - Add Tokens to Account Details
 - Update searchbar with basic logic
 - Update homepage to setup some loading indicator
+- Remove tx options from settings

@@ -1,11 +1,8 @@
 import React from 'react';
 import { NextSeo } from 'next-seo';
 import useTranslation from 'next-translate/useTranslation';
-import { Typography } from '@material-ui/core';
 import {
   Layout,
-  TransactionsList,
-  Box,
   LoadAndExist,
 } from '@components';
 import {

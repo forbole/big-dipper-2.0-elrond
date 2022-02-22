@@ -12,5 +12,4 @@ export type BlockDetailsState = {
   loading: boolean;
   exists: boolean;
   overview: OverviewType;
-  transactions: TransactionType[];
 }

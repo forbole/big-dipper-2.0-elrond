@@ -57,6 +57,7 @@ export const useStyles = () => {
           },
           '& .label': {
             marginBottom: theme.spacing(1),
+            color: theme.palette.custom.fonts.fontThree,
           },
           '& .detail': {
             '&.MuiTypography-body1': {

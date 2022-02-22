@@ -9,15 +9,15 @@ export const columns:{
   },
   {
     key: 'shard',
-    width: 20,
+    width: 16,
   },
   {
     key: 'from',
-    width: 20,
+    width: 22,
   },
   {
     key: 'to',
-    width: 20,
+    width: 22,
   },
   {
     key: 'status',

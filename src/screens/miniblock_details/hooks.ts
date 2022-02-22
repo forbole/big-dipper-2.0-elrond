@@ -5,7 +5,7 @@ import axios from 'axios';
 import * as R from 'ramda';
 import { useRouter } from 'next/router';
 import {
-  MINIBLOCK_DETAILS, TRANSACTIONS,
+  MINIBLOCK_DETAILS,
 } from '@api';
 import { BlockDetailsState } from './types';
 
@@ -23,12 +23,10 @@ export const useBlockDetails = () => {
       timestamp: 0,
       type: '',
     },
-    transactions: [],
   });
 
   useEffect(() => {
     getBlockDetails();
-    getTransactions();
   }, [router.query.hash]);
 
   const handleSetState = (stateChange: any) => {
@@ -56,34 +54,6 @@ export const useBlockDetails = () => {
         loading: false,
         exists: false,
       });
-      console.log(error.message);
-    }
-  };
-
-  const getTransactions = async () => {
-    try {
-      const { data: transactionsData } = await axios.get(TRANSACTIONS, {
-        params: {
-          miniBlockHash: router.query.hash,
-        },
-      });
-
-      const transactions = transactionsData.map((x) => {
-        return ({
-          hash: x.txHash,
-          fromShard: x.senderShard,
-          toShard: x.receiverShard,
-          from: x.sender,
-          to: x.receiver,
-          timestamp: x.timestamp,
-          status: x.status,
-        });
-      });
-
-      handleSetState({
-        transactions,
-      });
-    } catch (error) {
       console.log(error.message);
     }
   };

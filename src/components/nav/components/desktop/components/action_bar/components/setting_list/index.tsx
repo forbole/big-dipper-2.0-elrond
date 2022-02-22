@@ -17,7 +17,7 @@ import {
 } from '@material-ui/core';
 import { Close as CloseIcon } from '@material-ui/icons';
 import {
-  THEME_LIST, DATE_LIST, TX_LIST,
+  THEME_LIST, DATE_LIST,
 } from '@recoil/settings';
 import { useSettingList } from './hooks';
 import { useStyles } from './styles';

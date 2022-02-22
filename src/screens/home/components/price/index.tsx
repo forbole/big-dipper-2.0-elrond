@@ -19,17 +19,18 @@ import {
 import dayjs from '@utils/dayjs';
 import { useStyles } from './styles';
 import { usePrice } from './hooks';
+import { PriceType } from '../../types';
 
-const Price: React.FC<ComponentDefault> = (props) => {
+const Price: React.FC<{price: PriceType[]} & ComponentDefault> = (props) => {
   const {
     classes, theme,
   } = useStyles();
   const { t } = useTranslation('home');
   const {
-    state, tickPriceFormatter,
+    tickPriceFormatter,
   } = usePrice();
 
-  const formatItems = state.items.map((x) => {
+  const formatItems = props.price.map((x) => {
     return ({
       time: dayjs(x.time).format('MMM DD'),
       value: x.value,

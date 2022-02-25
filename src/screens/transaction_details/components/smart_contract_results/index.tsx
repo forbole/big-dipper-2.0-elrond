@@ -80,9 +80,7 @@ const SmartContractResults: React.FC<{results: ResultType[]} & ComponentDefault>
                     <Typography variant="h4" className="label">
                       {t('receiver')}
                     </Typography>
-                    <Typography variant="body1" className="value">
-                      {x.receiver}
-                    </Typography>
+                    {x.receiver}
                   </div>
                 </div>
                 <div className={classnames(classes.item, classes.mobile)}>

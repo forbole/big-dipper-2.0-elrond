@@ -5,7 +5,9 @@ import axios from 'axios';
 import * as R from 'ramda';
 import { useRouter } from 'next/router';
 import { chainConfig } from '@configs';
-import { formatToken } from '@utils/format_token';
+import {
+  formatToken, formatTokenByExponent,
+} from '@utils/format_token';
 import { TRANSACTION_DETAILS } from '@api';
 import { TransactionDetailsState } from './types';
 
@@ -82,11 +84,22 @@ export const useTransactionDetails = () => {
 
       // operations
       const operations = R.pathOr([], ['operations'], transactionData).map((x) => {
+        const decimals = R.pathOr(0, ['decimals'], x);
+        const value = formatTokenByExponent(
+          R.pathOr('0', ['value'], x),
+          decimals,
+        );
         return ({
           action: R.pathOr('', ['action'], x),
           sender: R.pathOr('', ['sender'], x),
           receiver: R.pathOr('', ['receiver'], x),
           identifier: R.pathOr('', ['identifier'], x),
+          value: {
+            value,
+            baseDenom: R.pathOr('', ['name'], x),
+            displayDenom: R.pathOr('', ['name'], x),
+            exponent: decimals,
+          },
         });
       });
 

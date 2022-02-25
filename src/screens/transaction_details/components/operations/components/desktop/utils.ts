@@ -5,7 +5,7 @@ export const columns:{
 }[] = [
   {
     key: 'action',
-    width: 20,
+    width: 15,
   },
   {
     key: 'sender',
@@ -16,7 +16,8 @@ export const columns:{
     width: 30,
   },
   {
-    key: 'identifier',
-    width: 20,
+    key: 'value',
+    width: 25,
+    align: 'right',
   },
 ];

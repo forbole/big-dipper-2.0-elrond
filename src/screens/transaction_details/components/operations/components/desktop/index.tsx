@@ -1,5 +1,6 @@
 import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
+import { formatNumber } from '@utils/format_token';
 import {
   Table,
   TableHead,
@@ -34,6 +35,7 @@ const Desktop: React.FC<{items: OperationType[]} & ComponentDefault> = (props) =
           })}
         />
       ),
+      value: `${formatNumber(x.value.value, x.value.exponent)} ${x.value.displayDenom.toUpperCase()}`,
     });
   });
   return (

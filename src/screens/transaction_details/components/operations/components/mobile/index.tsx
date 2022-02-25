@@ -1,6 +1,6 @@
 import React from 'react';
 import useTranslation from 'next-translate/useTranslation';
-import { getMiddleEllipsis } from '@utils/get_middle_ellipsis';
+import { formatNumber } from '@utils/format_token';
 import {
   Typography, Divider,
 } from '@material-ui/core';
@@ -18,19 +18,16 @@ const Mobile: React.FC<{items: OperationType[]} & ComponentDefault> = (props) =>
       sender: (
         <AvatarName
           address={x.sender}
-          name={getMiddleEllipsis(x.sender, {
-            beginning: 13, ending: 15,
-          })}
+          name={x.sender}
         />
       ),
       receiver: (
         <AvatarName
           address={x.receiver}
-          name={getMiddleEllipsis(x.receiver, {
-            beginning: 13, ending: 15,
-          })}
+          name={x.receiver}
         />
       ),
+      value: `${formatNumber(x.value.value, x.value.exponent)} ${x.value.displayDenom.toUpperCase()}`,
     });
   });
 
@@ -57,8 +54,14 @@ const Mobile: React.FC<{items: OperationType[]} & ComponentDefault> = (props) =>
                 <Typography variant="h4" className="label">
                   {t('receiver')}
                 </Typography>
+                {x.receiver}
+              </div>
+              <div className={classes.item}>
+                <Typography variant="h4" className="label">
+                  {t('value')}
+                </Typography>
                 <Typography variant="body1" className="value">
-                  {x.receiver}
+                  {x.value}
                 </Typography>
               </div>
               <div className={classes.item}>

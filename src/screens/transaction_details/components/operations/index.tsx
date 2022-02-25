@@ -24,7 +24,7 @@ const Operations: React.FC<{items: OperationType[]} & ComponentDefault> = (props
   }
 
   return (
-    <Box>
+    <Box className={classes.root}>
       <Typography className={classes.title} variant="h2">{t('operations')}</Typography>
       {isDesktop ? (
         <Desktop items={props.items} />

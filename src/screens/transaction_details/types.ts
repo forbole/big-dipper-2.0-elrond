@@ -26,6 +26,7 @@ export type OperationType = {
   sender: string;
   receiver: string;
   identifier: string;
+  value: TokenUnit;
 }
 
 export type ResultType = {

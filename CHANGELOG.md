@@ -19,3 +19,4 @@
 - Update searchbar with basic logic
 - Update homepage to setup some loading indicator
 - Remove tx options from settings
+- Add value to tx details operations with link to token details

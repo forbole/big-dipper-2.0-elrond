@@ -1,6 +1,9 @@
 import React from 'react';
+import * as R from 'ramda';
 import useTranslation from 'next-translate/useTranslation';
 import { formatNumber } from '@utils/format_token';
+import Link from 'next/link';
+import { TOKEN_DETAILS } from '@utils/go_to_page';
 import {
   Typography, Divider,
 } from '@material-ui/core';
@@ -12,6 +15,7 @@ const Mobile: React.FC<{items: OperationType[]} & ComponentDefault> = (props) =>
   const { t } = useTranslation('transactions');
   const classes = useStyles();
   const formattedItems = props.items.map((x) => {
+    const isToken = R.pathOr('', ['identifier'], x).split('-').length === 2;
     return ({
       action: x.action.replace(/([A-Z])/g, ' $1').toUpperCase(),
       identifier: x.identifier,
@@ -27,7 +31,27 @@ const Mobile: React.FC<{items: OperationType[]} & ComponentDefault> = (props) =>
           name={x.receiver}
         />
       ),
-      value: `${formatNumber(x.value.value, x.value.exponent)} ${x.value.displayDenom.toUpperCase()}`,
+      value: (
+        isToken ? (
+          <div>
+            <Typography component="span">
+              {formatNumber(x.value.value, x.value.exponent)}
+              {' '}
+            </Typography>
+            <Link href={TOKEN_DETAILS(x.identifier)} passHref>
+              <Typography component="a">
+                {x.value.displayDenom.toUpperCase()}
+              </Typography>
+            </Link>
+          </div>
+        ) : (
+          <Typography>
+            {formatNumber(x.value.value, x.value.exponent)}
+            {' '}
+            {x.value.displayDenom.toUpperCase()}
+          </Typography>
+        )
+      ),
     });
   });
 
@@ -60,17 +84,7 @@ const Mobile: React.FC<{items: OperationType[]} & ComponentDefault> = (props) =>
                 <Typography variant="h4" className="label">
                   {t('value')}
                 </Typography>
-                <Typography variant="body1" className="value">
-                  {x.value}
-                </Typography>
-              </div>
-              <div className={classes.item}>
-                <Typography variant="h4" className="label">
-                  {t('identifier')}
-                </Typography>
-                <Typography variant="body1" className="value">
-                  {x.identifier}
-                </Typography>
+                {x.value}
               </div>
             </div>
             {i !== formattedItems.length - 1 && <Divider />}

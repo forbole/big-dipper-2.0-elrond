@@ -1,6 +1,5 @@
 import React from 'react';
 import classnames from 'classnames';
-import useTranslation from 'next-translate/useTranslation';
 import {
   Box,
   LoadAndExist,
@@ -16,7 +15,6 @@ import { TabType } from './types';
 const List: React.FC<{
   className?: string;
 }> = ({ className }) => {
-  const { t } = useTranslation('validators');
   const classes = useStyles();
   const {
     state,

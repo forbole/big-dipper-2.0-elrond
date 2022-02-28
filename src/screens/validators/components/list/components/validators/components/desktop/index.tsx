@@ -16,6 +16,7 @@ import {
 } from '@utils/go_to_page';
 import { useStyles } from './styles';
 import { fetchColumns } from './utils';
+import { VotingPower } from '..';
 import { ValidatorType } from '../../../../types';
 
 const Desktop: React.FC<{
@@ -46,6 +47,13 @@ const Desktop: React.FC<{
           imageUrl={x.validator.imageUrl}
           name={x.validator.name}
           href={x.isNode ? NODE_DETAILS : VALIDATOR_DETAILS}
+        />
+      ),
+      locked: (
+        <VotingPower
+          percentDisplay={`${x.stakePercent}%`}
+          percentage={x.stakePercent}
+          content={formatNumber(x.locked.value, 2)}
         />
       ),
       stake: `${formatNumber(x.stake.value, x.stake.exponent)} ${x.stake.displayDenom.toUpperCase()}`,

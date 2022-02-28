@@ -10,6 +10,7 @@ const SingleValidator: React.FC<{
   className?: string;
   idx: string;
   validator: React.ReactNode;
+  locked: React.ReactNode;
   stake: string;
   nodes: string;
   delegators: string;
@@ -29,18 +30,24 @@ const SingleValidator: React.FC<{
             {props.idx}
           </Typography>
         </div>
-        <div className={classes.item}>
+        {/* <div className={classes.item}>
           <Typography variant="h4" className="label">
             {t('stake')}
           </Typography>
           {props.stake}
-        </div>
+        </div> */}
       </div>
       <div className={classes.item}>
         <Typography variant="h4" className="label">
           {t('validator')}
         </Typography>
         {props.validator}
+      </div>
+      <div className={classes.item}>
+        <Typography variant="h4" className="label">
+          {t('locked')}
+        </Typography>
+        {props.locked}
       </div>
       <div className={classes.flex}>
         <div className={classes.item}>

@@ -6,7 +6,9 @@ export type TabType = {
 
 export type ValidatorType = {
   validator: AvatarName;
+  locked: TokenUnit;
   stake: TokenUnit;
+  stakePercent: number;
   commission: number;
   nodes: number;
   apr: number;

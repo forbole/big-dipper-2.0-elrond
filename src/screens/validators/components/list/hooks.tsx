@@ -3,10 +3,15 @@ import {
 } from 'react';
 import * as R from 'ramda';
 import axios from 'axios';
+import Big from 'big.js';
 import {
-  IDENTITIES, PROVIDERS,
+  IDENTITIES,
+  PROVIDERS,
+  STAKE,
 } from '@api';
-import { formatToken } from '@utils/format_token';
+import {
+  formatToken, formatNumber,
+} from '@utils/format_token';
 import { chainConfig } from '@configs';
 import {
   ValidatorsState,
@@ -44,8 +49,15 @@ export const useValidators = () => {
 
   const getValidators = async () => {
     try {
-      const { data: validatorsData } = await axios.get(IDENTITIES);
-      const { data: providersData } = await axios.get(PROVIDERS);
+      const [validatorsDataRaw, providersDataRaw, stakeDataRaw] = await Promise.allSettled([
+        axios.get(IDENTITIES),
+        axios.get(PROVIDERS),
+        axios.get(STAKE),
+      ]);
+
+      const validatorsData = R.pathOr([], ['value', 'data'], validatorsDataRaw);
+      const providersData = R.pathOr([], ['value', 'data'], providersDataRaw);
+      const stakeData = R.pathOr({}, ['value', 'data'], stakeDataRaw);
 
       // identities
       const identities = {};
@@ -104,22 +116,33 @@ export const useValidators = () => {
         allProviderData[validator.address] = x;
       });
 
+      const totalStaked = R.pathOr('0', ['totalStaked'], stakeData);
+
       const validators = R.keys(allValidators).map((x) => {
         const validator = allValidators[x];
         const validatorData = allValidatorData[x] || {};
         const providerData = allProviderData[x] || {};
         const isNode = allNodes[x] || false;
         const data = R.mergeAll([providerData, validatorData]);
+
+        const locked = R.pathOr('0', ['locked'], data);
+        const stakePercentString = Big(locked).div(totalStaked === '0' ? 1 : totalStaked).times(100).toFixed(3);
+
         return ({
           validator,
           stake: formatToken(
             R.pathOr('0', ['stake'], data),
             chainConfig.primaryTokenUnit,
           ),
+          locked: formatToken(
+            locked,
+            chainConfig.primaryTokenUnit,
+          ),
           nodes: R.pathOr(0, ['validators'], data),
           commission: R.pathOr(undefined, ['serviceFee'], data),
           apr: R.pathOr(undefined, ['apr'], data),
           delegators: R.pathOr(undefined, ['numUsers'], data),
+          stakePercent: Number(formatNumber(stakePercentString, 2)),
           isNode,
         });
       });

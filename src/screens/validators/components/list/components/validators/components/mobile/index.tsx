@@ -8,14 +8,13 @@ import { AvatarName } from '@components';
 import {
   VALIDATOR_DETAILS, NODE_DETAILS,
 } from '@utils/go_to_page';
-import { isBech32 } from '@utils/bech32';
 import {
   useList,
   useListRow,
 } from '@hooks';
 import { formatNumber } from '@utils/format_token';
-import NodeDetails from '@src/screens/node_details';
 import { SingleValidator } from './component';
+import { VotingPower } from '..';
 import { ValidatorType } from '../../../../types';
 import { useStyles } from './styles';
 
@@ -41,6 +40,13 @@ const Mobile: React.FC<{
           imageUrl={x.validator.imageUrl}
           name={x.validator.name}
           href={x.isNode ? NODE_DETAILS : VALIDATOR_DETAILS}
+        />
+      ),
+      locked: (
+        <VotingPower
+          percentDisplay={`${x.stakePercent}%`}
+          percentage={x.stakePercent}
+          content={formatNumber(x.locked.value, 2)}
         />
       ),
       stake: `${formatNumber(x.stake.value, x.stake.exponent)} ${x.stake.displayDenom.toUpperCase()}`,

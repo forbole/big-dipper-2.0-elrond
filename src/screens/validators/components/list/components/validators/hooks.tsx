@@ -1,12 +1,9 @@
 import { useState } from 'react';
 import * as R from 'ramda';
-import Big from 'big.js';
 import { ValidatorsState } from './types';
 import { ValidatorType } from '../../types';
 
-// .sort((a, b) => (Big(a.amount.value).lt(b.amount.value) ? 1 : -1));
-
-export const useValidators = (search: string) => {
+export const useProviders = (search: string) => {
   const [state, setState] = useState<ValidatorsState>({
     sortKey: 'stake.value',
     sortDirection: 'desc',
@@ -45,17 +42,18 @@ export const useValidators = (search: string) => {
         let compareA = R.pathOr(undefined, [...state.sortKey.split('.')], a);
         let compareB = R.pathOr(undefined, [...state.sortKey.split('.')], b);
 
-        const specialCases = ['stake.value', 'topUp.value'];
-
-        if (specialCases.includes(state.sortKey)) {
+        if (state.sortKey === 'stake.value') {
           compareA = Number(compareA);
           compareB = Number(compareB);
-          if (Big(compareA).lt(compareB)) {
-            return state.sortDirection === 'asc' ? -1 : 1;
-          }
-          if (Big(compareA).gt(compareB)) {
-            return state.sortDirection === 'asc' ? 1 : -1;
-          }
+        } else if (typeof compareA === 'string') {
+          compareA = compareA.toLowerCase();
+          compareB = compareB.toLowerCase();
+        }
+
+        const edgeCases = ['commission', 'apr', 'delegators'];
+        if (edgeCases.includes(state.sortKey)) {
+          compareA = Number(compareA || 0);
+          compareB = Number(compareB || 0);
         } else if (typeof compareA === 'string') {
           compareA = compareA.toLowerCase();
           compareB = compareB.toLowerCase();

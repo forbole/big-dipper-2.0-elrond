@@ -1,18 +1,16 @@
 import React from 'react';
 import classnames from 'classnames';
-import dynamic from 'next/dynamic';
 import {
   Box,
   LoadAndExist,
   TabPanel,
 } from '@components';
-import { Tabs } from './components';
+import {
+  Validators, Tabs,
+} from './components';
 import { useStyles } from './styles';
 import { useValidators } from './hooks';
 import { TabType } from './types';
-
-const Validators = dynamic(() => import('./components/validators'));
-const Providers = dynamic(() => import('./components/providers'));
 
 const List: React.FC<{
   className?: string;
@@ -32,16 +30,6 @@ const List: React.FC<{
         <Validators
           search={state.search}
           items={state.validators}
-        />
-      ),
-    },
-    {
-      id: 1,
-      key: 'providers',
-      component: (
-        <Providers
-          search={state.search}
-          items={state.providers}
         />
       ),
     },

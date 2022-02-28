@@ -1,9 +1,7 @@
-import Tabs from './tabs';
 import Validators from './validators';
-import Providers from './providers';
+import Tabs from './tabs';
 
 export {
-  Tabs,
   Validators,
-  Providers,
+  Tabs,
 };

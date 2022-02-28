@@ -12,8 +12,7 @@ import {
   AvatarName,
 } from '@components';
 import {
-  NODE_DETAILS,
-  VALIDATOR_DETAILS,
+  VALIDATOR_DETAILS, NODE_DETAILS,
 } from '@utils/go_to_page';
 import { useStyles } from './styles';
 import { fetchColumns } from './utils';
@@ -47,7 +46,7 @@ const Desktop: React.FC<{
           address={x.validator.address}
           imageUrl={x.validator.imageUrl}
           name={x.validator.name}
-          href={x.validator.address ? VALIDATOR_DETAILS : NODE_DETAILS}
+          href={x.isNode ? NODE_DETAILS : VALIDATOR_DETAILS}
         />
       ),
       locked: (
@@ -57,9 +56,11 @@ const Desktop: React.FC<{
           content={formatNumber(x.locked.value, 2)}
         />
       ),
-      stake: `${formatNumber(x.stake.value, 2)} ${x.stake.displayDenom.toUpperCase()}`,
-      topUp: `${formatNumber(x.topUp.value, 2)} ${x.stake.displayDenom.toUpperCase()}`,
-      nodes: numeral(x.nodes).format('0,0'),
+      stake: `${formatNumber(x.stake.value, x.stake.exponent)} ${x.stake.displayDenom.toUpperCase()}`,
+      nodes: x.nodes ? numeral(x.nodes).format('0,0') : '-',
+      delegators: x.delegators ? numeral(x.delegators).format('0,0') : '-',
+      commission: x.commission ? `${numeral(x.commission * 100).format('0,0.[00]')}%` : '-',
+      apr: x.apr ? `${x.apr}%` : '-',
     });
   });
 

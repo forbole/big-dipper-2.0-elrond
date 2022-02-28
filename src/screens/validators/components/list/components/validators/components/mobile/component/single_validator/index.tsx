@@ -12,8 +12,10 @@ const SingleValidator: React.FC<{
   validator: React.ReactNode;
   locked: React.ReactNode;
   stake: string;
-  topUp: string;
   nodes: string;
+  delegators: string;
+  commission: string;
+  apr: string;
 }> = (props) => {
   const { t } = useTranslation('validators');
   const classes = useStyles();
@@ -28,14 +30,12 @@ const SingleValidator: React.FC<{
             {props.idx}
           </Typography>
         </div>
-        <div className={classes.item}>
+        {/* <div className={classes.item}>
           <Typography variant="h4" className="label">
-            {t('nodes')}
+            {t('stake')}
           </Typography>
-          <Typography variant="body1" className="value">
-            {props.nodes}
-          </Typography>
-        </div>
+          {props.stake}
+        </div> */}
       </div>
       <div className={classes.item}>
         <Typography variant="h4" className="label">
@@ -52,15 +52,31 @@ const SingleValidator: React.FC<{
       <div className={classes.flex}>
         <div className={classes.item}>
           <Typography variant="h4" className="label">
-            {t('stake')}
+            {t('delegators')}
           </Typography>
-          {props.stake}
+          {props.delegators}
         </div>
         <div className={classes.item}>
           <Typography variant="h4" className="label">
-            {t('topUp')}
+            {t('nodes')}
           </Typography>
-          {props.topUp}
+          <Typography variant="body1" className="value">
+            {props.nodes}
+          </Typography>
+        </div>
+      </div>
+      <div className={classes.flex}>
+        <div className={classes.item}>
+          <Typography variant="h4" className="label">
+            {t('apr')}
+          </Typography>
+          {props.apr}
+        </div>
+        <div className={classes.item}>
+          <Typography variant="h4" className="label">
+            {t('commission')}
+          </Typography>
+          {props.commission}
         </div>
       </div>
     </div>

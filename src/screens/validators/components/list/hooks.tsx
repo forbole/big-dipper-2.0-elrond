@@ -3,10 +3,15 @@ import {
 } from 'react';
 import * as R from 'ramda';
 import axios from 'axios';
+import Big from 'big.js';
 import {
-  IDENTITIES, PROVIDERS,
+  IDENTITIES,
+  PROVIDERS,
+  STAKE,
 } from '@api';
-import { formatToken } from '@utils/format_token';
+import {
+  formatToken, formatNumber,
+} from '@utils/format_token';
 import { chainConfig } from '@configs';
 import {
   ValidatorsState,
@@ -19,7 +24,6 @@ export const useValidators = () => {
     tab: 0,
     search: '',
     validators: [],
-    providers: [],
   });
 
   useEffect(() => {
@@ -45,8 +49,15 @@ export const useValidators = () => {
 
   const getValidators = async () => {
     try {
-      const { data: validatorsData } = await axios.get(IDENTITIES);
-      const { data: providersData } = await axios.get(PROVIDERS);
+      const [validatorsDataRaw, providersDataRaw, stakeDataRaw] = await Promise.allSettled([
+        axios.get(IDENTITIES),
+        axios.get(PROVIDERS),
+        axios.get(STAKE),
+      ]);
+
+      const validatorsData = R.pathOr([], ['value', 'data'], validatorsDataRaw);
+      const providersData = R.pathOr([], ['value', 'data'], providersDataRaw);
+      const stakeData = R.pathOr({}, ['value', 'data'], stakeDataRaw);
 
       // identities
       const identities = {};
@@ -66,39 +77,30 @@ export const useValidators = () => {
         }
       });
 
-      // validators
-      const validators = validatorsData.map((x) => {
-        const identity = R.pathOr('', ['identity'], x);
-        const imageUrl = R.pathOr('', ['avatar'], x);
-        const name = R.pathOr('', ['name'], x);
+      // get the unique keys first
+      const allValidators: any = {};
+      const allValidatorData: any = {};
+      const allProviderData: any = {};
+      const allNodes: any = {};
 
-        const validator: AvatarName = {
-          address: identity,
-          imageUrl,
-          name,
-        };
-
-        return ({
-          validator,
-          locked: formatToken(
-            R.pathOr('0', ['locked'], x),
-            chainConfig.primaryTokenUnit,
-          ),
-          topUp: formatToken(
-            R.pathOr('0', ['topUp'], x),
-            chainConfig.primaryTokenUnit,
-          ),
-          stake: formatToken(
-            R.pathOr('0', ['stake'], x),
-            chainConfig.primaryTokenUnit,
-          ),
-          stakePercent: R.pathOr(0, ['stakePercent'], x),
-          nodes: R.pathOr(0, ['validators'], x),
-        });
+      validatorsData.forEach((x) => {
+        const identity = R.pathOr(null, ['identity'], x);
+        const validator = R.pathOr({
+          address: R.pathOr('', ['name'], x),
+          imageUrl: '',
+          name: R.pathOr('', ['name'], x),
+        }, [identity], identities);
+        if (!allValidators[validator.address]) {
+          allValidators[validator.address] = validator;
+        }
+        allValidatorData[validator.address] = x;
+        // node edgecase
+        if (!identities[identity]) {
+          allNodes[validator.address] = true;
+        }
       });
 
-      // providers
-      const providers = providersData.map((x) => {
+      providersData.forEach((x) => {
         const identity = R.pathOr(null, ['identity'], x);
         const validator = R.pathOr({
           address: R.pathOr('', ['provider'], x),
@@ -106,23 +108,48 @@ export const useValidators = () => {
           name: R.pathOr('', ['provider'], x),
         }, [identity], identities);
 
+        // validator should be unique
+        if (!allValidators[validator.address]) {
+          allValidators[validator.address] = validator;
+        }
+        // should i care about this?
+        allProviderData[validator.address] = x;
+      });
+
+      const totalStaked = R.pathOr('0', ['totalStaked'], stakeData);
+
+      const validators = R.keys(allValidators).map((x) => {
+        const validator = allValidators[x];
+        const validatorData = allValidatorData[x] || {};
+        const providerData = allProviderData[x] || {};
+        const isNode = allNodes[x] || false;
+        const data = R.mergeAll([providerData, validatorData]);
+
+        const locked = R.pathOr('0', ['locked'], data);
+        const stakePercentString = Big(locked).div(totalStaked === '0' ? 1 : totalStaked).times(100).toFixed(3);
+
         return ({
           validator,
           stake: formatToken(
-            R.pathOr('0', ['stake'], x),
+            R.pathOr('0', ['stake'], data),
             chainConfig.primaryTokenUnit,
           ),
-          nodes: R.pathOr(0, ['numNodes'], x),
-          commission: R.pathOr(0, ['serviceFee'], x),
-          delegators: R.pathOr(0, ['numUsers'], x),
-          apr: R.pathOr(0, ['apr'], x),
+          locked: formatToken(
+            locked,
+            chainConfig.primaryTokenUnit,
+          ),
+          nodes: R.pathOr(0, ['validators'], data),
+          commission: R.pathOr(undefined, ['serviceFee'], data),
+          apr: R.pathOr(undefined, ['apr'], data),
+          delegators: R.pathOr(undefined, ['numUsers'], data),
+          stakePercent: Number(formatNumber(stakePercentString, 2)),
+          isNode,
         });
       });
 
       handleSetState({
         loading: false,
         validators,
-        providers,
       });
     } catch (error) {
       handleSetState({

@@ -10,10 +10,11 @@ const SingleValidator: React.FC<{
   className?: string;
   idx: string;
   validator: React.ReactNode;
-  locked: React.ReactNode;
   stake: string;
-  topUp: string;
   nodes: string;
+  delegators: string;
+  commission: string;
+  apr: string;
 }> = (props) => {
   const { t } = useTranslation('validators');
   const classes = useStyles();
@@ -30,11 +31,9 @@ const SingleValidator: React.FC<{
         </div>
         <div className={classes.item}>
           <Typography variant="h4" className="label">
-            {t('nodes')}
+            {t('stake')}
           </Typography>
-          <Typography variant="body1" className="value">
-            {props.nodes}
-          </Typography>
+          {props.stake}
         </div>
       </div>
       <div className={classes.item}>
@@ -43,24 +42,34 @@ const SingleValidator: React.FC<{
         </Typography>
         {props.validator}
       </div>
-      <div className={classes.item}>
-        <Typography variant="h4" className="label">
-          {t('locked')}
-        </Typography>
-        {props.locked}
+      <div className={classes.flex}>
+        <div className={classes.item}>
+          <Typography variant="h4" className="label">
+            {t('delegators')}
+          </Typography>
+          {props.delegators}
+        </div>
+        <div className={classes.item}>
+          <Typography variant="h4" className="label">
+            {t('nodes')}
+          </Typography>
+          <Typography variant="body1" className="value">
+            {props.nodes}
+          </Typography>
+        </div>
       </div>
       <div className={classes.flex}>
         <div className={classes.item}>
           <Typography variant="h4" className="label">
-            {t('stake')}
+            {t('apr')}
           </Typography>
-          {props.stake}
+          {props.apr}
         </div>
         <div className={classes.item}>
           <Typography variant="h4" className="label">
-            {t('topUp')}
+            {t('commission')}
           </Typography>
-          {props.topUp}
+          {props.commission}
         </div>
       </div>
     </div>

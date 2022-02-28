@@ -11,13 +11,9 @@ import {
   SortArrows,
   AvatarName,
 } from '@components';
-import {
-  NODE_DETAILS,
-  VALIDATOR_DETAILS,
-} from '@utils/go_to_page';
+import { VALIDATOR_DETAILS } from '@utils/go_to_page';
 import { useStyles } from './styles';
 import { fetchColumns } from './utils';
-import { VotingPower } from '..';
 import { ValidatorType } from '../../../../types';
 
 const Desktop: React.FC<{
@@ -47,19 +43,14 @@ const Desktop: React.FC<{
           address={x.validator.address}
           imageUrl={x.validator.imageUrl}
           name={x.validator.name}
-          href={x.validator.address ? VALIDATOR_DETAILS : NODE_DETAILS}
+          href={VALIDATOR_DETAILS}
         />
       ),
-      locked: (
-        <VotingPower
-          percentDisplay={`${x.stakePercent}%`}
-          percentage={x.stakePercent}
-          content={formatNumber(x.locked.value, 2)}
-        />
-      ),
-      stake: `${formatNumber(x.stake.value, 2)} ${x.stake.displayDenom.toUpperCase()}`,
-      topUp: `${formatNumber(x.topUp.value, 2)} ${x.stake.displayDenom.toUpperCase()}`,
-      nodes: numeral(x.nodes).format('0,0'),
+      stake: `${formatNumber(x.stake.value, x.stake.exponent)} ${x.stake.displayDenom.toUpperCase()}`,
+      nodes: x.nodes ? numeral(x.nodes).format('0,0') : '-',
+      delegators: x.delegators ? numeral(x.delegators).format('0,0') : '-',
+      commission: x.commission ? `${numeral(x.commission * 100).format('0,0.[00]')}%` : '-',
+      apr: x.apr ? `${x.apr}%` : '-',
     });
   });
 

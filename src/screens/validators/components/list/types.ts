@@ -7,24 +7,6 @@ export type TabType = {
 export type ValidatorType = {
   validator: AvatarName;
   stake: TokenUnit;
-  locked: TokenUnit;
-  topUp: TokenUnit;
-  stakePercent: number;
-  nodes: number;
-}
-
-export type ProviderType = {
-  validator: AvatarName;
-  stake: TokenUnit;
-  nodes: number;
-  commission: number;
-  apr: number;
-  delegators: number;
-}
-
-export type MergeType = {
-  validator: AvatarName;
-  stake: TokenUnit;
   commission: number;
   nodes: number;
   apr: number;
@@ -39,6 +21,4 @@ export type ValidatorsState = {
   tab: number;
   search: SearchType;
   validators: ValidatorType[];
-  providers: ProviderType[];
-  merge: MergeType[];
 }

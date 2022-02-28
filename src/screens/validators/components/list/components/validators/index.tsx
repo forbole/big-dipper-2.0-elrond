@@ -4,7 +4,7 @@ import { useScreenSize } from '@hooks';
 import {
   NoData,
 } from '@components';
-import { useValidators } from './hooks';
+import { useProviders } from './hooks';
 import {
   ValidatorType,
   SearchType,
@@ -20,7 +20,7 @@ const Validators: React.FC<
     state,
     handleSort,
     sortItems,
-  } = useValidators(props.search);
+  } = useProviders(props.search);
 
   const items = sortItems(props.items);
 

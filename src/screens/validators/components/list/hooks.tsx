@@ -20,6 +20,7 @@ export const useValidators = () => {
     search: '',
     validators: [],
     providers: [],
+    merge: [],
   });
 
   useEffect(() => {
@@ -119,10 +120,56 @@ export const useValidators = () => {
         });
       });
 
+      // merge
+      // get the unique keys first
+      const allValidators: any = {};
+
+      validatorsData.forEach((x) => {
+        const identity = R.pathOr(null, ['identity'], x);
+        const validator = R.pathOr({
+          address: R.pathOr('', ['name'], x),
+          imageUrl: '',
+          name: R.pathOr('', ['name'], x),
+        }, [identity], identities);
+
+        // check unique by identity
+        if (identity && !allValidators[validator.identity]) {
+          allValidators[identity] = validator;
+        } else if (validator.name && !allValidators[validator.name]) {
+          // otherwise go by name
+          allValidators[validator.name] = validator;
+        }
+      });
+
+      providersData.forEach((x) => {
+        const identity = R.pathOr(null, ['identity'], x);
+        const validator = R.pathOr({
+          address: R.pathOr('', ['provider'], x),
+          imageUrl: '',
+          name: R.pathOr('', ['provider'], x),
+        }, [identity], identities);
+
+        // check unique by identity
+        if (identity && !allValidators[validator.identity]) {
+          allValidators[identity] = validator;
+        } else if (validator.name && !allValidators[validator.name]) {
+          // otherwise go by name
+          allValidators[validator.name] = validator;
+        }
+      });
+
+      // const merge = R.keys(allValidators).map((x) => {
+      //   return ({
+      //     validator: allValidators[x],
+
+      //   })
+      // })
+
       handleSetState({
         loading: false,
         validators,
         providers,
+        merge: [],
       });
     } catch (error) {
       handleSetState({

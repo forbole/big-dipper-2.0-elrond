@@ -22,6 +22,15 @@ export type ProviderType = {
   delegators: number;
 }
 
+export type MergeType = {
+  validator: AvatarName;
+  stake: TokenUnit;
+  commission: number;
+  nodes: number;
+  apr: number;
+  delegators: number;
+}
+
 export type SearchType = string;
 
 export type ValidatorsState = {
@@ -31,4 +40,5 @@ export type ValidatorsState = {
   search: SearchType;
   validators: ValidatorType[];
   providers: ProviderType[];
+  merge: MergeType[];
 }

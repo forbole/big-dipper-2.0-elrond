@@ -13,6 +13,7 @@ import { TabType } from './types';
 
 const Validators = dynamic(() => import('./components/validators'));
 const Providers = dynamic(() => import('./components/providers'));
+const Merge = dynamic(() => import('./components/merge'));
 
 const List: React.FC<{
   className?: string;
@@ -42,6 +43,16 @@ const List: React.FC<{
         <Providers
           search={state.search}
           items={state.providers}
+        />
+      ),
+    },
+    {
+      id: 2,
+      key: 'validators',
+      component: (
+        <Merge
+          search={state.search}
+          items={state.merge}
         />
       ),
     },

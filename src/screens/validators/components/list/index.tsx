@@ -1,22 +1,41 @@
 import React from 'react';
 import classnames from 'classnames';
+import useTranslation from 'next-translate/useTranslation';
 import {
   Box,
   LoadAndExist,
+  TabPanel,
 } from '@components';
-import { Validators } from './components';
+import {
+  Validators, Tabs,
+} from './components';
 import { useStyles } from './styles';
 import { useValidators } from './hooks';
+import { TabType } from './types';
 
 const List: React.FC<{
   className?: string;
 }> = ({ className }) => {
+  const { t } = useTranslation('validators');
   const classes = useStyles();
   const {
     state,
-    // handleTabChange,
-    // handleSearch,
+    handleTabChange,
+    handleSearch,
   } = useValidators();
+
+  const tabs:TabType[] = [
+    {
+      id: 0,
+      key: 'validators',
+      component: (
+        <Validators
+          search={state.search}
+          items={state.validators}
+        />
+      ),
+    },
+  ];
 
   return (
     <LoadAndExist
@@ -24,11 +43,25 @@ const List: React.FC<{
       exists={state.exists}
     >
       <Box className={classnames(className, classes.root)}>
-        <Validators
-          className={classes.list}
-          search={state.search}
-          items={state.validators}
+        <Tabs
+          tabs={tabs}
+          tab={state.tab}
+          handleTabChange={handleTabChange}
+          handleSearch={handleSearch}
         />
+        {tabs.map((x) => {
+          return (
+            <TabPanel
+              key={x.id}
+              index={x.id}
+              value={state.tab}
+            >
+              <div className={classes.list}>
+                {x.component}
+              </div>
+            </TabPanel>
+          );
+        })}
       </Box>
     </LoadAndExist>
   );

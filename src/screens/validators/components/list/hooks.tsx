@@ -69,6 +69,7 @@ export const useValidators = () => {
       const allValidators: any = {};
       const allValidatorData: any = {};
       const allProviderData: any = {};
+      const allNodes: any = {};
 
       validatorsData.forEach((x) => {
         const identity = R.pathOr(null, ['identity'], x);
@@ -81,6 +82,10 @@ export const useValidators = () => {
           allValidators[validator.address] = validator;
         }
         allValidatorData[validator.address] = x;
+        // node edgecase
+        if (!identities[identity]) {
+          allNodes[validator.address] = true;
+        }
       });
 
       providersData.forEach((x) => {
@@ -103,6 +108,7 @@ export const useValidators = () => {
         const validator = allValidators[x];
         const validatorData = allValidatorData[x] || {};
         const providerData = allProviderData[x] || {};
+        const isNode = allNodes[x] || false;
         const data = R.mergeAll([providerData, validatorData]);
         return ({
           validator,
@@ -114,6 +120,7 @@ export const useValidators = () => {
           commission: R.pathOr(undefined, ['serviceFee'], data),
           apr: R.pathOr(undefined, ['apr'], data),
           delegators: R.pathOr(undefined, ['numUsers'], data),
+          isNode,
         });
       });
 

@@ -5,12 +5,16 @@ import { VariableSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { Divider } from '@material-ui/core';
 import { AvatarName } from '@components';
-import { VALIDATOR_DETAILS } from '@utils/go_to_page';
+import {
+  VALIDATOR_DETAILS, NODE_DETAILS,
+} from '@utils/go_to_page';
+import { isBech32 } from '@utils/bech32';
 import {
   useList,
   useListRow,
 } from '@hooks';
 import { formatNumber } from '@utils/format_token';
+import NodeDetails from '@src/screens/node_details';
 import { SingleValidator } from './component';
 import { ValidatorType } from '../../../../types';
 import { useStyles } from './styles';
@@ -36,7 +40,7 @@ const Mobile: React.FC<{
           address={x.validator.address}
           imageUrl={x.validator.imageUrl}
           name={x.validator.name}
-          href={VALIDATOR_DETAILS}
+          href={x.isNode ? NODE_DETAILS : VALIDATOR_DETAILS}
         />
       ),
       stake: `${formatNumber(x.stake.value, x.stake.exponent)} ${x.stake.displayDenom.toUpperCase()}`,

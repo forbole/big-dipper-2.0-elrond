@@ -11,6 +11,7 @@ export type ValidatorType = {
   nodes: number;
   apr: number;
   delegators: number;
+  isNode: boolean;
 }
 
 export type SearchType = string;

@@ -11,7 +11,9 @@ import {
   SortArrows,
   AvatarName,
 } from '@components';
-import { VALIDATOR_DETAILS } from '@utils/go_to_page';
+import {
+  VALIDATOR_DETAILS, NODE_DETAILS,
+} from '@utils/go_to_page';
 import { useStyles } from './styles';
 import { fetchColumns } from './utils';
 import { ValidatorType } from '../../../../types';
@@ -43,7 +45,7 @@ const Desktop: React.FC<{
           address={x.validator.address}
           imageUrl={x.validator.imageUrl}
           name={x.validator.name}
-          href={VALIDATOR_DETAILS}
+          href={x.isNode ? NODE_DETAILS : VALIDATOR_DETAILS}
         />
       ),
       stake: `${formatNumber(x.stake.value, x.stake.exponent)} ${x.stake.displayDenom.toUpperCase()}`,

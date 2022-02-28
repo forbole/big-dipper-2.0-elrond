@@ -5,19 +5,9 @@ export const useStyles = () => {
     (theme) => {
       return ({
         root: {
-          height: '100%',
-        },
-        list: {
-          minHeight: '500px',
-          height: '50vh',
-          [theme.breakpoints.up('lg')]: {
-            minHeight: '65vh',
-          },
-        },
-        searchWrap: {
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-end',
+          justifyContent: 'space-between',
         },
         searchBar: {
           display: 'none',

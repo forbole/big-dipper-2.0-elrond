@@ -4,5 +4,11 @@
   "type": "Type",
   "creator": "Creator",
   "identifier": "Identifier",
-  "nft": "NFT"
+  "nft": "NFT",
+  "nftDetails": "NFT details",
+  "overview": "Overview",
+  "ticker": "Ticker",
+  "collection": "Collection",
+  "minted": "Minted",
+  "owner": "Owner"
 }

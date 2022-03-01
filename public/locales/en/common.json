@@ -63,5 +63,6 @@
   "insertValidDtag": "Please insert a valid dtag",
   "metachain": "Metachain",
   "shardNumber": "Shard {{num}}",
-  "tokens": "Tokens"
+  "tokens": "Tokens",
+  "nfts": "NFTs"
 }

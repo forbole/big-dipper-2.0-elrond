@@ -1,9 +1,9 @@
-import TokenDetails from '@src/screens/token_details';
+import NFTDetails from '@src/screens/nft_details';
 
-const TokenDetailsPage = () => {
+const NFTDetailsPage = () => {
   return (
-    <TokenDetails />
+    <NFTDetails />
   );
 };
 
-export default TokenDetailsPage;
+export default NFTDetailsPage;

@@ -32,6 +32,8 @@ export const ACCOUNT_DETAILS_TRANSACTIONS = (account: string) => `${BASE_URL}/ac
 export const ACCOUNT_DETAILS_TRANSACTIONS_COUNT = (account: string) => `${BASE_URL}/accounts/${account}/transactions/count`;
 export const ACCOUNT_DETAILS_TOKENS_COUNT = (account: string) => `${BASE_URL}/accounts/${account}/tokens/count`;
 export const ACCOUNT_DETAILS_TOKENS = (account: string) => `${BASE_URL}/accounts/${account}/tokens`;
+export const ACCOUNT_DETAILS_NFTS_COUNT = (account: string) => `${BASE_URL}/accounts/${account}/nfts/count`;
+export const ACCOUNT_DETAILS_NFTS = (account: string) => `${BASE_URL}/accounts/${account}/nfts`;
 export const TOKENS = `${BASE_URL}/tokens`;
 export const TOKENS_COUNT = `${BASE_URL}/tokens/count`;
 export const TOKEN_DETAILS = (token: string) => `${BASE_URL}/tokens/${token}`;

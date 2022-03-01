@@ -42,7 +42,7 @@ const Tokens:React.FC<ComponentDefault> = (props) => {
 
   return (
     <Box className={classnames(props.className, classes.root)}>
-      <Typography variant="h2">{t('tokens')}</Typography>
+      <Typography variant="h2">{t('nfts')}</Typography>
       {component}
       <Pagination
         className={classes.paginate}

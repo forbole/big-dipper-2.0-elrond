@@ -84,7 +84,12 @@ export const useTransactionDetails = () => {
 
       // operations
       const operations = R.pathOr([], ['operations'], transactionData).map((x) => {
-        const decimals = R.pathOr(0, ['decimals'], x);
+        // edge case if value is base token
+        const type = R.pathOr('', ['type'], x);
+        let decimals = R.pathOr(0, ['decimals'], x);
+        if (type === chainConfig.primaryTokenUnit) {
+          decimals = chainConfig.tokenUnits[chainConfig.primaryTokenUnit].exponent;
+        }
         const value = formatTokenByExponent(
           R.pathOr('0', ['value'], x),
           decimals,
@@ -96,8 +101,8 @@ export const useTransactionDetails = () => {
           identifier: R.pathOr('', ['identifier'], x),
           value: {
             value,
-            baseDenom: R.pathOr('', ['name'], x),
-            displayDenom: R.pathOr('', ['name'], x),
+            baseDenom: R.pathOr('', ['name'], x) || type,
+            displayDenom: R.pathOr('', ['name'], x) || type,
             exponent: decimals,
           },
         });

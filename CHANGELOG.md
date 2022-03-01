@@ -21,3 +21,5 @@
 - Remove tx options from settings
 - Add value to tx details operations with link to token details
 - Merged validator tabs together
+- Add NFT and NFT details page
+- Updated TX operations to link to NFT details

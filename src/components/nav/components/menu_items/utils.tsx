@@ -3,15 +3,14 @@ import HomeIcon from '@assets/icon-home.svg';
 import TransactionIcon from '@assets/icon-transaction.svg';
 import TokenIcon from '@assets/icon-token.svg';
 import UserIcon from '@assets/icon-user.svg';
-// import ParamIcon from '@assets/icon-param.svg';
+import NFTIcon from '@assets/icon-nft.svg';
 import {
   HOME,
   BLOCKS,
   VALIDATORS,
   TRANSACTIONS,
   TOKENS,
-  // PROPOSALS,
-  // PARAMS,
+  NFTS,
 } from '@utils/go_to_page';
 
 export const getMenuItems = () => {
@@ -44,12 +43,12 @@ export const getMenuItems = () => {
     {
       key: 'tokens',
       url: TOKENS,
+      icon: <NFTIcon {...iconProps} />,
+    },
+    {
+      key: 'nfts',
+      url: NFTS,
       icon: <TokenIcon {...iconProps} />,
     },
-    // {
-    //   key: 'params',
-    //   url: PARAMS,
-    //   icon: <ParamIcon {...iconProps} />,
-    // },
   ];
 };

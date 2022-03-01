@@ -35,6 +35,9 @@ export const ACCOUNT_DETAILS_TOKENS = (account: string) => `${BASE_URL}/accounts
 export const TOKENS = `${BASE_URL}/tokens`;
 export const TOKENS_COUNT = `${BASE_URL}/tokens/count`;
 export const TOKEN_DETAILS = (token: string) => `${BASE_URL}/tokens/${token}`;
+export const NFTS = `${BASE_URL}/nfts`;
+export const NFTS_COUNT = `${BASE_URL}/nfts/count`;
+export const NFT_DETAILS = (nft: string) => `${BASE_URL}/nfts/${nft}`;
 
 // tx detail with hero tag
 // https://elrondscan.com/transaction/d9ff0b785e9b794b0538669db18f7e5911549834283d05200bec0d7b63b123b4

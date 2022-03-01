@@ -23,3 +23,4 @@
 - Merged validator tabs together
 - Add NFT and NFT details page
 - Updated TX operations to link to NFT details
+- Add NFT to account details

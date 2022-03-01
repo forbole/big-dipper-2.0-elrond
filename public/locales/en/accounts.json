@@ -9,5 +9,9 @@
   "overview": "Overview",
   "transactions": "Transactions",
   "otherTokens": "Other Tokens",
-  "token": "Token"
+  "token": "Token",
+  "nft": "NFT",
+  "nfts": "NFTs",
+  "identifier": "Identifier",
+  "type": "Type"
 }

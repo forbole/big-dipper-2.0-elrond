@@ -12,6 +12,7 @@ import {
   Transactions,
   Overview,
   Tokens,
+  Nfts,
 } from './components';
 
 const AccountDetails = () => {
@@ -37,6 +38,7 @@ const AccountDetails = () => {
             <Profile className={classes.profile} profile={state.profile} />
             <Overview className={classes.overview} overview={state.overview} />
             <Tokens />
+            <Nfts />
             <Transactions className={classes.transactions} />
           </div>
         </LoadAndExist>

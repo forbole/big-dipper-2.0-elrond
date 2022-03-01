@@ -13,6 +13,7 @@ module.exports = {
     'rgx:^/nodes': ['nodes', 'blocks'],
     'rgx:^/accounts': ['accounts', 'transactions'],
     'rgx:^/tokens': ['tokens', 'transactions'],
+    'rgx:^/nfts': ['nfts', 'transactions'],
   },
   loadLocaleFrom: (lang, ns) => import(`./public/locales/${lang}/${ns}.json`).then((m) => m.default),
 };

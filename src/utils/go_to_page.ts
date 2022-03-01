@@ -10,3 +10,5 @@ export const VALIDATORS = '/validators';
 export const VALIDATOR_DETAILS = (hash: string) => `/validators/${hash}`;
 export const TOKENS = '/tokens';
 export const TOKEN_DETAILS = (token: string) => `/tokens/${token}`;
+export const NFTS = '/nfts';
+export const NFT_DETAILS = (nft: string) => `/nfts/${nft}`;

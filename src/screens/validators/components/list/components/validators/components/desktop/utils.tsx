@@ -21,7 +21,7 @@ export const fetchColumns = (): {
     },
     {
       key: 'locked',
-      sortKey: 'stakePercent',
+      sortKey: 'locked.value',
       width: 22,
       sort: true,
     },

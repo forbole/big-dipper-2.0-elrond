@@ -1,3 +1,8 @@
+# v1.0.1 - 2021-03-08
+
+## Fixes
+- Fixed locked sorting display in validators list
+
 # v1.0.0 - 2021-03-08
 
 ## Changes

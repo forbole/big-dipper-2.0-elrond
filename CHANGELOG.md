@@ -1,4 +1,4 @@
-# Unreleased
+# v1.0.0 - 2021-03-08
 
 ## Changes
 - Add Blocks Page
@@ -24,3 +24,4 @@
 - Add NFT and NFT details page
 - Updated TX operations to link to NFT details
 - Add NFT to account details
+- Fix sorting in validator details

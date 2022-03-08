@@ -5,7 +5,7 @@ import { ValidatorType } from '../../types';
 
 export const useProviders = (search: string) => {
   const [state, setState] = useState<ValidatorsState>({
-    sortKey: 'stake.value',
+    sortKey: 'locked.value',
     sortDirection: 'desc',
   });
 
@@ -42,7 +42,7 @@ export const useProviders = (search: string) => {
         let compareA = R.pathOr(undefined, [...state.sortKey.split('.')], a);
         let compareB = R.pathOr(undefined, [...state.sortKey.split('.')], b);
 
-        if (state.sortKey === 'stake.value') {
+        if (state.sortKey === 'locked.value') {
           compareA = Number(compareA);
           compareB = Number(compareB);
         } else if (typeof compareA === 'string') {

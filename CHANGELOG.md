@@ -1,3 +1,8 @@
+# v1.0.4 - 2022-06-20
+
+## Changes
+- Added preview image
+
 # v1.0.3 - 2021-03-09
 
 ## Fixes
@@ -6,7 +11,7 @@
 # v1.0.2 - 2021-03-09
 
 ## Changes
-- Update matomo to CI/CD
+- Updated matomo to CI/CD
 
 # v1.0.1 - 2021-03-08
 

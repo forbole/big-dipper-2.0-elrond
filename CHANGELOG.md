@@ -1,6 +1,7 @@
 # v1.0.4 - 2022-06-20
 
 ## Changes
+- Updated preview image location
 - Added preview image
 
 # v1.0.3 - 2022-03-09
